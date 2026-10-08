@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope Demo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="header">
+    <h1>Scope Demo</h1>
+    <p>Bei jedem Aufruf dieser Seite werden alle Zähler einmal erhöht.</p>
+</header>
+
+<main class="container">
+    <section class="card">
+        <h2>Aktuelle Scope-Werte</h2>
+        <table class="scope-table">
+            <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Beschreibung</th>
+                <th>Zähler</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Singleton</td>
+                <td>Eine Instanz für die gesamte Anwendung</td>
+                <td th:text="${singletonValue}">0</td>
+            </tr>
+            <tr>
+                <td>Prototype</td>
+                <td>Neue Instanz beim ersten Inject in den Controller</td>
+                <td th:text="${prototypeValue}">0</td>
+            </tr>
+            <tr>
+                <td>Request</td>
+                <td>Eine Instanz pro HTTP-Request</td>
+                <td th:text="${requestValue}">0</td>
+            </tr>
+            <tr>
+                <td>Session</td>
+                <td>Eine Instanz pro User-Session</td>
+                <td th:text="${sessionValue}">0</td>
+            </tr>
+            <tr>
+                <td>Application</td>
+                <td>Eine Instanz pro Web-Anwendung (ServletContext)</td>
+                <td th:text="${applicationValue}">0</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="button-row">
+            <a href="/scope" class="btn primary">Nochmal aufrufen (Zähler erhöhen)</a>
+            <a href="/comparison" class="btn secondary">Nur vergleichen</a>
+            <a href="/" class="btn ghost">Zur Übersicht</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Experimentiere mit Reload, neuen Tabs und Inkognito, um die Unterschiede der Scopes zu sehen.</p>
+</footer>
+</body>
+</html>
+

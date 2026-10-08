@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title><ui:insert name="title">Tag10-JSF-PrimeFaces – JSF Application</ui:insert></title>
+    <h:outputStylesheet library="assets" name="styles.css"/>
+</h:head>
+<h:body>
+<div class="layout">
+    <header>
+        <h1>Tag10-JSF-PrimeFaces – JSF Application</h1>
+        <h:link outcome="product-list" value="Products"/>
+    </header>
+    <main>
+        <ui:insert name="content"/>
+    </main>
+    <footer>
+        <small>Jakarta EE 10 • Payara 6</small>
+    </footer>
+</div>
+</h:body>
+</html>

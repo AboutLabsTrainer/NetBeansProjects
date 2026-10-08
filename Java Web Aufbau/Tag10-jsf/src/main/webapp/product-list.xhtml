@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces"
+                template="/templates/main.xhtml">
+    <ui:define name="title">Products</ui:define>
+    <ui:define name="content">
+        <h:form id="listForm">
+            <h2>Products</h2>
+            
+            <div class="toolbar">
+                <p:inputText value="#{productBean.search}" placeholder="Search by name" id="searchInput">
+                    <f:ajax event="keyup" listener="#{productBean.search}" render="table messages" delay="300"/>
+                </p:inputText>
+                <p:commandButton value="Search" actionListener="#{productBean.search}">
+                    <f:ajax render="table messages"/>
+                </p:commandButton>
+                <p:link value="Add New" outcome="product-edit"/>
+            </div>
+
+            <h:messages id="messages" showDetail="true" closable="true" />
+
+            <h:dataTable id="table" value="#{productBean.products}" var="p" styleClass="striped">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{p.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{p.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    <h:outputText value="#{p.price}">
+                        <f:convertNumber type="currency" currencySymbol="€" minFractionDigits="2"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Stock</f:facet>
+                    #{p.stock}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:link value="Edit" outcome="product-edit">
+                        <f:param name="id" value="#{p.id}"/>
+                    </h:link>
+                    <span>&#160;|&#160;</span>
+                    <h:commandButton value="Delete" action="#{productBean.delete(p.id)}">
+                        <f:ajax render="table messages"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

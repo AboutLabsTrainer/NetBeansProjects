@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Person Details</h1>
+        <div class="person-card">
+            <p><strong>ID:</strong> <span th:text="${person.id}">1</span></p>
+            <p><strong>Vorname:</strong> <span th:text="${person.firstname}">Max</span></p>
+            <p><strong>Nachname:</strong> <span th:text="${person.lastname}">Mustermann</span></p>
+            <p><strong>E-Mail:</strong> <span th:text="${person.email}">max@example.com</span></p>
+            <p><strong>Telefon:</strong> <span th:text="${person.phone}">-</span></p>
+        </div>
+        <div class="actions">
+            <a th:href="@{/persons/{id}/edit(id=${person.id})}" class="btn-primary">Bearbeiten</a>
+            <form th:action="@{/persons/{id}/delete(id=${person.id})}" method="post" onsubmit="return confirm('Person wirklich löschen?');">
+                <button type="submit" class="btn-danger">Löschen</button>
+            </form>
+            <a th:href="@{/persons}" class="btn-secondary">Zurück zur Liste</a>
+        </div>
+    </div>
+</body>
+</html>

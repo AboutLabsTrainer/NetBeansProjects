@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot Scopes Demo - Übersicht</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="header">
+    <h1>Spring Boot Basic &ndash; Tag 7: Scopes in Spring</h1>
+    <p>Singleton, Prototype, Request, Session und Application Scope im Vergleich.</p>
+</header>
+
+<main class="container">
+    <section class="card">
+        <h2>Was sind Bean Scopes?</h2>
+        <p>
+            Scopes in Spring bestimmen, wie lange eine Bean lebt, wann neue Instanzen erzeugt werden
+            und ob mehrere Requests bzw. User sich eine Instanz teilen.
+        </p>
+        <ul>
+            <li><strong>Singleton</strong> &ndash; eine Instanz pro Anwendung (Standard)</li>
+            <li><strong>Prototype</strong> &ndash; neue Instanz bei jedem Abruf</li>
+            <li><strong>Request</strong> &ndash; eine Instanz pro HTTP-Request</li>
+            <li><strong>Session</strong> &ndash; eine Instanz pro HTTP-Session (User)</li>
+            <li><strong>Application</strong> &ndash; eine Instanz pro Web-Anwendung</li>
+        </ul>
+    </section>
+
+    <section class="card actions">
+        <h2>Demos</h2>
+        <p>Starte die Scope-Demo und beobachte, wie sich die Zähler in verschiedenen Szenarien verhalten.</p>
+        <div class="button-row">
+            <a href="/scope" class="btn primary">Scope-Demo starten</a>
+            <a href="/comparison" class="btn secondary">Aktuelle Werte vergleichen</a>
+        </div>
+        <p class="hint">
+            Tipp: Öffne mehrere Tabs oder ein Inkognito-Fenster, um Session- und Application-Scope zu sehen.
+        </p>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Port: 9097 &middot; Kurs: Spring Boot Basic &ndash; Tag 7</p>
+</footer>
+</body>
+</html>
+

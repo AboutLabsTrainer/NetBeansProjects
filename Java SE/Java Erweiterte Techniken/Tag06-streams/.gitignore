@@ -1,0 +1,16 @@
+# Build-Verzeichnisse
+build/
+dist/
+nbproject/private/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tools/Reports
+tools/reports/

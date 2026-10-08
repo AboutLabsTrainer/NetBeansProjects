@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+nb-configuration.xml
+target/
+tools/
+reports/
+*.iml
+*.log
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Persons</title>
+</head>
+<body>
+<h1>Persons</h1>
+
+<p>
+    <a th:href="@{/persons/add}">Add Person</a>
+    |
+    <a th:href="@{/chat}">Open Chat (WebSocket)</a>
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.id}">1</td>
+        <td th:text="${person.firstname}">Max</td>
+        <td th:text="${person.lastname}">Mustermann</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Favorite Person IDs (Session)</h2>
+<p th:text="${favorites}">[]</p>
+
+</body>
+</html>
+

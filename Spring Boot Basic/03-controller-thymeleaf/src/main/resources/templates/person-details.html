@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Person Details - Spring Boot Basic Tag 3</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <header>
+        <h1>Person Details</h1>
+        <p class="subtitle">Detailansicht einer Person</p>
+    </header>
+
+    <main class="container">
+        <div class="person-card">
+            <div class="detail-row">
+                <span class="detail-label">ID:</span>
+                <span class="detail-value" th:text="${person.id}">1</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Vorname:</span>
+                <span class="detail-value" th:text="${person.firstname}">Max</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Nachname:</span>
+                <span class="detail-value" th:text="${person.lastname}">Mustermann</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">E-Mail:</span>
+                <span class="detail-value">
+                    <a th:href="'mailto:' + ${person.email}" th:text="${person.email}">max@example.com</a>
+                </span>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a th:href="@{/persons}" class="btn btn-secondary">← Zurück zur Liste</a>
+            <div class="nav-buttons">
+                <a th:if="${person.id > 1}" th:href="@{/persons/{id}(id=${person.id - 1})}" class="btn btn-secondary">← Vorherige</a>
+                <a th:if="${person.id < 100}" th:href="@{/persons/{id}(id=${person.id + 1})}" class="btn btn-primary">Nächste →</a>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>Developer Info</h3>
+            <p>Diese Person ist auch über die REST API verfügbar:</p>
+            <p><code>GET /api/persons/<span th:text="${person.id}">1</span></code></p>
+            <p>
+                <a th:href="@{/api/persons/{id}(id=${person.id})}" class="btn btn-small" target="_blank">JSON anzeigen</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Java Fleet Systems - Spring Boot Basic Kurs</p>
+        <p>Tag 3: Von JSON zu HTML mit Thymeleaf</p>
+    </footer>
+</body>
+</html>

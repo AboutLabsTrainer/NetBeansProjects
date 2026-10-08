@@ -1,0 +1,39 @@
+groups:
+  - name: application_alerts
+    interval: 30s
+    rules:
+      - alert: HighMemoryUsage
+        expr: (jvm_memory_used_bytes{area="heap"} / jvm_memory_max_bytes{area="heap"}) * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Memory Usage (instance {{ $labels.instance }})"
+          description: "Memory usage is above 80% for 5 minutes."
+
+      - alert: HighErrorRate
+        expr: (rate(http_server_requests_seconds_count{status=~"5.."}[5m]) / rate(http_server_requests_seconds_count[5m])) * 100 > 5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High Error Rate (instance {{ $labels.instance }})"
+          description: "Error rate is above 5% for 2 minutes."
+
+      - alert: SlowDatabaseQueries
+        expr: database_query_avg_duration > 1000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow Database Queries detected"
+          description: "Query {{ $labels.query }} average duration is {{ $value }}ms."
+
+      - alert: ApplicationDown
+        expr: up{job="spring-boot-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Application is DOWN"
+          description: "Application {{ $labels.instance }} is not responding."

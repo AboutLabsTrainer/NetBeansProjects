@@ -1,0 +1,5 @@
+Hallo Datei!
+Dies ist eine Beispiel-Datei.
+Sie hat mehrere Zeilen.
+Umlaute: äöü ÄÖÜ ß
+

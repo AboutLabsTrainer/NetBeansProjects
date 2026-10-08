@@ -1,0 +1,17 @@
+# Maven output
+/target/
+*.war
+*.log
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+
+# NetBeans build
+/nbproject/private/
+
+# Project tooling directories
+/tools/
+/reports/
+

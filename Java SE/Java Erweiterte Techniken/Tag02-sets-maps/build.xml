@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Minimaler Ant-Build für ein NetBeans Java SE Projekt.
+  NetBeans generiert/aktualisiert die Datei nbproject/build-impl.xml automatisch.
+-->
+<project name="02-collections-sets-maps" default="default" basedir=".">
+    <description>Mini-Challenge: Sets &amp; Maps – Keine Duplikate (NetBeans Ant Projekt)</description>
+
+    <!--
+      Die eigentliche Build-Logik liegt in build-impl.xml, das von NetBeans erzeugt wird.
+      Dieses Projekt-File bleibt bewusst schlank.
+    -->
+    <import file="nbproject/build-impl.xml"/>
+</project>
+

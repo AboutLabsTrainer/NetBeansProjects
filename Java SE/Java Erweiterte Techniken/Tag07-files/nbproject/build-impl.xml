@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tag07-file-io-impl" default="default" basedir="..">
+    <!-- Minimal NetBeans-compatible build-impl for a plain Java SE Ant project -->
+
+    <property file="nbproject/project.properties"/>
+
+    <property name="build.dir" location="${build.dir}"/>
+    <property name="dist.dir" location="${dist.dir}"/>
+    <property name="src.dir" location="${src.dir}"/>
+    <property name="build.classes.dir" location="${build.classes.dir}"/>
+    <property name="dist.jar" location="${dist.jar}"/>
+
+    <target name="default" depends="run"/>
+
+    <target name="init">
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac
+            srcdir="${src.dir}"
+            destdir="${build.classes.dir}"
+            includeantruntime="false"
+            encoding="${source.encoding}"
+            source="${javac.source}"
+            target="${javac.target}"
+            debug="true">
+            <classpath>
+                <pathelement path="${javac.classpath}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}" manifest="${manifest.file}"/>
+    </target>
+
+    <target name="run" depends="jar">
+        <java fork="true" classname="${main.class}" failonerror="true">
+            <classpath>
+                <pathelement path="${run.classpath}"/>
+            </classpath>
+            <jvmarg line="${run.jvmargs}"/>
+        </java>
+    </target>
+</project>
+

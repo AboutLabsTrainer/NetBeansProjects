@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Personen - Thymeleaf</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Personen-Verwaltung</h1>
+        <p class="engine-badge">Template Engine: <strong th:text="${engine}">Thymeleaf</strong></p>
+        
+        <div class="stats">
+            <p>Gesamt: <strong th:text="${#lists.size(persons)}">0</strong> Personen</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Stadt</th>
+                    <th>Position</th>
+                    <th>Firma</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.id}">1</td>
+                    <td th:text="${person.fullName}">Max Mustermann</td>
+                    <td th:text="${person.email}">max@example.com</td>
+                    <td th:text="${person.phone}">0123456789</td>
+                    <td th:text="${person.city}">Berlin</td>
+                    <td th:text="${person.jobTitle}">Developer</td>
+                    <td th:text="${person.company}">Firma GmbH</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

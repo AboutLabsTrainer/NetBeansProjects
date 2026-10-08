@@ -1,0 +1,3 @@
+# Spring Boot 3: ersetzt die veraltete spring.factories-Registrierung.
+# Listet Auto-Configuration-Klassen, die beim Start automatisch geladen werden.
+de.ibb.greeting.GreetingAutoConfiguration

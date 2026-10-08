@@ -1,0 +1,4 @@
+.layout{max-width:980px;margin:32px auto;font-family:system-ui,Arial,sans-serif}
+header,footer{padding:10px 0}
+.toolbar{margin:10px 0;display:flex;gap:10px;align-items:center}
+.striped .ui-datatable-data>tr:nth-child(odd){background:#fafafa}

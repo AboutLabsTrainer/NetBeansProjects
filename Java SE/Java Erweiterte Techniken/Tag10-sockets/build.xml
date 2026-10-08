@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Ant Build-Script für Tag 10 - Netzwerkprogrammierung
+    NetBeans Java SE Projekt
+-->
+<project name="10-netzwerkprogrammierung-sockets" default="default" basedir=".">
+    <description>Tag 10 - Netzwerkprogrammierung: Sockets &amp; HttpClient</description>
+    
+    <!-- Projekt-Eigenschaften -->
+    <property name="src.dir" location="src"/>
+    <property name="build.dir" location="build"/>
+    <property name="dist.dir" location="dist"/>
+    <property name="javac.source" value="21"/>
+    <property name="javac.target" value="21"/>
+    <property name="javac.encoding" value="UTF-8"/>
+    <property name="jpda.address" value="5005"/>
+    
+    <!-- Classpath -->
+    <path id="classpath">
+        <!-- Hier können externe JARs hinzugefügt werden -->
+    </path>
+    
+    <!-- Clean Target -->
+    <target name="clean" description="Löscht Build- und Dist-Verzeichnisse">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Init Target -->
+    <target name="init" description="Erstellt Build-Verzeichnisse">
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Compile Target -->
+    <target name="compile" depends="init" description="Kompiliert Java-Quellcode">
+        <javac 
+            srcdir="${src.dir}" 
+            destdir="${build.dir}/classes"
+            source="${javac.source}"
+            target="${javac.target}"
+            encoding="${javac.encoding}"
+            includeantruntime="false"
+            debug="true"
+            deprecation="true">
+            <classpath refid="classpath"/>
+        </javac>
+        <copy todir="${build.dir}/classes">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+    
+    <!-- JAR Target -->
+    <target name="jar" depends="compile" description="Erstellt JAR-Datei">
+        <jar destfile="${dist.dir}/netzwerkprogrammierung.jar" basedir="${build.dir}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="de.ibb.netzwerk.tag10.EchoServerLevel1"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- Run Target: Verwendet run.class falls gesetzt, sonst Standard-Klasse -->
+    <target name="run" depends="compile" description="Führt eine Klasse aus">
+        <property name="run.class" value="de.ibb.netzwerk.tag10.EchoServerLevel1"/>
+        <echo>Führe aus: ${run.class}</echo>
+        <java classname="${run.class}" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- Debug Target: Debuggt eine Klasse -->
+    <target name="debug" depends="compile" description="Debuggt eine Klasse">
+        <fail unless="debug.class">Must set debug.class property</fail>
+        <echo>Debugge: ${debug.class}</echo>
+        <java classname="${debug.class}" fork="true">
+            <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=${jpda.address}"/>
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- Run Targets für einzelne Klassen -->
+    <target name="run-echo-server" depends="compile" description="Führt EchoServerLevel1 aus">
+        <java classname="de.ibb.netzwerk.tag10.EchoServerLevel1" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-echo-client" depends="compile" description="Führt EchoClientLevel1 aus">
+        <java classname="de.ibb.netzwerk.tag10.EchoClientLevel1" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-multi-server" depends="compile" description="Führt MultiClientEchoServer aus">
+        <java classname="de.ibb.netzwerk.tag10.MultiClientEchoServer" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-chat-server" depends="compile" description="Führt ChatServer aus">
+        <java classname="de.ibb.netzwerk.tag10.ChatServer" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-chat-client" depends="compile" description="Führt ChatClient aus">
+        <java classname="de.ibb.netzwerk.tag10.ChatClient" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-http-get" depends="compile" description="Führt SimpleHttpGetExample aus">
+        <java classname="de.ibb.netzwerk.tag10.SimpleHttpGetExample" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-http-post" depends="compile" description="Führt HttpPostJsonExample aus">
+        <java classname="de.ibb.netzwerk.tag10.HttpPostJsonExample" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-parallel-api" depends="compile" description="Führt ParallelApiCallsExample aus">
+        <java classname="de.ibb.netzwerk.tag10.ParallelApiCallsExample" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- NetBeans-spezifische Targets für einzelne Dateien -->
+    
+    <!-- Compile Single: Kompiliert eine einzelne Datei -->
+    <target name="compile-single" depends="init">
+        <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
+        <echo>Kompiliere: ${javac.includes}</echo>
+        <javac 
+            srcdir="${src.dir}" 
+            destdir="${build.dir}/classes"
+            source="${javac.source}"
+            target="${javac.target}"
+            encoding="${javac.encoding}"
+            includeantruntime="false"
+            debug="true"
+            deprecation="true">
+            <classpath refid="classpath"/>
+            <include name="${javac.includes}"/>
+        </javac>
+    </target>
+    
+    <!-- Run Single: Führt eine einzelne Klasse aus -->
+    <target name="run-single" depends="compile-single">
+        <fail unless="run.class">Must select one file in the IDE or set run.class</fail>
+        <echo>Führe aus: ${run.class}</echo>
+        <java classname="${run.class}" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- Debug Single: Debuggt eine einzelne Klasse -->
+    <target name="debug-single" depends="compile-single">
+        <property name="debug.class" value="${run.class}"/>
+        <fail unless="debug.class">Must select one file in the IDE or set debug.class/run.class</fail>
+        <echo>Debugge: ${debug.class}</echo>
+        <java classname="${debug.class}" fork="true">
+            <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=${jpda.address}"/>
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${build.dir}/classes"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- Default Target -->
+    <target name="default" depends="compile" description="Standard-Build: Kompiliert das Projekt"/>
+    
+</project>

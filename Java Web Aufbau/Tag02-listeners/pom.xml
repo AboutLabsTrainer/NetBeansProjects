@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.javadeveloper</groupId>
+  <artifactId>Tag2</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+  <name>Tag2 - Listener meistern (Event-Driven)</name>
+  <description>Mini-Challenge: Application, Session &amp; Request Listener + Monitoring Dashboard</description>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <jakarta.ee.version>10.0.0</jakarta.ee.version>
+    <payara.hostname>localhost</payara.hostname>
+    <payara.adminPort>4848</payara.adminPort>
+    <payara.username>admin</payara.username>
+    <payara.password>adminadmin</payara.password>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-web-api</artifactId>
+      <version>${jakarta.ee.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>Tag2</finalName>
+    <plugins>
+      <!-- Deploy to running Payara: mvn package cargo:redeploy -Payara -->
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.10.10</version>
+        <configuration>
+          <container>
+            <containerId>glassfish5x</containerId>
+            <type>remote</type>
+          </container>
+          <configuration>
+            <type>runtime</type>
+            <properties>
+              <cargo.remote.username>${payara.username}</cargo.remote.username>
+              <cargo.remote.password>${payara.password}</cargo.remote.password>
+              <cargo.remote.port>${payara.adminPort}</cargo.remote.port>
+              <cargo.hostname>${payara.hostname}</cargo.hostname>
+            </properties>
+          </configuration>
+          <deployer>
+            <deployables>
+              <deployable>
+                <location>${project.build.directory}/${project.build.finalName}.war</location>
+                <type>war</type>
+                <properties>
+                  <context>/${project.build.finalName}</context>
+                </properties>
+              </deployable>
+            </deployables>
+          </deployer>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

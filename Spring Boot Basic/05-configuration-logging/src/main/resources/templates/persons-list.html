@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Personen</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${appName}">Persons Management System</h1>
+        <p style="color: #666; font-size: 12px;">
+            Version <span th:text="${appVersion}">1.0.0</span> |
+            Max. Personen: <span th:text="${maxPersons}">100</span>
+        </p>
+        <div class="actions">
+            <a th:href="@{/persons/new}" class="btn-primary">+ Neue Person</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>E-Mail</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.id}">1</td>
+                    <td th:text="${person.firstname}">Max</td>
+                    <td th:text="${person.lastname}">Mustermann</td>
+                    <td th:text="${person.email}">max@example.com</td>
+                    <td>
+                        <a th:href="@{/persons/{id}(id=${person.id})}">Details</a>
+                        |
+                        <a th:href="@{/persons/{id}/edit(id=${person.id})}">Bearbeiten</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

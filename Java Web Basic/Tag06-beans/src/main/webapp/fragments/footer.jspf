@@ -1,0 +1,2 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<div style="padding:12px 0;border-top:1px solid #eee;margin-top:16px;color:#666">© ${pageContext.request.serverName}</div>

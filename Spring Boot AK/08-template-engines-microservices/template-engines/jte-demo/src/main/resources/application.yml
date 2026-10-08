@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: jte-demo
+
+gg:
+  jte:
+    template-location: classpath:/templates
+    use-precompiled-templates: false
+    development-mode: true

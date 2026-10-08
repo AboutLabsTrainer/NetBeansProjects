@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Seite nicht gefunden</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <p class="error-page-message">Seite nicht gefunden</p>
+        <p>Die von dir gesuchte Person oder Seite existiert nicht.</p>
+        <a th:href="@{/persons}" class="btn-primary">Zurück zur Personen-Liste</a>
+    </div>
+</body>
+</html>

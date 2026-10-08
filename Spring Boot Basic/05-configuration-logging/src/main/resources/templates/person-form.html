@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person hinzufügen</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Neue Person hinzufügen</h1>
+        <form th:action="@{/persons/new}" th:object="${person}" method="post">
+            <div class="form-group">
+                <label for="firstname">Vorname: *</label>
+                <input type="text" id="firstname" th:field="*{firstname}" th:class="${#fields.hasErrors('firstname')} ? 'error' : ''" placeholder="z.B. Max" required>
+                <span class="error-message" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Nachname: *</label>
+                <input type="text" id="lastname" th:field="*{lastname}" th:class="${#fields.hasErrors('lastname')} ? 'error' : ''" placeholder="z.B. Mustermann" required>
+                <span class="error-message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail: *</label>
+                <input type="email" id="email" th:field="*{email}" th:class="${#fields.hasErrors('email')} ? 'error' : ''" placeholder="max@example.com" required>
+                <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon (optional):</label>
+                <input type="text" id="phone" th:field="*{phone}" th:class="${#fields.hasErrors('phone')} ? 'error' : ''" placeholder="0151-12345678 oder +49-151-12345678">
+                <span class="error-message" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Speichern</button>
+                <a th:href="@{/persons}" class="btn-secondary">Abbrechen</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

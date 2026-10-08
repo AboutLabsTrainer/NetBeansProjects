@@ -1,0 +1,7 @@
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px}
+.card{border:1px solid #eee;border-radius:12px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+body{font-family:system-ui, Arial, sans-serif;margin:40px}
+.error{color:#b00}
+a.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#0a7;color:#fff;text-decoration:none;margin-right:8px}
+input,button{padding:6px;border-radius:8px;border:1px solid #ccc}
+table{border-collapse:collapse;width:100%} th,td{border:1px solid #ddd;padding:8px}

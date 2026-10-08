@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces"
+                template="/templates/main.xhtml">
+    <ui:define name="title">Edit Product</ui:define>
+    <ui:define name="content">
+        <h:form id="editForm">
+            <h2>Edit Product</h2>
+            <h:messages id="messages" showDetail="true" closable="true"/>
+
+            <h:panelGrid columns="2" columnClasses="label,value">
+                <h:outputLabel value="Name:" for="name"/>
+                <h:inputText id="name" value="#{productBean.current.name}" required="true"
+                             requiredMessage="Name is required" maxlength="120">
+                    <f:validateLength minimum="3" />
+                </h:inputText>
+
+                <h:outputLabel value="Description:" for="desc"/>
+                <h:inputTextarea id="desc" value="#{productBean.current.description}" rows="4" maxlength="1000"/>
+
+                <h:outputLabel value="Price:" for="price"/>
+                <h:inputText id="price" value="#{productBean.current.price}" required="true"
+                             requiredMessage="Price is required">
+                    <f:convertNumber type="number" maxFractionDigits="2"/>
+                    <f:validateDoubleRange minimum="0.01"/>
+                </h:inputText>
+
+                <h:outputLabel value="Stock:" for="stock"/>
+                <h:inputText id="stock" value="#{productBean.current.stock}" required="true"
+                             requiredMessage="Stock is required">
+                    <f:convertNumber type="number" integerOnly="true" groupingUsed="false"/>
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+            </h:panelGrid>
+
+            <div class="toolbar">
+                <h:commandButton value="Save" action="#{productBean.save}"/>
+                <h:commandButton value="Cancel" action="#{productBean.cancel}" immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

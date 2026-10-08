@@ -1,0 +1,22 @@
+# Maven output
+target/
+
+# Build artifacts
+*.class
+*.log
+*.tmp
+*.war
+
+# IDE specific
+.idea/
+.vscode/
+*.iml
+nbproject/private/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project-specific
+tools/reports/
+

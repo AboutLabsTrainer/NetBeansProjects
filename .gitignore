@@ -1,0 +1,56 @@
+# Build outputs
+**/target/
+**/build/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/bin/
+**/out/
+**/classes/
+
+# NetBeans
+**/nbproject/private/
+**/.nb-gradle/
+
+# IntelliJ / Eclipse
+**/.idea/
+**/*.iml
+**/.settings/
+**/.classpath
+**/.project
+**/.factorypath
+
+# Maven / Gradle
+**/.mvn/wrapper/maven-wrapper.jar
+**/.gradle/
+**/gradle-app.setting
+
+# Runtime / local data
+**/node_modules/
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+**/*.class
+
+# Message broker / local stores
+**/MyMessageBroker/data/
+**/data/activemq/
+
+# Secrets & local env
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/*.jks
+**/*.p12
+**/credentials.json
+**/secrets/
+
+# OS / editor
+**/*~
+**/*.swp
+**/.vscode/
+
+# Preserved nested-repo metadata (not part of monorepo)
+**/.git.nested-backup/

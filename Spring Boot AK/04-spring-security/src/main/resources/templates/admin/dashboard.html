@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .stats { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        a { color: #667eea; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <div class="stats">
+        <p>Registrierte User: <strong th:text="${userCount}">0</strong></p>
+    </div>
+    <p><a href="/admin/users">User-Verwaltung</a> | <a href="/persons">Personen</a> | <a href="/logout">Abmelden</a></p>
+</body>
+</html>

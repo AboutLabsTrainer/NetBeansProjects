@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Ant Build-File für Stream API Challenge Projekt
+-->
+<project name="06-stream-api" default="default" basedir=".">
+    <description>Stream API Challenge Projekt - Tag 6</description>
+    
+    <!-- Projekt Properties -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir" value="${dist.dir}/lib"/>
+    <property name="main.class" value="de.ibb.streams.StreamChallenges"/>
+    
+    <!-- Initialisierung -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+    </target>
+    
+    <!-- Kompilieren -->
+    <target name="compile" depends="init" description="Kompiliere den Java-Code">
+        <javac srcdir="${src.dir}" 
+               destdir="${classes.dir}" 
+               includeAntRuntime="false"
+               source="8"
+               target="8"
+               encoding="UTF-8"
+               debug="true"
+               deprecation="true">
+            <classpath>
+                <!-- Hier können zusätzliche JARs hinzugefügt werden -->
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- JAR erstellen -->
+    <target name="jar" depends="compile" description="Erstelle JAR-Datei">
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Implementation-Title" value="${ant.project.name}"/>
+                <attribute name="Implementation-Version" value="1.0"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- Ausführen -->
+    <target name="run" depends="compile" description="Führe die Hauptklasse aus">
+        <java classname="${main.class}" fork="true" classpath="${classes.dir}">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- Clean -->
+    <target name="clean" description="Lösche Build-Verzeichnisse">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Default Target -->
+    <target name="default" depends="clean,compile,jar,run" description="Standard-Build: clean, compile, jar, run"/>
+    
+</project>

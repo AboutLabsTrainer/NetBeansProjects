@@ -1,0 +1,6 @@
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.card{border:1px solid #eee;border-radius:12px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+body{font-family:system-ui, Arial, sans-serif;margin:40px}
+a.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#0a7;color:#fff;text-decoration:none;margin-right:8px}
+button{padding:6px 10px;border-radius:8px;border:1px solid #0a7;background:#0a7;color:#fff}
+input,select{padding:6px;border:1px solid #ccc;border-radius:8px}

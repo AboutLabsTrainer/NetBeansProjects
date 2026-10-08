@@ -1,0 +1,28 @@
+Spring Boot Basic - Tag 7: Scopes in Spring
+===========================================
+
+1. Stelle sicher, dass Java 21 installiert und konfiguriert ist.
+2. Baue das Projekt:
+
+   mvn clean install
+
+3. Starte die Anwendung:
+
+   mvn spring-boot:run
+
+4. Öffne im Browser:
+
+   http://localhost:9097/
+
+   - Übersicht: Erklärung der Bean Scopes
+   - /scope: Scope-Demo (Zähler werden erhöht)
+   - /comparison: Aktuelle Werte ohne weitere Erhöhung
+
+5. Experimente:
+
+   - Mehrfaches Reload im selben Tab
+   - Neuer Tab im gleichen Browser
+   - Inkognito-Fenster oder anderer Browser
+
+So kannst du die Unterschiede zwischen Singleton, Prototype, Request, Session und Application Scope beobachten.
+

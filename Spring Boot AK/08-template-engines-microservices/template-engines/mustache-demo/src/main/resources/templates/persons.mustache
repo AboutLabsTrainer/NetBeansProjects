@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personen - Mustache</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Personen-Verwaltung</h1>
+        <p class="engine-badge">Template Engine: <strong>{{engine}}</strong></p>
+        
+        <div class="stats">
+            <p>Gesamt: <strong>50</strong> Personen</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Stadt</th>
+                    <th>Position</th>
+                    <th>Firma</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#persons}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{fullName}}</td>
+                    <td>{{email}}</td>
+                    <td>{{phone}}</td>
+                    <td>{{city}}</td>
+                    <td>{{jobTitle}}</td>
+                    <td>{{company}}</td>
+                </tr>
+                {{/persons}}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

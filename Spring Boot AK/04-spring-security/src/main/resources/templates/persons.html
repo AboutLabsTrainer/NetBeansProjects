@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Persons - Verwaltung</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #667eea;
+        }
+        h1 { color: #333; }
+        .logout-button {
+            background-color: #f44336; color: white; border: none;
+            padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;
+        }
+        .logout-button:hover { background-color: #da190b; }
+        .welcome { color: #666; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #667eea; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        .admin-link { margin-top: 20px; }
+        .admin-link a { color: #667eea; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>Person Management System</h1>
+            <p class="welcome">
+                Willkommen, <strong sec:authentication="name">User</strong>!
+                Rolle: <strong sec:authentication="authorities">ROLE</strong>
+            </p>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="logout-button">Abmelden</button>
+        </form>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')" class="admin-link">
+        <a href="/admin/dashboard">Admin Dashboard</a> |
+        <a href="/admin/users">User-Verwaltung</a>
+    </div>
+
+    <h2>Alle Personen</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Email</th>
+                <th>Owner</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.firstname}"></td>
+                <td th:text="${person.lastname}"></td>
+                <td th:text="${person.email}"></td>
+                <td th:text="${person.owner.username}"></td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(persons)}">
+                <td colspan="5" style="text-align:center; color:#999;">Keine Personen vorhanden.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

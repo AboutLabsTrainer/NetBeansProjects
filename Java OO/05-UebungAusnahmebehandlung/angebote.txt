@@ -1,0 +1,5 @@
+Auto;49.99;3
+Fahrrad;19.50;2
+Bohrmaschine;25.00;5
+KaputterEintrag;xx;3
+ZuLang;30.00;40

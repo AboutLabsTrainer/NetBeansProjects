@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User-Verwaltung</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #667eea; color: white; }
+        a { color: #667eea; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>User-Verwaltung (Admin only)</h1>
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Username</th><th>Role</th><th>Enabled</th><th>Locked</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.enabled}"></td>
+                <td th:text="${!user.accountNonLocked}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="margin-top:20px;"><a href="/admin/dashboard">Dashboard</a> | <a href="/persons">Personen</a></p>
+</body>
+</html>

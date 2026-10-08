@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tag 3 – Servlets meistern (Servlet API)</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 40px; }
+    ul { line-height: 1.6; }
+    code { background: #f6f6f6; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Tag 3 – Servlets meistern: Servlet-API</h1>
+  <p>Start-URL nach Deploy: <code>http://localhost:8080/HelloPayara-Tag3/</code></p>
+  <ul>
+    <li><a href="./lifecycle">/lifecycle</a> – <em>init()</em>/<em>destroy()</em> &amp; Service-Infos</li>
+    <li><a href="./config">/config</a> – <code>ServletConfig</code> init-params &amp; <code>ServletContext</code> context-params</li>
+    <li><a href="./dispatch?mode=forward">/dispatch?mode=forward</a> – RequestDispatcher forward → <code>/forwardTarget</code></li>
+    <li><a href="./dispatch?mode=include">/dispatch?mode=include</a> – RequestDispatcher include von <code>/forwardTarget</code></li>
+    <li><a href="./metrics">/metrics</a> – Listener-Zähler (Sessions, Requests, Startzeit)</li>
+    <li><a href="./cookie">/cookie</a> – Cookie setzen/lesen</li>
+    <li><a href="./upload">/upload</a> – Datei-Upload-Formular (GET) und Upload (POST)</li>
+    <li><a href="./error-demo?code=404">/error-demo?code=404</a> – <code>sendError</code> → statische Fehlerseite</li>
+    <li><a href="./counter">/counter</a> – UNSAFE Zähler (Race Condition)</li>
+    <li><a href="./counter-safe">/counter-safe</a> – Thread-sicherer Zähler (AtomicInteger)</li>
+    <li><a href="./login">/login</a> – Login-Flow mit Session, Logout &amp; geschütztem Bereich</li>
+  </ul>
+  <p><small>Alle Beispiele laufen ohne JSP/DB, Fokus: Servlet API.</small></p>
+</body>
+</html>

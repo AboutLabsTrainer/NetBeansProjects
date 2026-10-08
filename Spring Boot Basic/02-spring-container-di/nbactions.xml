@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs></exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs></exec.appArgs>
+                <exec.mainClass>de.ibb.springbootbasic.SpringBootBasicTag2Application</exec.mainClass>
+                <exec.executable>java</exec.executable>
+            </properties>
+        <actionname>run</actionname>
+        <packagetype>jar</packagetype>
+        <target>process-classes org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</target>
+        <config>
+            <property name="exec.vmArgs" value="" />
+            <property name="exec.appArgs" value="" />
+            <property name="exec.mainClass" value="de.ibb.springbootbasic.SpringBootBasicTag2Application" />
+            <property name="exec.args" value="${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}" />
+            <property name="exec.executable" value="java" />
+        </config>
+    </action>
+    <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs></exec.appArgs>
+                <exec.mainClass>de.ibb.springbootbasic.SpringBootBasicTag2Application</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+        <actionname>debug</actionname>
+        <packagetype>jar</packagetype>
+        <target>process-classes org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</target>
+        <config>
+            <property name="exec.vmArgs" value="-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}" />
+            <property name="exec.appArgs" value="" />
+            <property name="exec.mainClass" value="de.ibb.springbootbasic.SpringBootBasicTag2Application" />
+            <property name="exec.args" value="${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}" />
+            <property name="exec.executable" value="java" />
+            <property name="jpda.listen" value="true" />
+        </config>
+    </action>
+    <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs></exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.mainClass>de.ibb.springbootbasic.SpringBootBasicTag2Application</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.appArgs></exec.appArgs>
+            </properties>
+        <actionname>profile</actionname>
+        <packagetype>jar</packagetype>
+        <target>process-classes org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</target>
+        <config>
+            <property name="exec.vmArgs" value="" />
+            <property name="exec.appArgs" value="" />
+            <property name="exec.mainClass" value="de.ibb.springbootbasic.SpringBootBasicTag2Application" />
+            <property name="exec.args" value="${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}" />
+            <property name="exec.executable" value="java" />
+        </config>
+    </action>
+</actions>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Minimal NetBeans Ant Build File -->
+<project name="01-collections-lists" default="default" basedir=".">
+    <description>Builds, tests, and runs the project 01-collections-lists.</description>
+    
+    <!-- Projekt-Eigenschaften -->
+    <property name="src.dir" location="src"/>
+    <property name="build.dir" location="build"/>
+    <property name="build.classes.dir" location="${build.dir}/classes"/>
+    <property name="dist.dir" location="dist"/>
+    <property name="dist.jar" location="${dist.dir}/${ant.project.name}.jar"/>
+    <property name="main.class" value="de.ibb.collections.todo.ui.TodoAppConsole"/>
+    
+    <!-- Java-Compiler-Einstellungen -->
+    <property name="javac.source" value="11"/>
+    <property name="javac.target" value="11"/>
+    
+    <!-- Standard-Target: Kompilieren -->
+    <target name="default" depends="compile" description="Kompiliert das Projekt"/>
+    
+    <!-- Kompilieren -->
+    <target name="compile" description="Kompiliert den Java-Code">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" 
+               destdir="${build.classes.dir}" 
+               source="${javac.source}" 
+               target="${javac.target}"
+               includeantruntime="false"
+               encoding="UTF-8">
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+    
+    <!-- Ausführen -->
+    <target name="run" depends="compile" description="Führt die Main-Klasse aus">
+        <java classname="${main.class}" classpath="${build.classes.dir}" fork="true"/>
+    </target>
+    
+    <!-- JAR erstellen -->
+    <target name="jar" depends="compile" description="Erstellt ein JAR-File">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- Aufräumen -->
+    <target name="clean" description="Löscht Build- und Dist-Verzeichnisse">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Clean und dann kompilieren -->
+    <target name="rebuild" depends="clean,compile" description="Baut das Projekt neu"/>
+</project>

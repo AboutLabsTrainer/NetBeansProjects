@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>HelloPayara – Tag 2 Übungen</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 40px; }
+    a { display: block; margin: 8px 0; }
+    code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Tag 2 – HTTP &amp; Sessions – Übungen</h1>
+  <p>Direktaufrufe (nach Deployment unter <code>http://localhost:8080/HelloPayara</code>):</p>
+  <h2>Produktkatalog &amp; Session</h2>
+  <a href="./products">/products</a>
+  <a href="./product/12">/product/12</a>
+  <a href="./lastViewed">/lastViewed</a>
+  <h2>Login / Session</h2>
+  <a href="./login">/login</a>
+  <a href="./dashboard">/dashboard</a>
+  <form method="post" action="./logout">
+    <button type="submit">Logout (POST /logout)</button>
+  </form>
+  <hr />
+  <p><small>NetBeans: Rechtsklick Projekt &rarr; Run/Deploy auf Payara Server.</small></p>
+</body>
+</html>

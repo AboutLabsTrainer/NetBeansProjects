@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Web Aufbau - JPA Relationen Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Java Web Aufbau</h1>
+            <p class="subtitle">JPA Relationen: @OneToOne & @ManyToOne</p>
+        </header>
+        
+        <main>
+            <h2>🎯 Willkommen zur Demo!</h2>
+            
+            <p>Diese Anwendung demonstriert JPA-Relationen mit praktischen Beispielen.</p>
+            
+            <div class="info">
+                <h3>📚 Was du hier lernst:</h3>
+                <ul>
+                    <li><strong>@OneToOne Relation:</strong> User ↔ UserProfile (1:1 Beziehung)</li>
+                    <li><strong>@ManyToOne Relation:</strong> Orders → User (N:1 Beziehung)</li>
+                    <li><strong>Bidirektionale Relationen:</strong> Navigation in beide Richtungen</li>
+                    <li><strong>CascadeType:</strong> Automatische Propagierung von Operationen</li>
+                    <li><strong>FetchType:</strong> LAZY vs. EAGER Loading</li>
+                    <li><strong>JOIN FETCH:</strong> Effizientes Laden von Relationen</li>
+                    <li><strong>orphanRemoval:</strong> Automatisches Löschen von Waisen-Entities</li>
+                </ul>
+            </div>
+            
+            <div class="menu">
+                <a href="orders" class="button">🚀 Demo starten</a>
+            </div>
+            
+            <div class="info">
+                <h3>⚙️ Technologie-Stack:</h3>
+                <ul>
+                    <li>Jakarta EE 10</li>
+                    <li>JPA (Jakarta Persistence API)</li>
+                    <li>EJB (Enterprise Java Beans)</li>
+                    <li>Servlets & JSP</li>
+                    <li>MySQL Datenbank</li>
+                </ul>
+            </div>
+            
+            <div class="info">
+                <h3>💡 Entity-Struktur:</h3>
+                <ul>
+                    <li><strong>User:</strong> Hauptentity mit Username und Email</li>
+                    <li><strong>UserProfile:</strong> Detailliertes Profil (firstName, lastName, dateOfBirth, bio)</li>
+                    <li><strong>Order:</strong> Bestellung mit orderNumber, totalAmount, status</li>
+                    <li><strong>OrderStatus:</strong> Enum mit PENDING, CONFIRMED, SHIPPED, DELIVERED, CANCELLED</li>
+                </ul>
+            </div>
+            
+            <div class="success">
+                <h2>✅ Setup-Hinweise</h2>
+                <p><strong>Datenbank:</strong> MySQL-Datenbank <code>jweb</code> (User: JWeb). DataSource <code>jdbc/JWebShared</code> im Payara mit diesen Zugangsdaten konfigurieren. Tabellen-Präfix: <code>jwebak07_</code>.</p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>JPA Relationen Demo</p>
+        </footer>
+    </div>
+</body>
+</html>
