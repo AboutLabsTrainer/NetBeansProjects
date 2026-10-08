@@ -47,6 +47,16 @@
 **/credentials.json
 **/secrets/
 
+# Archives (prefer unpacked source in the repo)
+**/*.zip
+**/*.7z
+**/*.rar
+**/*.tar
+**/*.tar.gz
+**/*.tgz
+**/*.gz
+**/*.bz2
+
 # OS / editor
 **/*~
 **/*.swp
