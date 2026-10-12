@@ -15,6 +15,22 @@ Most lab folders include their own `README.md` with goals, commands, and notes. 
 - **Other servers**: embedded Tomcat via Spring Boot, ActiveMQ for messaging demos
 - **IDE**: NetBeans is the primary target; `.idea/` and build outputs are ignored
 
+### Embedded Tomcat when switching Spring Boot labs
+
+Opening another project does not stop the previous application. The port stays taken until that process exits. Several labs listen on **8080**, including the JPA modules in `Spring Boot AK` and `MyMessageBroker`.
+
+1. Stop the running app before starting the next one. In Cursor, press `Ctrl+C` in the terminal that runs `mvn spring-boot:run` and wait until the prompt returns. In NetBeans, open that application's Output window and press **Stop**. Launch the main class directly so Stop ends that JVM. Stopping a forked `spring-boot:run` on Windows can leave the child process running.
+2. If the port is still in use, identify the listener before ending it. In PowerShell, replace `8080` with the lab's `server.port`:
+
+```powershell
+Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+```
+
+Do not free port 8080 blindly. The messaging broker uses it too.
+
+Labs that must run at the same time need different `server.port` values. `Spring Boot Basic` already does this (for example 8081, 8094, 8100). There is no hook on project open that should kill whatever is listening.
+
 ## Course tracks
 
 ### `Java SE`
@@ -66,13 +82,17 @@ Again accompanied by Java EE 8 book sample trees where useful.
 
 Spring Boot fundamentals in numbered modules:
 
-REST APIs → container & DI → Thymeleaf controllers → forms/MVC → configuration & logging → DI/AOP → scopes → WebSockets → JAX-RS → integration  
+REST APIs → container & DI → Thymeleaf controllers → forms/MVC → configuration & logging → DI/AOP → scopes → WebSockets → JAX-RS → integration
+
+Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs).  
 
 ### `Spring Boot AK`
 
 Advanced Spring Boot modules:
 
 Custom config / auto-starters → JPA basics & relations → Spring Security → caching → messaging & email (incl. ActiveMQ broker demo) → Actuator → template engines and a small microservices set (Eureka, API gateway, user/order services)
+
+Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs). Several of these modules share port 8080, including the broker.
 
 ### Supporting folders
 
