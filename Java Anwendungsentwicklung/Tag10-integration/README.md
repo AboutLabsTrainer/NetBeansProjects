@@ -39,7 +39,7 @@ mvn exec:java -Ppreview
 │  ├── AWT & Swing            │  ├── JDBC                     │
 │  ├── Layouts                │  ├── Connection Pooling       │
 │  ├── Events                 │  ├── Transactions             │
-│  ├── JTable, JTree          │  ├── JPA & Hibernate          │
+│  ├── JTable, JTree          │  ├── JPA & EclipseLink        │
 │  └── JavaFX                 │  └── JPQL & Relationships     │
 └─────────────────────────────┴───────────────────────────────┘
                               ↓

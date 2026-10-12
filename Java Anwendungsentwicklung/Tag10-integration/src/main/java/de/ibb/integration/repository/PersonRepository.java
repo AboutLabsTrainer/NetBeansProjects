@@ -21,15 +21,21 @@ public class PersonRepository {
     
     public Person save(Person person) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            tx.begin();
             if (person.getId() == null) {
                 em.persist(person);
             } else {
                 person = em.merge(person);
             }
-            em.getTransaction().commit();
+            tx.commit();
             return person;
+        } catch (RuntimeException ex) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw ex;
         } finally {
             em.close();
         }
@@ -69,13 +75,19 @@ public class PersonRepository {
     
     public void deleteById(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            tx.begin();
             Person person = em.find(Person.class, id);
             if (person != null) {
                 em.remove(person);
             }
-            em.getTransaction().commit();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw ex;
         } finally {
             em.close();
         }

@@ -1,6 +1,6 @@
 # 🗄️ Java Anwendungsentwicklung - Tag 8
 
-**JPA Einführung (Entity, EntityManager, Hibernate)**
+**JPA Einführung (Entity, EntityManager, EclipseLink)**
 
 *Java Fleet Systems Consulting - java-developer.online*
 
@@ -33,7 +33,7 @@ mvn exec:java -Pcrud
 
 ## 🎓 Lernziele
 
-- ✅ JPA vs. Hibernate verstehen
+- ✅ JPA (API) und EclipseLink (Implementierung) unterscheiden
 - ✅ Entity mit Annotations erstellen
 - ✅ EntityManager für CRUD
 - ✅ Entity Lifecycle verstehen

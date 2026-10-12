@@ -123,6 +123,11 @@ public class HalloJPA {
             Person nochmal = em.find(Person.class, max.getId());
             System.out.println("   Nochmal suchen: " + nochmal);
             
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
         } finally {
             em.close();
             emf.close();
@@ -130,7 +135,7 @@ public class HalloJPA {
         
         System.out.println();
         System.out.println("═══════════════════════════════════════════════════════════");
-        System.out.println("  💡 Beachte: Hibernate hat das SQL generiert!");
+        System.out.println("  💡 Beachte: EclipseLink hat das SQL generiert!");
         System.out.println("     Du hast KEIN SQL geschrieben!");
         System.out.println("═══════════════════════════════════════════════════════════");
     }

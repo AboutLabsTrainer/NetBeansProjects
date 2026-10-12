@@ -9,9 +9,10 @@ Beziehungen zwischen `Person`, `Address` und `Order`: One-to-Many, Many-to-One, 
 1. `PersonManagementApplication` – Start
 2. `Person`, `Address`, `Order` – Entities und die Enums `AddressType` und `OrderStatus`
 3. `PersonRepository` und `OrderRepository` – Abfragen und Ladeverhalten
-4. `PersonSummary` – Projection nur mit Namen und E-Mail
-5. `PersonSpecifications` – Criteria für die Suche
-6. `PersonController` und `OrderController` – REST
+4. `PersonService` und `OrderService` – Transaktion und Änderungen an den Entities
+5. `PersonSummary` – Projection nur mit Namen und E-Mail
+6. `PersonSpecifications` – Criteria für die Suche
+7. `PersonController` und `OrderController` – REST, ohne eigene Repository-Aufrufe
 
 ## Start
 
@@ -44,3 +45,7 @@ curl -X POST http://localhost:8080/api/persons/1/addresses -H "Content-Type: app
 ```
 
 3. http://localhost:8080/api/persons/1/full und http://localhost:8080/api/persons/search/summary?lastname=Lovelace vergleichen: einmal mit Beziehungen, einmal nur die Projection. Die Id im Pfad an die Antwort aus Schritt 1 anpassen.
+
+## Fußangeln
+
+`Address` und `Order` nutzen Lombok-`equals`/`hashCode` über alle Felder außer der Gegenseite. Solange `id` noch null ist, gelten zwei neue Adressen im `Set` als gleich. Open Session in View ist in Spring Boot standardmäßig an: eine lazy Beziehung kann deshalb noch während der JSON-Ausgabe laden, auch ohne eigene Transaktion im Controller.

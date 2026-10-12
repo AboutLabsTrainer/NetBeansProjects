@@ -6,9 +6,13 @@ Most lab folders include their own `README.md` with goals, commands, and notes. 
 
 ## Tooling
 
-- **JDK**: version varies by project (check each `pom.xml` or NetBeans project properties)
+- **JDK**: compile course modules with `maven.compiler.release` **21**. The same classes run on a Payara 7 JVM with JDK 21 or JDK 25. Do not compile labs with `--release 25`.
+- **Jakarta web with JPA** (`Java Web Aufbau` Tag 07–10): Payara Community **7.2026.8** or a newer 7.2026 build (EclipseLink 5.0.0 from 7.2026.6). API is `jakarta.jakartaee-web-api` **11.0.0**, scope `provided`. The JPA provider is the server EclipseLink. Do not put Hibernate or EclipseLink into the WAR, and do not set `class-loader delegate="false"`. In NetBeans, register **Payara 7** as the server. `Java Web Basic` stays on its servlet/JDBC setup and can deploy to that same server.
+- **SE JPA** (`Java Anwendungsentwicklung` Tag 08–10): EclipseLink **5.0.0** and Jakarta Persistence **3.2**, `RESOURCE_LOCAL`.
+- **Spring Boot JPA** (`Spring Boot AK` modules 02, 03, 04, 07): Spring Boot **3.5.16**, Java 21, Hibernate only from the Boot BOM. EclipseLink stays off this track; Boot 4 is a later course cut.
+- **Footguns to keep in view**: Lombok `@EqualsAndHashCode` on an entity whose `id` is still null makes `Set` membership wrong before the first persist. Spring Boot leaves Open Session in View on, so a lazy association can load during JSON rendering without an explicit transaction.
 - **Build**: Maven (`pom.xml`) for most web/Spring modules; Ant/NetBeans (`build.xml` + `nbproject/`) for many SE/OO labs
-- **Servers** (where needed): Payara/GlassFish-style Java EE runtime, embedded Tomcat via Spring Boot, ActiveMQ for messaging demos
+- **Other servers**: embedded Tomcat via Spring Boot, ActiveMQ for messaging demos
 - **IDE**: NetBeans is the primary target; `.idea/` and build outputs are ignored
 
 ## Course tracks

@@ -138,6 +138,11 @@ public class EntityLifecycleDemo {
             Person nochDa = em.find(Person.class, lisaId);
             System.out.println("   Nochmal suchen: " + nochDa);
             
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
         } finally {
             em.close();
             emf.close();

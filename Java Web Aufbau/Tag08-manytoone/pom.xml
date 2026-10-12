@@ -8,11 +8,11 @@
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Tag8 – JPA @ManyToOne (Author/Book)</name>
-    <description>@ManyToOne &amp; @OneToMany Demo (Payara 6, Jakarta EE 10)</description>
+    <description>@ManyToOne &amp; @OneToMany Demo (Payara 7, Jakarta EE 11)</description>
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakarta.ee.version>10.0.0</jakarta.ee.version>
+        <jakarta.ee.version>11.0.0</jakarta.ee.version>
         <mysql.version>8.4.0</mysql.version>
     </properties>
     <dependencies>

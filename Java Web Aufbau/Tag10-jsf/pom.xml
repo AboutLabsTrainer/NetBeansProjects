@@ -9,17 +9,17 @@
   <version>1.0.0</version>
   <packaging>war</packaging>
   <name>Tag10-JSF-PrimeFaces – JSF Application</name>
-  <description>CRUD mit JSF, JPA Service (Payara 6)</description>
+  <description>CRUD mit JSF, JPA Service (Payara 7, Jakarta EE 11)</description>
 
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jakarta.ee.version>10.0.0</jakarta.ee.version>
+    <jakarta.ee.version>11.0.0</jakarta.ee.version>
     <mariadb.version>3.4.1</mariadb.version>
   </properties>
 
   <dependencies>
-    <!-- Jakarta EE Web API provided by Payara 6 -->
+    <!-- Jakarta EE 11 Web API, vom Payara-7-Server gestellt -->
     <dependency>
       <groupId>jakarta.platform</groupId>
       <artifactId>jakarta.jakartaee-web-api</artifactId>

@@ -2,8 +2,7 @@ package com.fleetdata.personmanagement.controller;
 
 import com.fleetdata.personmanagement.entity.Order;
 import com.fleetdata.personmanagement.entity.OrderStatus;
-import com.fleetdata.personmanagement.repository.OrderRepository;
-import com.fleetdata.personmanagement.repository.PersonRepository;
+import com.fleetdata.personmanagement.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,64 +19,58 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * REST-Zugriff auf Bestellungen und ihre Abfragen über das Repository.
- * Join-Fetch-Methoden laden die Person mit, damit die Beziehung in derselben Transaktion gelesen wird.
+ * REST-Zugriff auf Bestellungen. Der Controller übersetzt HTTP; OrderService hält die Transaktion.
  */
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderRepository orderRepository;
-    private final PersonRepository personRepository;
+    private final OrderService orderService;
 
     @PostMapping("/persons/{personId}/orders")
     public ResponseEntity<Order> createOrder(
             @PathVariable Long personId,
             @Valid @RequestBody Order order) {
-        return personRepository.findById(personId)
-                .map(person -> {
-                    person.addOrder(order);
-                    personRepository.saveAndFlush(person);
-                    return ResponseEntity.status(HttpStatus.CREATED).body(order);
-                })
+        return orderService.createOrder(personId, order)
+                .map(saved -> ResponseEntity.status(HttpStatus.CREATED).body(saved))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/orders")
     public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+        return orderService.getAllOrders();
     }
 
     @GetMapping("/orders/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        return orderRepository.findById(id)
+        return orderService.getOrderById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/orders/by-status")
     public List<Order> getByStatus(@RequestParam OrderStatus status) {
-        return orderRepository.findByStatus(status);
+        return orderService.getByStatus(status);
     }
 
     @GetMapping("/orders/by-status-with-person")
     public List<Order> getByStatusWithPerson(@RequestParam OrderStatus status) {
-        return orderRepository.findByStatusWithPerson(status);
+        return orderService.getByStatusWithPerson(status);
     }
 
     @GetMapping("/orders/by-person/{personId}")
     public List<Order> getByPersonId(@PathVariable Long personId) {
-        return orderRepository.findByPersonId(personId);
+        return orderService.getByPersonId(personId);
     }
 
     @GetMapping("/orders/price-greater-than")
     public List<Order> getByPriceGreaterThan(@RequestParam BigDecimal price) {
-        return orderRepository.findByPriceGreaterThan(price);
+        return orderService.getByPriceGreaterThan(price);
     }
 
     @GetMapping("/orders/latest")
     public List<Order> getLatestOrders() {
-        return orderRepository.findTop10ByOrderByOrderDateDesc();
+        return orderService.getLatestOrders();
     }
 }

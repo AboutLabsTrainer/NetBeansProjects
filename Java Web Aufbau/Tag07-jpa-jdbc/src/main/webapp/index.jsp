@@ -9,7 +9,7 @@
 <body>
   <h1>Tag7 – JPA vs JDBC (Provider &amp; Konfiguration)</h1>
   <p>
-    <a class="btn" href="jpa">JPA – Product Management (Hibernate)</a>
+    <a class="btn" href="jpa">JPA – Product Management (EclipseLink)</a>
     <a class="btn" href="jdbc">JDBC – Product Names</a>
   </p>
   <p>Hinweis: Der Payara‑Pool &amp; JNDI werden über <code>WEB-INF/payara-resources.xml</code> bereitgestellt (jdbc/jwebak_tag07_jpa).</p>

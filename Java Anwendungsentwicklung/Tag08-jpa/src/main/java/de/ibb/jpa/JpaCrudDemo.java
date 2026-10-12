@@ -130,11 +130,15 @@ public class JpaCrudDemo {
     
     private static Person create(Person person) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            tx.begin();
             em.persist(person);
-            em.getTransaction().commit();
+            tx.commit();
             return person;
+        } catch (RuntimeException ex) {
+            rollbackIfActive(tx);
+            throw ex;
         } finally {
             em.close();
         }
@@ -175,11 +179,15 @@ public class JpaCrudDemo {
     
     private static Person update(Person person) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            tx.begin();
             Person merged = em.merge(person);
-            em.getTransaction().commit();
+            tx.commit();
             return merged;
+        } catch (RuntimeException ex) {
+            rollbackIfActive(tx);
+            throw ex;
         } finally {
             em.close();
         }
@@ -187,18 +195,28 @@ public class JpaCrudDemo {
     
     private static boolean deleteById(Long id) {
         EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            em.getTransaction().begin();
+            tx.begin();
             Person person = em.find(Person.class, id);
             if (person != null) {
                 em.remove(person);
-                em.getTransaction().commit();
+                tx.commit();
                 return true;
             }
-            em.getTransaction().rollback();
+            tx.rollback();
             return false;
+        } catch (RuntimeException ex) {
+            rollbackIfActive(tx);
+            throw ex;
         } finally {
             em.close();
+        }
+    }
+
+    private static void rollbackIfActive(EntityTransaction tx) {
+        if (tx.isActive()) {
+            tx.rollback();
         }
     }
     

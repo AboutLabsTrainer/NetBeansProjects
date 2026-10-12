@@ -18,15 +18,18 @@ public class ProductService {
     @PersistenceContext(unitName = "Tag10JSFPrimeFacesPU")
     private EntityManager em;
 
+    @Transactional
     public Product find(Long id) {
         return em.find(Product.class, id);
     }
 
+    @Transactional
     public List<Product> findAll() {
         return em.createQuery("select p from Product p order by p.id", Product.class)
                  .getResultList();
     }
 
+    @Transactional
     public List<Product> searchByName(String q) {
         if (q == null || q.isBlank()) return findAll();
         return em.createQuery("select p from Product p where lower(p.name) like lower(:q) order by p.id", Product.class)

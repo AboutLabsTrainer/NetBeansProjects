@@ -1,6 +1,6 @@
 # Tag 9: Spring Boot Actuator – Production Monitoring
 
-Lauffähiges Maven-Projekt für NetBeans (Spring Boot 3.4.3 / Java 17).
+Lauffähiges Maven-Projekt für NetBeans (Spring Boot 3.5.16 / Java 21). Hibernate kommt aus dem Boot-BOM.
 
 ## Start in NetBeans
 

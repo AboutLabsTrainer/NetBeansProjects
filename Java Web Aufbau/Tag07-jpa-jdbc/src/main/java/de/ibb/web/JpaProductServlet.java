@@ -3,6 +3,7 @@ package de.ibb.web;
 import de.ibb.domain.Product;
 import de.ibb.service.ProductService;
 import jakarta.inject.Inject;
+import jakarta.persistence.PersistenceException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -10,12 +11,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Legt Produkte über den JPA-Dienst an und listet sie. Gegenstück zum JDBC-Servlet.
  */
 @WebServlet(name = "JpaProductServlet", urlPatterns = {"/jpa"})
 public class JpaProductServlet extends HttpServlet {
+
+    private static final Logger LOG = Logger.getLogger(JpaProductServlet.class.getName());
 
     @Inject
     private ProductService service;
@@ -37,7 +42,8 @@ public class JpaProductServlet extends HttpServlet {
                 Long id = Long.valueOf(req.getParameter("id"));
                 service.deleteProduct(id);
             }
-        } catch (Exception e) {
+        } catch (PersistenceException | IllegalArgumentException e) {
+            LOG.log(Level.SEVERE, "JPA-Aufruf fehlgeschlagen", e);
             req.getSession().setAttribute("error", e.getMessage());
         }
         resp.sendRedirect(req.getContextPath() + "/jpa");
@@ -54,7 +60,7 @@ public class JpaProductServlet extends HttpServlet {
 
         out.println("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>JPA – Products</title>");
         out.println("<link rel='stylesheet' href='assets/styles.css'></head><body>");
-        out.println("<h1>JPA – Product Management (Hibernate)</h1>");
+        out.println("<h1>JPA – Product Management (EclipseLink)</h1>");
         out.println("<p><a href='" + req.getContextPath() + "/'>Home</a></p>");
         if (error != null) {
             out.println("<p class='error'>"+escape(error)+"</p>");

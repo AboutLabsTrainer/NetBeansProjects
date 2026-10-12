@@ -151,6 +151,11 @@ public class JpqlDemo {
               .getResultList()
               .forEach(p -> System.out.println("   " + p));
             
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
         } finally {
             em.close();
             emf.close();

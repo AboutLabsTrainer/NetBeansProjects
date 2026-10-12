@@ -17,26 +17,23 @@
     </description>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.version>6.4.1.Final</hibernate.version>
-        <h2.version>2.2.224</h2.version>
+        <eclipselink.version>5.0.0</eclipselink.version>
         <flatlaf.version>3.4</flatlaf.version>
     </properties>
 
     <dependencies>
-        <!-- JPA -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.0</version>
         </dependency>
-        
+
         <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>${eclipselink.version}</version>
         </dependency>
         
         <!-- MySQL-Treiber fuer ae_tag10_jpa -->

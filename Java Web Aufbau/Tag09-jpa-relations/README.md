@@ -6,7 +6,7 @@
 
 ## 📋 Überblick
 
-Dieses Maven-Projekt demonstriert praktische JPA-Relationen mit Jakarta EE 10:
+Dieses Maven-Projekt demonstriert praktische JPA-Relationen mit Jakarta EE 11:
 - **@OneToOne:** User ↔ UserProfile (1:1 Beziehung)
 - **@ManyToOne:** Orders → User (N:1 Beziehung)
 - **Bidirektionale Relationen:** Navigation in beide Richtungen
@@ -37,9 +37,10 @@ Dieses Maven-Projekt demonstriert praktische JPA-Relationen mit Jakarta EE 10:
 ## 🛠️ Technologie-Stack
 
 - **Java:** JDK 21 LTS
-- **Jakarta EE:** 10.0.0
-- **JPA:** 3.1 (Hibernate als Provider)
-- **Server:** Payara 7
+- **Jakarta EE:** 11.0.0 (`jakarta.jakartaee-web-api`, provided)
+- **JPA:** 3.2 (EclipseLink, vom Payara-7-Server gestellt)
+- **Server:** Payara 7 (Community 7.2026.8 oder neuer)
+- **Bytecode:** JDK 21 (`maven.compiler.release`)
 - **Datenbank:** `jwebak_tag09_relations` (User und Passwort `jwebak_tag09_relations`, Tabellen-Präfix: `jwebak07_`)
 - **Build:** Maven 3.9+
 
@@ -177,9 +178,9 @@ http://localhost:8080/javawebaufbau-tag9/orders
 ## 🚀 Features & Funktionen
 
 ### 1. Test-Daten erstellen
-```
-http://localhost:8080/javawebaufbau-tag9/orders?action=create
-```
+
+Schaltfläche **Test-Daten erstellen** auf `http://localhost:8080/javawebaufbau-tag9/orders`. Das Formular sendet **POST** `orders` mit `action=create`. GET bleibt Lesen (Liste, Statistik, Menü).
+
 - Erstellt User mit UserProfile
 - Erstellt 2 Orders für den User
 - Zeigt @OneToOne & @ManyToOne in Aktion
@@ -289,11 +290,12 @@ List<Order> orders = em.createQuery(
 
 ## 🔧 Troubleshooting
 
-### Problem: LazyInitializationException
+### Problem: Lazy-Beziehung außerhalb der Transaktion
 
-**Fehler:**
+**Fehler (EclipseLink):**
 ```
-org.hibernate.LazyInitializationException: could not initialize proxy - no Session
+org.eclipse.persistence.exceptions.ValidationException
+An attempt was made to traverse a relationship using indirection that had a null Session.
 ```
 
 **Ursache:** LAZY Entity außerhalb Transaction aufgerufen.

@@ -161,6 +161,11 @@ public class RelationshipDemo {
             
             System.out.println("   Verbleibend: " + anzahlPersonen + " Personen, " + anzahlBest + " Bestellungen");
             
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
         } finally {
             em.close();
             emf.close();

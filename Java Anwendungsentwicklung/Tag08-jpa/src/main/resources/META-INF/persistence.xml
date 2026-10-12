@@ -2,45 +2,37 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
-                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-             version="3.0">
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
+             version="3.2">
 
     <!--
         Persistence Unit für Tag 8: JPA Einführung
         Java Fleet Systems Consulting - java-developer.online
-        
+
         Eine Persistence Unit definiert:
         - Welche Entities es gibt
         - Welche Datenbank verwendet wird
-        - Wie sich Hibernate verhalten soll
+        - Wie sich EclipseLink verhalten soll
     -->
     <persistence-unit name="de.ibb" transaction-type="RESOURCE_LOCAL">
-        
-        <!-- JPA Provider: Hibernate -->
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        
-        <!-- Unsere Entity-Klassen -->
+
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
         <class>de.ibb.jpa.entity.Person</class>
-        
+
         <properties>
-            <!-- Datenbank-Verbindung (MySQL ae_tag08_jpa) -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ae_tag08_jpa?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="ae_tag08_jpa"/>
             <property name="jakarta.persistence.jdbc.password" value="ae_tag08_jpa"/>
-            
-            <!-- Hibernate: Tabellen automatisch erstellen -->
+
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
-            
-            <!-- SQL-Statements in der Konsole anzeigen (zum Lernen!) -->
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.highlight_sql" value="true"/>
-            
-            <!-- MySQL-Dialekt -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="eclipselink.target-database" value="MySQL"/>
+            <property name="eclipselink.weaving" value="false"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
-        
+
     </persistence-unit>
 
 </persistence>

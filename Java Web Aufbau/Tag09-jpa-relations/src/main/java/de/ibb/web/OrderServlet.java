@@ -3,6 +3,7 @@ package de.ibb.web;
 import de.ibb.model.*;
 import de.ibb.service.OrderManagementService;
 import jakarta.inject.Inject;
+import jakarta.persistence.PersistenceException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,12 +15,16 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Servlet-Demo für @OneToOne und @ManyToOne. Ruft OrderManagementService auf und gibt die geladenen Beziehungen aus.
  */
 @WebServlet("/orders")
 public class OrderServlet extends HttpServlet {
+
+    private static final Logger LOG = Logger.getLogger(OrderServlet.class.getName());
     
     @Inject
     private OrderManagementService orderService;
@@ -36,23 +41,46 @@ public class OrderServlet extends HttpServlet {
         printHeader(out, "Java Web Aufbau - Order Management Demo");
         
         try {
-            if ("create".equals(action)) {
-                handleCreate(out);
-            } else if ("list".equals(action)) {
+            if ("list".equals(action)) {
                 handleList(out);
             } else if ("stats".equals(action)) {
                 handleStats(out);
             } else {
                 printMenu(out);
             }
-        } catch (Exception e) {
-            out.println("<div class='error'>");
-            out.println("<h2>❌ Fehler</h2>");
-            out.println("<p>" + e.getMessage() + "</p>");
-            out.println("</div>");
+        } catch (PersistenceException e) {
+            logPersistenceFailure(out, e);
         }
         
         printFooter(out);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        if (!"create".equals(request.getParameter("action"))) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        printHeader(out, "Java Web Aufbau - Order Management Demo");
+        try {
+            handleCreate(out);
+        } catch (PersistenceException e) {
+            logPersistenceFailure(out, e);
+        }
+        printFooter(out);
+    }
+
+    private void logPersistenceFailure(PrintWriter out, PersistenceException e) {
+        LOG.log(Level.SEVERE, "Order-Demo fehlgeschlagen", e);
+        out.println("<div class='error'>");
+        out.println("<h2>❌ Fehler</h2>");
+        out.println("<p>" + e.getMessage() + "</p>");
+        out.println("</div>");
     }
     
     private void handleCreate(PrintWriter out) {
@@ -108,8 +136,8 @@ public class OrderServlet extends HttpServlet {
         
         if (orders.isEmpty()) {
             out.println("<div class='info'>");
-            out.println("<p>Keine Orders vorhanden. " +
-                "<a href='orders?action=create'>Test-Daten erstellen</a></p>");
+            out.println("<p>Keine Orders vorhanden.</p>");
+            printCreateForm(out, "Test-Daten erstellen");
             out.println("</div>");
         } else {
             out.println("<table>");
@@ -149,8 +177,8 @@ public class OrderServlet extends HttpServlet {
         
         if (orders.isEmpty()) {
             out.println("<div class='info'>");
-            out.println("<p>Keine Statistiken verfügbar. " +
-                "<a href='orders?action=create'>Test-Daten erstellen</a></p>");
+            out.println("<p>Keine Statistiken verfügbar.</p>");
+            printCreateForm(out, "Test-Daten erstellen");
             out.println("</div>");
             return;
         }
@@ -191,7 +219,7 @@ public class OrderServlet extends HttpServlet {
         out.println("<p>Willkommen zur Demo von JPA Relationen (@OneToOne & @ManyToOne)!</p>");
         
         out.println("<div class='menu'>");
-        out.println("<a href='orders?action=create' class='button'>➕ Test-Daten erstellen</a>");
+        printCreateForm(out, "➕ Test-Daten erstellen");
         out.println("<a href='orders?action=list' class='button'>📋 Orders anzeigen</a>");
         out.println("<a href='orders?action=stats' class='button'>📊 Statistiken</a>");
         out.println("</div>");
@@ -208,6 +236,13 @@ public class OrderServlet extends HttpServlet {
         out.println("</div>");
     }
     
+    private void printCreateForm(PrintWriter out, String label) {
+        out.println("<form method='post' action='orders' style='display:inline'>");
+        out.println("<input type='hidden' name='action' value='create'/>");
+        out.println("<button type='submit' class='button'>" + label + "</button>");
+        out.println("</form>");
+    }
+
     private void printHeader(PrintWriter out, String title) {
         out.println("<!DOCTYPE html>");
         out.println("<html lang='de'>");

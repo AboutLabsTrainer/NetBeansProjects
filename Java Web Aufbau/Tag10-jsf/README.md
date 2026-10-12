@@ -1,5 +1,5 @@
 # Tag10-JSF-PrimeFaces – JSF Application
-Namespace: `de.ibb` · Projektname: `Tag10-JSF-PrimeFaces` · Server: **Payara 7** (Jakarta EE 10)
+Namespace: `de.ibb` · Projektname: `Tag10-JSF-PrimeFaces` · Server: **Payara 7** (Jakarta EE 11, EclipseLink)
 
 ## Features
 - **JSF** mit Standard-Komponenten (`h:dataTable`, `h:messages`, `h:inputText`, `h:commandButton`)
