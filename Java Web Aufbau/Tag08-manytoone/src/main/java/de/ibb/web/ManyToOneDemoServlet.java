@@ -2,8 +2,8 @@ package de.ibb.web;
 
 import de.ibb.domain.Author;
 import de.ibb.domain.Book;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import de.ibb.service.BookManagerService;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -12,31 +12,37 @@ import java.io.PrintWriter;
 import java.util.List;
 
 /**
- * Legt Autor und Buch an und zeigt, dass das Buch seinen Autor über die JPA-Beziehung erreicht.
+ * Servlet zur Steuerung der Benutzeroberfläche für Autoren und Bücher.
+ * Delegiert die Datenbankoperationen vollständig an den BookService.
  */
 @WebServlet(name = "ManyToOneDemoServlet", urlPatterns = {"/jpa"})
 public class ManyToOneDemoServlet extends HttpServlet {
 
-    @PersistenceContext(unitName = "Tag8PU")
-    private EntityManager em;
+    @EJB
+    private BookManagerService bookService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
-        if ("addAuthor".equals(action)) {
-            String name = req.getParameter("name");
-            em.persist(new Author(name));
-        } else if ("addBook".equals(action)) {
-            String title = req.getParameter("title");
-            Long authorId = Long.valueOf(req.getParameter("authorId"));
-            Author a = em.find(Author.class, authorId);
-            em.persist(new Book(title, a));
-        } else if ("deleteBook".equals(action)) {
-            Long id = Long.valueOf(req.getParameter("bookId"));
-            Book b = em.find(Book.class, id);
-            if (b != null) em.remove(b);
+        
+        try {
+            if ("addAuthor".equals(action)) {
+                String name = req.getParameter("name");
+                bookService.addAuthor(name);
+            } else if ("addBook".equals(action)) {
+                String title = req.getParameter("title");
+                Long authorId = Long.valueOf(req.getParameter("authorId"));
+                bookService.addBook(title, authorId);
+            } else if ("deleteBook".equals(action)) {
+                Long id = Long.valueOf(req.getParameter("bookId"));
+                bookService.deleteBook(id);
+            }
+        } catch (IllegalArgumentException e) {
+            // Einfache Fehlerbehandlung: Loggen und optional als Request-Attribut an die UI weitergeben
+            getServletContext().log("Fehler bei Verarbeitung von Aktion '" + action + "': " + e.getMessage());
         }
+        
         resp.sendRedirect(req.getContextPath() + "/jpa");
     }
 
@@ -45,8 +51,9 @@ public class ManyToOneDemoServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter out = resp.getWriter();
 
-        List<Author> authors = em.createQuery("select a from Author a order by a.id", Author.class).getResultList();
-        List<Book> books = em.createQuery("select b from Book b order by b.id", Book.class).getResultList();
+        // Nutzt die optimierten Fetch-Methoden des Service, um LazyInitializationExceptions zu vermeiden
+        List<Author> authors = bookService.findAllAuthorsFetchBooks();
+        List<Book> books = bookService.findAllBooks();
 
         out.println("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Tag8 – ManyToOne</title>");
         out.println("<link rel='stylesheet' href='assets/styles.css'></head><body>");

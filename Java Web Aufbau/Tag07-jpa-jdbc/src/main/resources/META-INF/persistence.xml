@@ -3,17 +3,23 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
              version="3.1">
-  <persistence-unit name="Tag7PU" transaction-type="JTA">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <jta-data-source>jdbc/jwebak_tag07_jpa</jta-data-source>
-    <class>de.ibb.domain.Product</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <property name="hibernate.show_sql" value="true"/>
-      <property name="hibernate.format_sql" value="true"/>
-      <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
-    </properties>
-  </persistence-unit>
+    <persistence-unit name="Tag7PU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>jdbc/jwebak_tag07_jpa</jta-data-source>
+        <class>de.ibb.domain.Product</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
+            <!-- Disables the automatic runtime bytecode transformation loop -->
+            <property name="hibernate.enhancer.enableDirtyTracking" value="false"/>
+            <property name="hibernate.enhancer.enableLazyInitialization" value="false"/>
+            <property name="hibernate.enhancer.enableAssociationManagement" value="false"/>      
+            <!-- Force bytecode provider to none if the framework supports it -->
+            <property name="hibernate.bytecode.provider" value="none"/>
+        </properties>
+    </persistence-unit>
 </persistence>

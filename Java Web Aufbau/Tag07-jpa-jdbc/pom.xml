@@ -1,49 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://apache.org"
+         xmlns:xsi="http://w3.org"
+         xsi:schemaLocation="http://apache.org https://apache.org">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.javadeveloper</groupId>
-  <artifactId>Tag7</artifactId>
-  <version>1.0.0</version>
-  <packaging>war</packaging>
-  <name>Tag7 – JPA vs JDBC • Provider &amp; Konfiguration</name>
-  <description>Mini‑Challenge: JPA Product mit Hibernate Provider + JDBC Vergleich (Payara 6)</description>
+    <groupId>com.javadeveloper</groupId>
+    <artifactId>Tag7</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+    <name>Tag7 – JPA vs JDBC • Provider &amp; Konfiguration</name>
+    <description>Mini‑Challenge: JPA Product mit Hibernate Provider + JDBC Vergleich (Payara 7)</description>
 
-  <properties>
-    <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jakarta.ee.version>10.0.0</jakarta.ee.version>
-    <hibernate.version>6.5.2.Final</hibernate.version>
-  </properties>
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    
+        <!-- Upgrade auf Jakarta EE 11 (passend zu Payara 7) -->
+        <jakarta.ee.version>10.0.0</jakarta.ee.version>
+        <!-- Der aktuelle stabile 7.4-Zweig für Java 25 Kompatibilität -->
+        <hibernate.version>6.5.2.Final</hibernate.version>
+    </properties>
 
-  <dependencies>
-    <!-- Jakarta EE Web API (provided by Payara 6) -->
-    <dependency>
-      <groupId>jakarta.platform</groupId>
-      <artifactId>jakarta.jakartaee-web-api</artifactId>
-      <version>${jakarta.ee.version}</version>
-      <scope>provided</scope>
-    </dependency>
+    <dependencies>
+        <!-- Jakarta EE 11 Web API (provided by Payara 7) -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>${jakarta.ee.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-    <!-- Hibernate ORM as JPA provider (Jakarta) -->
-    <dependency>
-      <groupId>org.hibernate.orm</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
+        <!-- Hibernate 7.4 ORM as JPA provider (Jakarta) -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
 
-    <!-- MariaDB JDBC driver (provided by Payara) -->
-    <dependency>
-      <groupId>org.mariadb.jdbc</groupId>
-      <artifactId>mariadb-java-client</artifactId>
-      <version>3.5.6</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+        <!-- MariaDB JDBC driver (provided by Payara) -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.6</version>
+            <scope>provided</scope>
+        </dependency>
+    
+        <!-- Jakarta Dependency Injection API (für import jakarta.inject.Inject;) -->
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+    
+    </dependencies>
 
-  <build>
-    <finalName>Tag7</finalName>
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <!-- Verwendet Java 21 statt der fehlerhaften Version 25 -->
+                    <release>21</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
