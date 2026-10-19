@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="Insel" default="build" basedir=".">
   <target name="build">
-    <javac srcdir="src/main/java" destdir="target/classes" source="21" target="21" release="21">
+    <javac srcdir="src/main/java" destdir="target/classes">
       <include name="src/main/java/com/tutego/insel/ant/*.java" />
    </javac>
   </target>

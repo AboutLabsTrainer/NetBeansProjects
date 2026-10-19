@@ -41,7 +41,6 @@ Core language skills before frameworks.
 |-----------|----------|
 | `Java Grundlagen` | Notebook-style intro, types, text/time tools, control flow, debugging exercises, small apps (e.g. ticket counter, book management) |
 | `Java Erweiterte Techniken` | Day labs on lists, sets/maps, generics, functional interfaces, streams, files, threads, synchronization, sockets |
-| `Java ist auch eine Insel` | Sample programs and modules inspired by the Tutego “Insel” book |
 
 ### `Java OO`
 
@@ -99,7 +98,7 @@ Stop the previous embedded Tomcat before starting the next lab. See [Embedded To
 | Folder | Role |
 |--------|------|
 | `Mini Projekte` | Small scratch projects (e.g. `ScratchPad`) outside the main day structure |
-| `Rheinwerk` | Publisher/book sample code (`buch_spring_boot_code`, Date4u-related demos, etc.) |
+| `Rheinwerk` | Publisher/book sample code (`Java ist auch eine Insel`, `buch_spring_boot_code`, Date4u-related demos, etc.) |
 | `Tmp` | Experiments and WIP (`BookShop`, `DockerJavaEE`, quick Spring Boot trials) |
 | `Debug` | Ad-hoc debugging space |
 
