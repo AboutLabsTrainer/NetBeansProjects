@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /**
  * Hauptklasse für die Mini-Challenge zu Sets & Maps
- * Basierend auf "Tag 2: Sets & Maps – Keine Duplikate" von java-developer.online
  * 
  * Enthält das Hauptmenü und steuert die Navigation zwischen Quiz und Level-Aufgaben.
  */

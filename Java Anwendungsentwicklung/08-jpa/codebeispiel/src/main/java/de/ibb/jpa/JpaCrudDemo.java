@@ -8,12 +8,9 @@ import java.util.List;
  * JpaCrudDemo - Create, Read, Update, Delete mit JPA.
  * 
  * Tag 8 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Vergleiche das mit dem JDBC-Code von Tag 6!
  * Hier: Keine SQL-Strings, keine ResultSet-Verarbeitung.
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class JpaCrudDemo {
     

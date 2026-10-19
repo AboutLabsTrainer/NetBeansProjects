@@ -6,12 +6,9 @@ import java.sql.*;
  * SqlInjectionDemo - Warum PreparedStatement PFLICHT ist!
  * 
  * Tag 6 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * ⚠️ WARNUNG: Dieser Code zeigt ABSICHTLICH unsichere Praktiken!
  * NIEMALS String-Konkatenation für SQL in Produktion verwenden!
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class SqlInjectionDemo {
     

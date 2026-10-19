@@ -36,7 +36,7 @@ public class DemoApplication {
             log.info("========================================");
             log.info("Test 1: {}", greetingService.greet("Petra"));
             log.info("Test 2: {}", greetingService.greet("Nova"));
-            log.info("Test 3: {}", greetingService.greet("Elyndra"));
+            log.info("Test 3: {}", greetingService.greet("Anna"));
             log.info("========================================");
             log.info("  REST: http://localhost:8101/greet/{name}");
             log.info("========================================");

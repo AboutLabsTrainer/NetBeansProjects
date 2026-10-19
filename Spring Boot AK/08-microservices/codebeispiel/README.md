@@ -10,7 +10,6 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 **Multi-Module Maven Projekt** mit 4 produktionsreifen Spring Boot Microservices!
 
-> 💡 **Lernprojekt** aus dem Java Fleet - Spring Boot Aufbau Kurs Tag 10  
 > 📚 Perfekt zum Lernen von Microservices-Architektur  
 > ⭐ Wenn hilfreich, gib dem Projekt einen Stern!
 
@@ -404,15 +403,5 @@ Dieses Projekt ist unter der MIT Lizenz lizenziert - siehe [LICENSE](LICENSE) f�
 - **Netflix OSS** für Eureka
 - **Spring Team** für Spring Cloud
 - **DataFaker** für Testdaten
-
-## 📧 Kontakt
-
-**Java Fleet** - Spring Boot Kurs  
-- GitHub: [@java-fleet](https://github.com/java-fleet)
-- Website: [java-fleet.de](https://java-fleet.de)
-
----
-
-**Von Java Fleet** - Spring Boot Aufbau Kurs Tag 10
 
 🚀 Viel Erfolg mit Microservices!

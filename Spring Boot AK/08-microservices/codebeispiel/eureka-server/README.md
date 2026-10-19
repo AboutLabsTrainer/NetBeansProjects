@@ -157,7 +157,6 @@ A: Consul, etcd, Zookeeper. Aber Eureka ist am einfachsten in Spring Boot.
 - **Netflix OSS Blog**: https://netflixtechblog.com/
 - **Microservices Pattern**: https://microservices.io/patterns/service-registry.html
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs Tag 10
 
 ---
 

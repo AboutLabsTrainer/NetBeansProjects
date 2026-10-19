@@ -14,10 +14,10 @@ Broker, Producer, Consumer und Mail bleiben in `codebeispiel`. Ports nicht umleg
 
 | Modul | Main-Klasse | server.port |
 | --- | --- | --- |
-| MyMessageBroker | `de.fleetdata.messaging.MessageBrokerApplication` | **8080** |
-| MessageProducer | `de.fleetdata.messaging.MessageProducerApplication` | **8081** |
-| MessageConsumer | `de.fleetdata.messaging.MessageConsumerApplication` | **8082** |
-| SpringMailService | `de.fleetdata.messaging.SpringMailServiceApplication` | **8083** |
+| MyMessageBroker | `de.ibb.boot.ak.messaging.MessageBrokerApplication` | **8080** |
+| MessageProducer | `de.ibb.boot.ak.messaging.MessageProducerApplication` | **8081** |
+| MessageConsumer | `de.ibb.boot.ak.messaging.MessageConsumerApplication` | **8082** |
+| SpringMailService | `de.ibb.boot.ak.messaging.SpringMailServiceApplication` | **8083** |
 
 Broker-Transport `broker.url`: **tcp://localhost:61616**. Diesen Port nicht ändern.
 

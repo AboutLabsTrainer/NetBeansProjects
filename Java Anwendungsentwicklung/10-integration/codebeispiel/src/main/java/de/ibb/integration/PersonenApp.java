@@ -13,12 +13,9 @@ import java.awt.*;
  * PersonenApp - Die vollständige Integration.
  * 
  * Tag 10 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Diese Anwendung zeigt die Schichtenarchitektur:
  * - UI (Swing) → Service → Repository → Database
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class PersonenApp {
     

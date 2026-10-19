@@ -28,4 +28,3 @@ JTE (Java Template Engine) ist eine moderne Template-Engine. Sie bietet:
 - Hot-Reload während der Entwicklung
 - Beste Performance aller Template-Engines
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

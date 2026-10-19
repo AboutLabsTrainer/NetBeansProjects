@@ -28,4 +28,3 @@ Thymeleaf ist die Standard-Template-Engine für Spring Boot. Sie bietet:
 - Server-seitiges Rendering
 - Große Community
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

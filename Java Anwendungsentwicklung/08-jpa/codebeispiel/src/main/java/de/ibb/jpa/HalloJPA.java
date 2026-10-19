@@ -7,15 +7,12 @@ import jakarta.persistence.*;
  * HalloJPA - Deine erste JPA-Anwendung.
  * 
  * Tag 8 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Zeigt die Grundbausteine von JPA:
  * - EntityManagerFactory (einmal pro Anwendung)
  * - EntityManager (einmal pro "Unit of Work")
  * - Entity (Person)
  * - persist(), find(), remove()
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class HalloJPA {
     

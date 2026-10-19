@@ -1,4 +1,4 @@
-# Contributing to Java Fleet Microservices Demo
+# Mitwirken an der Microservices-Demo
 
 Danke, dass du zu diesem Projekt beitragen möchtest! 🎉
 

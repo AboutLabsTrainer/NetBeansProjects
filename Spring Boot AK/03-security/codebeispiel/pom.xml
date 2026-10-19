@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.fleetdata</groupId>
+    <groupId>de.ibb.boot.ak</groupId>
     <artifactId>person-management</artifactId>
     <version>1.0.0</version>
     <name>Person Management - Spring Security</name>
@@ -22,7 +22,7 @@
         <maven.compiler.proc>full</maven.compiler.proc>
         <java.version>21</java.version>
         <jjwt.version>0.12.3</jjwt.version>
-        <start-class>com.fleetdata.personmanagement.PersonManagementApplication</start-class>
+        <start-class>de.ibb.boot.ak.security.PersonManagementApplication</start-class>
     </properties>
 
     <dependencies>

@@ -1,13 +1,12 @@
 ---
 name: Tag 1 REST API Nachbau
-overview: "Lauffähiges Maven/Spring-Boot-Projekt erstellen, das die Tag-1-Anleitung von java-developer.online exakt abbildet: Hello World, Person-API mit 100 Datafaker-Personen, Paginierung und Suche – NetBeans-kompatibel."
+overview: "Lauffähiges Maven/Spring-Boot-Projekt erstellen, das die Tag-1-Anleitung exakt abbildet: Hello World, Person-API mit 100 Datafaker-Personen, Paginierung und Suche – NetBeans-kompatibel."
 todos: []
 isProject: false
 ---
 
 # Tag 1 Spring Boot REST API – exakter Nachbau
 
-Quelle: [Tag 1: Deine erste Spring Boot REST API](https://www.java-developer.online/tag-1-deine-erste-spring-boot-rest-app/)
 
 Der Artikel beschreibt kein separates „Mini-Challenge“-Kapitel, sondern ein aufbauendes Tag-1-Projekt. Es wird **vollständig** nachgebaut (Grundlagen + Professional + Bonus).
 
@@ -46,7 +45,7 @@ Der Artikel beschreibt kein separates „Mini-Challenge“-Kapitel, sondern ein 
         └── java/... (optional, leer oder Standard-SpringBootTest)
 ```
 
-- **GroupId/ArtifactId:** z. B. `com.example` / `rest-api` oder `de.javadeveloper.tag1` / `rest-api` – konsistent in `pom.xml` und Package-Pfad.
+- **GroupId/ArtifactId:** z. B. `com.example` / `rest-api` oder `de.ibb.rest` / `rest-api` – konsistent in `pom.xml` und Package-Pfad.
 - **Java:** 17 (laut Artikel).
 - **Spring Boot:** 3.2.x (aktuell stabil, Maven-kompatibel).
 

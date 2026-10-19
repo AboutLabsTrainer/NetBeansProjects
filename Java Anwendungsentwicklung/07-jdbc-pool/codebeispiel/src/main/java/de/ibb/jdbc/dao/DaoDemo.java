@@ -12,12 +12,9 @@ import java.util.List;
  * DaoDemo - Das DAO Pattern in Aktion.
  * 
  * Tag 7 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Zeigt wie sauber der Code wird, wenn SQL im DAO gekapselt ist.
  * Der Service-Code sieht kein SQL mehr!
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class DaoDemo {
     

@@ -12,11 +12,9 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 **7 Spring Boot Projekte** - Jede wichtige Template Engine mit der gleichen Personen-Liste!
 
-> 💡 **Lernprojekt** aus dem Java Fleet - Spring Boot Aufbau Kurs Tag 10  
 > 📚 Vergleiche alle Template Engines direkt  
 > ⭐ Wenn hilfreich, gib dem Projekt einen Stern!
 
-Von **Java Fleet** - Spring Boot Aufbau Kurs Tag 10
 
 ---
 
@@ -177,7 +175,5 @@ Pull Requests willkommen! Fehler gefunden? Issue erstellen!
 
 ---
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs  
-Website: https://java-developer.online
 
 🚀 Viel Erfolg beim Lernen und Entwickeln!

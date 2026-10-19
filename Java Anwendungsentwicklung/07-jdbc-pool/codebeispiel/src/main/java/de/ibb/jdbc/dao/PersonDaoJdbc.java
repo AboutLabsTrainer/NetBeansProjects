@@ -10,14 +10,11 @@ import java.util.Optional;
  * PersonDaoJdbc - JDBC-Implementation des PersonDao Interface.
  * 
  * Tag 7 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Vorteile des DAO-Patterns:
  * - SQL ist nur HIER, nicht überall im Code verstreut
  * - Austauschbar: Heute JDBC, morgen JPA
  * - Testbar: Mock-DAO für Unit Tests
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class PersonDaoJdbc implements PersonDao {
     

@@ -11,7 +11,7 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.fleetdata</groupId>
+  <groupId>de.ibb.boot.ak</groupId>
   <artifactId>jpa-relations</artifactId>
   <name>jpa-relations</name>
   <description>Tag 3: JPA Relationships &amp; Queries</description>

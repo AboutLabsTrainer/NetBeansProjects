@@ -10,7 +10,7 @@ Autor und Buch hängen über `@ManyToOne` und `@OneToMany` zusammen. Die Übung 
 
 ## Codebeispiel
 
-Main-Klasse: `com.fleetdata.personmanagement.PersonManagementApplication`
+Main-Klasse: `de.ibb.boot.ak.relations.PersonManagementApplication`
 
 `server.port`: **8080**
 

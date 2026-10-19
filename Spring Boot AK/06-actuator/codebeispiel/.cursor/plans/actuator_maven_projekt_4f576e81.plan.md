@@ -28,7 +28,6 @@ isProject: false
 ## Ausgangslage
 
 - Workspace [`07-actuator`](c:\Users\Trainer\Documents\NetBeansProjects\Spring Boot AK\07-actuator) ist **leer**.
-- Inhalt folgt dem Blog [Tag 9: Spring Boot Actuator](https://www.java-developer.online/tag-9-spring-boot-actuator-monitoring/) (Upload vorhanden).
 - Konventionen aus Nachbarprojekten: **Spring Boot 3.4.3**, **Java 17**, Package **`com.example`**, Standard-Maven-Layout (NetBeans öffnet die `pom.xml` direkt).
 
 ## Architektur

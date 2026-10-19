@@ -10,7 +10,7 @@ HTTP Basic schützt `/api/me`. Ein öffentlicher Pfad bleibt offen. Die Rolle AD
 
 ## Codebeispiel
 
-Main-Klasse: `com.fleetdata.personmanagement.PersonManagementApplication`
+Main-Klasse: `de.ibb.boot.ak.security.PersonManagementApplication`
 
 `server.port`: **8080**
 

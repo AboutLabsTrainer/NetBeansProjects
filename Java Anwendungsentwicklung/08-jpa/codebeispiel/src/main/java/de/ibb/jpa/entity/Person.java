@@ -6,7 +6,6 @@ import jakarta.persistence.*;
  * Person Entity - Eine JPA-gemanagte Klasse.
  * 
  * Tag 8 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Diese Klasse wird automatisch auf eine Datenbank-Tabelle gemappt!
  * Keine SQL-Queries, keine ResultSet-Verarbeitung - JPA macht das alles.
@@ -17,8 +16,6 @@ import jakarta.persistence.*;
  * - @Id: "Das ist der Primary Key"
  * - @GeneratedValue: "Die Datenbank generiert die ID"
  * - @Column: Optionale Spalten-Konfiguration
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 @Entity
 @Table(name = "personen")

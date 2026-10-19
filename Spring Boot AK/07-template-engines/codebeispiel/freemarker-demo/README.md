@@ -28,4 +28,3 @@ FreeMarker ist eine Enterprise-Template-Engine. Sie bietet:
 - Weit verbreitet in Enterprise-Anwendungen
 - Ausgereifte, stabile Technologie
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

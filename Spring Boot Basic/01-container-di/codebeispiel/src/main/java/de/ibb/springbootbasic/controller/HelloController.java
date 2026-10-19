@@ -26,7 +26,7 @@ public class HelloController {
         return Map.of(
                 "message", "🚀 Willkommen bei Spring Boot Basic - Tag 2",
                 "course", "Der Spring Container & Dependency Injection",
-                "author", "Elyndra Valen - Java Fleet Systems Consulting",
+                "author", "Anna",
                 "timestamp", LocalDateTime.now().toString(),
                 "endpoints", Map.of(
                         "persons", "/api/persons",

@@ -9,15 +9,12 @@ import java.util.Optional;
  * CrudBeispiel - Create, Read, Update, Delete mit JDBC.
  * 
  * Tag 6 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Zeigt alle grundlegenden Datenbankoperationen:
  * - CREATE: INSERT INTO
  * - READ:   SELECT (einzeln und alle)
  * - UPDATE: UPDATE ... SET ... WHERE
  * - DELETE: DELETE FROM ... WHERE
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class CrudBeispiel {
     

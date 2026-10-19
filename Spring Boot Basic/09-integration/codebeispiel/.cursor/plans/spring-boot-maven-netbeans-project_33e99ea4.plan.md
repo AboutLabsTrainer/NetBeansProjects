@@ -115,6 +115,5 @@ NetBeans soll das Projekt als Maven-Projekt erkennen, und Start über NetBeans-R
 
 ## Hinweise
 
-- Wir orientieren uns eng an den Beispielen und Konzepten aus dem Artikel zu Tag 10 ([Integration & Abschluss](https://www.java-developer.online/tag-10-integration-abschluss-finale/)), verzichten aber im ersten Schritt auf vollständige 1:1-Replikation aller Details, um das Projekt übersichtlich zu halten.
 - Erweiterungen (mehr Felder, komplexere Scopes, zusätzliche AOP-Aspekte etc.) können im Anschluss schrittweise ergänzt werden, sobald das Grundprojekt stabil läuft.
 

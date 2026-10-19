@@ -28,4 +28,3 @@ Pebble ist eine moderne, Twig-ähnliche Template-Engine. Sie bietet:
 - Hervorragende Error-Messages
 - Aktive Community
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

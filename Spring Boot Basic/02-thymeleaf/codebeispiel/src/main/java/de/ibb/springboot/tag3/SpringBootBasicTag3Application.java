@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Thymeleaf & MVC Views
  *
  * Von JSON zu HTML - Menschen-freundliche Webseiten!
- *
- * @author Java Fleet Systems - Elyndra Valen
  */
 @SpringBootApplication
 public class SpringBootBasicTag3Application {

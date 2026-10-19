@@ -8,14 +8,11 @@ import java.util.List;
  * JpqlDemo - JPQL (Java Persistence Query Language) in Aktion.
  * 
  * Tag 9 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * JPQL ist wie SQL, aber für Objekte:
  * - SELECT p FROM Person p (nicht: SELECT * FROM personen)
  * - Arbeitet mit Entity-Namen, nicht Tabellennamen
  * - Datenbank-unabhängig
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class JpqlDemo {
     

@@ -274,20 +274,14 @@ cat ~/.ssh/id_ed25519.pub
 
 ## 🎯 Nach dem Push
 
-### **1. README anpassen**
-
-Ersetze in `README.md`:
-- `[@java-fleet](https://github.com/java-fleet)` → Dein GitHub-Profil
-- `[java-fleet.de](https://java-fleet.de)` → Deine Website (oder entfernen)
-
-### **2. Repository beschreiben**
+### **1. Repository beschreiben**
 
 Auf GitHub:
 - Settings → General
 - About → Add description
 - Topics: `spring-boot`, `microservices`, `eureka`, `feign`, `java`
 
-### **3. Star dein eigenes Projekt** ⭐
+### **2. Star dein eigenes Projekt** ⭐
 
 Warum nicht? 😄
 

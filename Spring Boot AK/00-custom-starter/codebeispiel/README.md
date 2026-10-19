@@ -193,9 +193,3 @@ Dann wird keine `GreetingService` Bean aus dem Starter erstellt.
 
 Da `GreetingAutoConfiguration` `@ConditionalOnMissingBean(GreetingService.class)` verwendet, kannst du in deiner Anwendung eine eigene Bean bereitstellen, die dann priorisiert wird.
 
-## Quelle / Inspiration
-
-Die Struktur und das Lernziel orientieren sich an:
-
-- [Java Fleet: Tag 1 Auto-Configuration & Custom Starter](https://www.java-developer.online/tag-1-auto-configuration-custom-starter/)
-

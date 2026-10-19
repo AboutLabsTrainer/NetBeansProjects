@@ -21,7 +21,6 @@
     <description>
         Server-Side Template Engines mit Spring Boot.
         Demonstriert Thymeleaf, Freemarker, Groovy, Pebble, Mustache, JTE und JSP.
-        Von Java Fleet - Spring Boot Aufbau Kurs Tag 10
     </description>
     
     <modules>

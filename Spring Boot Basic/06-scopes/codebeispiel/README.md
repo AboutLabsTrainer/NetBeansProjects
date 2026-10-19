@@ -2,9 +2,7 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 # Spring Boot Basic – Tag 7: Scopes in Spring
 
-Dieses Projekt ist der Nachbau des Beispielprojekts aus  
-[`Tag 7: Scopes in Spring`](https://www.java-developer.online/tag-7-scopes-in-spring-singleton-prototype/)
-und zeigt die wichtigsten Bean-Scopes in Spring Boot anhand von einfachen Zählern.
+Dieses Projekt zeigt die wichtigsten Bean-Scopes in Spring Boot anhand von einfachen Zählern.
 
 - **Singleton** – eine Instanz für die gesamte Anwendung (Default)
 - **Prototype** – neue Instanz bei jedem `getBean()` / Injection

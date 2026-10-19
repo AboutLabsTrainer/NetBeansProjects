@@ -1,6 +1,6 @@
 ---
 name: Tag 10 Maven Projekt
-overview: "Leeren Workspace mit den offiziellen Tag-10-Maven-Demos von ElyndraValen befüllen: Template-Engine-Vergleich (7 Module) und Microservices (Eureka, User, Order, Gateway) – analog zum Multi-Modul-Aufbau von Tag 7."
+overview: "Leeren Workspace mit den offiziellen Tag-10-Maven-Demos befüllen: Template-Engine-Vergleich (7 Module) und Microservices (Eureka, User, Order, Gateway) – analog zum Multi-Modul-Aufbau von Tag 7."
 todos:
   - id: fetch-templates
     content: Official template-engines-demos nach template-engines/ legen
@@ -22,9 +22,6 @@ isProject: false
 ## Ausgangslage
 
 - Workspace [`08-template-engines-microservices`](c:\Users\Trainer\Documents\NetBeansProjects\Spring Boot AK\08-template-engines-microservices) ist **leer**.
-- Kursseite verweist auf fertige GitHub-Demos (nicht manuell neu tippen):
-  - [tag10-springAufbau-template-engines-demos](https://github.com/ElyndraValen/tag10-springAufbau-template-engines-demos)
-  - [tag10-springAufbau-microservices-demos](https://github.com/ElyndraValen/tag10-springAufbau-microservices-demos)
 - Pattern wie Tag 7 ([`06-messaging-email`](c:\Users\Trainer\Documents\NetBeansProjects\Spring Boot AK\06-messaging-email)): Parent-POM + Module + README mit Startreihenfolge.
 - **Frontend-SPAs (React/Vue/Angular) werden weggelassen** – kein reines NetBeans-Maven-Setup; bei Bedarf später nachziehbar.
 

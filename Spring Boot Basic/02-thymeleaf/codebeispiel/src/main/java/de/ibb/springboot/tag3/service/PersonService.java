@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 /**
  * PersonService - Business Logic für Person-Verwaltung
  * Verwaltet 100 Test-Personen im Speicher
- *
- * @author Java Fleet Systems - Elyndra Valen
  */
 @Service
 public class PersonService {

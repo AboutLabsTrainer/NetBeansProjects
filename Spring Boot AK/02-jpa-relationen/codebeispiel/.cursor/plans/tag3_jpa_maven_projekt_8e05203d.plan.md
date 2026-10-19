@@ -26,14 +26,14 @@ isProject: false
 
 - Workspace [`03-jpa-relations`](c:\Users\Trainer\Documents\NetBeansProjects\Spring Boot AK\03-jpa-relations) ist **leer**.
 - Vorlage: [`02-jpa-basics`](c:\Users\Trainer\Documents\NetBeansProjects\Spring Boot AK\02-jpa-basics) (Spring Boot **3.3.0**, Java **21**, H2 + MariaDB-Profile).
-- Inhalt laut [Tutorial](https://www.java-developer.online/tag-3-jpa-relationships-and-queries/): Person ↔ Address / Order, Query Methods, `@Query` + JOIN FETCH.
+- Inhalt: Person ↔ Address / Order, Query Methods, `@Query` + JOIN FETCH.
 
 ## Entscheidungen
 
 | Thema | Wahl |
 |-------|------|
 | Umfang | **Grundlagen + Professional** (Schritte 1–6) vollständig; Bonus (Schritt 7) als schlanke Ergänzung (Pagination-Endpoint, eine Specification, EntityGraph, Projection) |
-| Package | `com.fleetdata.personmanagement` (wie Tutorial) |
+| Package | `de.ibb.boot.ak.relations` (wie Tutorial) |
 | Lombok | Ja (wie Tutorial: `@Data`, `@ToString.Exclude`, `@RequiredArgsConstructor`) |
 | DB-Default | **H2** (`spring.profiles.active=h2`), MariaDB-Profil analog Tag 2 — sofort startbar ohne DB-Setup |
 | JSON-Zyklen | `@JsonManagedReference` / `@JsonBackReference` auf Relationships (Tutorial-Code allein würde bei GET StackOverflow/Infinite JSON erzeugen) |
@@ -72,7 +72,7 @@ erDiagram
 ```
 03-jpa-relations/
   pom.xml
-  src/main/java/com/fleetdata/personmanagement/
+  src/main/java/de/ibb/boot/ak/relations/
     PersonManagementApplication.java
     entity/AddressType.java, Address.java, OrderStatus.java, Order.java, Person.java
     repository/PersonRepository.java, OrderRepository.java

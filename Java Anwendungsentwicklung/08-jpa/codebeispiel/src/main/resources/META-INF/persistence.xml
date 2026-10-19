@@ -7,7 +7,6 @@
 
     <!--
         Persistence Unit für Tag 8: JPA Einführung
-        Java Fleet Systems Consulting - java-developer.online
 
         Eine Persistence Unit definiert:
         - Welche Entities es gibt

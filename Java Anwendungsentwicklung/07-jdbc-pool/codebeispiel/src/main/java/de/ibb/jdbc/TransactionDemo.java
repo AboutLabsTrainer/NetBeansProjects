@@ -9,15 +9,12 @@ import java.sql.*;
  * TransactionDemo - Alles oder Nichts mit Transaktionen.
  * 
  * Tag 7 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Zeigt:
  * - autoCommit deaktivieren
  * - commit() bei Erfolg
  * - rollback() bei Fehler
  * - Das klassische Banküberweisung-Beispiel
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class TransactionDemo {
     

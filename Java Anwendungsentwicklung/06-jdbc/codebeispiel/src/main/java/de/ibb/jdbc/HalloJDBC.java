@@ -6,12 +6,9 @@ import java.sql.*;
  * HalloJDBC - Deine erste Datenbankverbindung mit JDBC.
  * 
  * Tag 6 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Die Übung spricht MySQL in XAMPP an.
  * Datenbank, Benutzer und Passwort heißen jae_tag06_jdbc.
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class HalloJDBC {
     

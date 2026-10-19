@@ -38,7 +38,7 @@ Ein **Parent-Multi-Modul-Projekt** im Workspace-Root (wie [01-customconfig-autos
 └── SpringMailService/               # Port 8083
 ```
 
-- **Spring Boot 3.3.0**, **Java 21**, `groupId`: `de.fleetdata.messaging` (wie Tutorial)
+- **Spring Boot 3.3.0**, **Java 21**, `groupId`: `de.ibb.boot.ak.messaging` (wie Tutorial)
 - Jedes Modul: eigenes `pom.xml` mit `spring-boot-starter-parent` bzw. Parent-BOM + `spring-boot-maven-plugin`
 
 ```mermaid
@@ -52,8 +52,8 @@ flowchart LR
 
 Aus dem Tutorial 1:1:
 
-- [`BrokerConfig.java`](MyMessageBroker/src/main/java/de/fleetdata/messaging/config/BrokerConfig.java) – embedded `BrokerService`, Persistenz, `tcp://localhost:61616`
-- [`MessageBrokerApplication.java`](MyMessageBroker/src/main/java/de/fleetdata/messaging/MessageBrokerApplication.java)
+- [`BrokerConfig.java`](MyMessageBroker/src/main/java/de/ibb/boot/ak/messaging/config/BrokerConfig.java) – embedded `BrokerService`, Persistenz, `tcp://localhost:61616`
+- [`MessageBrokerApplication.java`](MyMessageBroker/src/main/java/de/ibb/boot/ak/messaging/MessageBrokerApplication.java)
 - `application.properties` (Port 8080, Broker-URL, KahaDB)
 - Dependencies: `spring-boot-starter-web`, `spring-boot-starter-activemq`, `activemq-broker`, `activemq-kahadb-store`
 
@@ -61,15 +61,15 @@ Aus dem Tutorial 1:1:
 
 Tutorial-Code + fehlende Gerüste:
 
-- Model [`Order.java`](MessageProducer/src/main/java/de/fleetdata/messaging/model/Order.java) (`Serializable`, Lombok)
-- [`OrderProducer`](MessageProducer/src/main/java/de/fleetdata/messaging/service/OrderProducer.java) + [`OrderController`](MessageProducer/src/main/java/de/fleetdata/messaging/controller/OrderController.java) (`GET /api/orders/send`)
+- Model [`Order.java`](MessageProducer/src/main/java/de/ibb/boot/ak/messaging/model/Order.java) (`Serializable`, Lombok)
+- [`OrderProducer`](MessageProducer/src/main/java/de/ibb/boot/ak/messaging/service/OrderProducer.java) + [`OrderController`](MessageProducer/src/main/java/de/ibb/boot/ak/messaging/controller/OrderController.java) (`GET /api/orders/send`)
 - `MessageProducerApplication`, `application.properties` (Port 8081, Queue `order-queue`)
 - Dependencies: `web`, `activemq`, `lombok`
 
 ## Modul 3: MessageConsumer
 
 - Identisches `Order`-Model (gleiches Package + `serialVersionUID`)
-- [`OrderConsumer`](MessageConsumer/src/main/java/de/fleetdata/messaging/service/OrderConsumer.java) mit `@JmsListener`
+- [`OrderConsumer`](MessageConsumer/src/main/java/de/ibb/boot/ak/messaging/service/OrderConsumer.java) mit `@JmsListener`
 - Main mit `@EnableJms`
 - Optional kleiner REST-Endpoint `GET /api/orders/processed` (sinnvoll zum Prüfen, aus Consumer-Service ableitbar)
 - Port 8082, gleiche ActiveMQ-/Queue-Properties
@@ -79,12 +79,12 @@ Tutorial-Code + fehlende Gerüste:
 Tutorial-Lücken ergänzen (im Artikel nur skizziert):
 
 - `pom.xml`: `web`, `mail`, `thymeleaf`, `lombok`
-- [`EmailService`](SpringMailService/src/main/java/de/fleetdata/messaging/service/EmailService.java) – simple / HTML / `@Async`
-- [`EmailController`](SpringMailService/src/main/java/de/fleetdata/messaging/controller/EmailController.java) für die Tutorial-curl-URLs:
+- [`EmailService`](SpringMailService/src/main/java/de/ibb/boot/ak/messaging/service/EmailService.java) – simple / HTML / `@Async`
+- [`EmailController`](SpringMailService/src/main/java/de/ibb/boot/ak/messaging/controller/EmailController.java) für die Tutorial-curl-URLs:
   - `GET /api/email/send?to=...`
   - `GET /api/email/html?to=...&name=...`
   - `GET /api/email/async?to=...&name=...`
-- [`AsyncConfig`](SpringMailService/src/main/java/de/fleetdata/messaging/config/AsyncConfig.java) – ThreadPool wie im Professionals-Teil
+- [`AsyncConfig`](SpringMailService/src/main/java/de/ibb/boot/ak/messaging/config/AsyncConfig.java) – ThreadPool wie im Professionals-Teil
 - Thymeleaf-Template `templates/email/welcome.html`
 - Main mit `@EnableAsync`, Port 8083, MailDev SMTP (`localhost:1025`)
 

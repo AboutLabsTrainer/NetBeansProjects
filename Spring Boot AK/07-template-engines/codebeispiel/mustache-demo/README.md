@@ -28,4 +28,3 @@ Mustache ist eine logikfreie Template-Engine. Sie bietet:
 - Isomorph (Java, JavaScript, etc.)
 - Perfekt für einfache Use-Cases
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

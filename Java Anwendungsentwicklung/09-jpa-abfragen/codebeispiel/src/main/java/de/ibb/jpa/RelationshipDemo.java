@@ -10,15 +10,12 @@ import java.util.List;
  * RelationshipDemo - Entity Relationships in JPA.
  * 
  * Tag 9 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Zeigt:
  * - @OneToOne (Person → Adresse)
  * - @OneToMany / @ManyToOne (Person ↔ Bestellungen)
  * - Cascade-Operationen
  * - Lazy Loading
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class RelationshipDemo {
     

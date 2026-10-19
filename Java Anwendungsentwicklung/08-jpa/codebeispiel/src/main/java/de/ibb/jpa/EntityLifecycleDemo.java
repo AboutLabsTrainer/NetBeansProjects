@@ -7,15 +7,12 @@ import jakarta.persistence.*;
  * EntityLifecycleDemo - Die 4 Zustände einer Entity.
  * 
  * Tag 8 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Entity-Zustände:
  * 1. NEW (Transient) - Frisch erstellt, JPA kennt es nicht
  * 2. MANAGED - JPA trackt Änderungen
  * 3. DETACHED - War managed, jetzt nicht mehr
  * 4. REMOVED - Zum Löschen markiert
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class EntityLifecycleDemo {
     

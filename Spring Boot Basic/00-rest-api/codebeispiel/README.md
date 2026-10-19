@@ -2,7 +2,7 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 # REST API – Tag 1 Spring Boot
 
-Spring-Boot-REST-Anwendung mit Hello-World-Endpoint und einer Person-API. Basiert auf der Anleitung [Tag 1: Deine erste Spring Boot REST API](https://www.java-developer.online/tag-1-deine-erste-spring-boot-rest-app/).
+Spring-Boot-REST-Anwendung mit Hello-World-Endpoint und einer Person-API.
 
 ## Übersicht
 

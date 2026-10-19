@@ -2,7 +2,7 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 # Tag 7: Messaging & Email
 
-Maven-Multi-Modul-Projekt zu [Tag 7: Messaging & Email](https://www.java-developer.online/tag-7-messaging-email-in-spring-boot/).
+Maven-Multi-Modul-Projekt mit Broker, Producer, Consumer und Mail.
 
 ## Module
 

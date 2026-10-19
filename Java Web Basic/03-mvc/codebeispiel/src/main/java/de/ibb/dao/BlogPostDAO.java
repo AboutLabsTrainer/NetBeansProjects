@@ -18,7 +18,7 @@ public class BlogPostDAO {
     static {
         POSTS.add(new BlogPost(1L, "Willkommen im Mini-Blog",
                 "Dies ist der erste Beitrag. MVC mit Servlets & JSP (EL) macht Spaß!",
-                "Elyndra", LocalDate.now().minusDays(2)));
+                "Anna", LocalDate.now().minusDays(2)));
         POSTS.add(new BlogPost(2L, "Deployment Descriptor verstehen",
                 "Heute üben wir web.xml: Servlet-Mappings, Fehlerseiten, Session-Config, Welcome-Files.",
                 "Simon", LocalDate.now().minusDays(1)));

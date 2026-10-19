@@ -20,7 +20,7 @@ public class PersonenFrame extends JFrame {
     public PersonenFrame(PersonService service) {
         this.service = service;
         
-        setTitle("👥 Personenverwaltung - Java Fleet Systems");
+        setTitle("👥 Personenverwaltung");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
         setLocationRelativeTo(null);

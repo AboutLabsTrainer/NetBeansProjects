@@ -9,12 +9,9 @@ import java.sql.*;
  * ConnectionPoolDemo - Warum Connection Pooling PFLICHT ist.
  * 
  * Tag 7 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * HikariCP ist der schnellste und zuverlässigste Connection Pool.
  * Spring Boot verwendet ihn standardmäßig!
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class ConnectionPoolDemo {
     

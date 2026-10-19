@@ -28,4 +28,3 @@ Groovy Templates nutzen die Kraft von Groovy. Sie bieten:
 - Volle Groovy-Power in Templates
 - Gut für Groovy-Fans
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

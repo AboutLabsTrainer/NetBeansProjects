@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>de.fleetdata.messaging</groupId>
+    <groupId>de.ibb.boot.ak</groupId>
     <artifactId>message-broker</artifactId>
     <version>1.0.0</version>
     <name>MyMessageBroker</name>

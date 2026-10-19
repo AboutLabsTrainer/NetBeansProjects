@@ -28,4 +28,3 @@ JSP (JavaServer Pages) ist eine Legacy-Technologie. Sie ist:
 - Nicht mehr empfohlen für neue Projekte
 - Aber immer noch weit verbreitet
 
-**Von Java Fleet** - Spring Boot Aufbau Kurs

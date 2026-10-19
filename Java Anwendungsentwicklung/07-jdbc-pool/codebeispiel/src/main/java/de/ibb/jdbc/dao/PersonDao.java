@@ -7,12 +7,9 @@ import java.util.Optional;
  * PersonDao - Data Access Object Interface für Personen.
  * 
  * Tag 7 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Definiert die Schnittstelle für Datenbankzugriffe.
  * Die konkrete Implementierung (JDBC, JPA, ...) ist austauschbar!
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public interface PersonDao {
     

@@ -9,12 +9,9 @@ import java.util.Optional;
  * RepositoryDemo - Das Repository Pattern mit JPA.
  * 
  * Tag 9 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Zeigt wie man ein sauberes Repository implementiert.
  * Spring Data JPA macht das später automatisch!
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public class RepositoryDemo {
     

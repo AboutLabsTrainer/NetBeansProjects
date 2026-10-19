@@ -41,7 +41,7 @@ Create a runnable Maven project in `c:\Users\Trainer\Documents\NetBeansProjects\
 ```
 04-spring-security/
 ├── pom.xml
-├── src/main/java/com/fleetdata/personmanagement/
+├── src/main/java/de/ibb/boot/ak/security/
 │   ├── PersonManagementApplication.java
 │   ├── entity/
 │   │   ├── User.java
@@ -78,7 +78,7 @@ Create a runnable Maven project in `c:\Users\Trainer\Documents\NetBeansProjects\
 │       └── admin/
 │           ├── dashboard.html
 │           └── users.html
-└── src/test/java/com/fleetdata/personmanagement/
+└── src/test/java/de/ibb/boot/ak/security/
     └── PersonManagementApplicationTests.java
 ```
 

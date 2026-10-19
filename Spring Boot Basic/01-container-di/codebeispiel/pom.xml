@@ -15,7 +15,7 @@
     <artifactId>spring-boot-basic-tag2</artifactId>
     <version>1.0.0</version>
     <name>Spring Boot Basic Tag 2</name>
-    <description>Der Spring Container und Dependency Injection - Java Fleet Systems</description>
+    <description>Der Spring Container und Dependency Injection</description>
 
     <properties>
         <lombok.version>1.18.48</lombok.version>

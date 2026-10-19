@@ -4,14 +4,11 @@ package de.ibb.jdbc.dao;
  * Person - Einfache Entity-Klasse als Java Record.
  * 
  * Tag 7 des Kurses "Java Anwendungsentwicklung"
- * Java Fleet Systems Consulting - java-developer.online
  * 
  * Records (seit Java 16) sind perfekt für einfache Datenklassen:
  * - Immutable (unveränderlich)
  * - equals(), hashCode(), toString() automatisch
  * - Kompakte Syntax
- * 
- * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
 public record Person(
     Integer id,

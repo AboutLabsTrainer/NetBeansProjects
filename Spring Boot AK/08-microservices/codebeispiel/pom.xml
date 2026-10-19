@@ -20,7 +20,6 @@
     <name>Tag 10 Spring Aufbau - Microservices Demos</name>
     <description>
         Microservices Demo mit Spring Boot, Eureka, Feign und API Gateway.
-        Von Java Fleet - Spring Boot Aufbau Kurs Tag 10
     </description>
     
     <modules>

@@ -109,7 +109,7 @@ Wichtige Mechanismen:
 
 Die Demo hängt nur den Starter ein und injiziert `GreetingService`:
 
-1. **`DemoApplication`** – `CommandLineRunner` begrüßt Petra/Nova/Elyndra beim Start
+1. **`DemoApplication`** – `CommandLineRunner` begrüßt Petra/Nova/Anna beim Start
 2. **`GreetingController`** – REST:
    - `GET /greet/{name}` → Begrüßung für den Namen
    - `GET /greet` → Begrüßung für `"World"`

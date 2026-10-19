@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * HelloController - Einfacher Test-Controller aus Tag 1
- *
- * @author Java Fleet Systems
  */
 @RestController
 public class HelloController {

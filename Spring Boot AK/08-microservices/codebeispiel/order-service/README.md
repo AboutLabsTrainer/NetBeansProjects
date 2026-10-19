@@ -567,7 +567,7 @@ public interface UserClient {
 | **Fallback** | Manuell | ✅ Einfach |
 | **Testing** | Schwer | ✅ Einfach (Mock Interface) |
 
-**Franz-Martin's Fazit:**
+**Fazit:**
 > "Feign ist wie Lombok für HTTP-Calls.  
 > Du schreibst Interface, Spring macht REST.  
 > Einmal verwendet, nie mehr zurück zu RestTemplate!"

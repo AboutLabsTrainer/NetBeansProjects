@@ -29,9 +29,6 @@ public class SpringBootBasicTag2Application {
         System.out.println("║        🚀 Spring Boot Basic - Tag 2                       ║");
         System.out.println("║        Der Spring Container & Dependency Injection        ║");
         System.out.println("║                                                            ║");
-        System.out.println("║        📚 Java Fleet Systems Consulting                    ║");
-        System.out.println("║        👩‍💻 Von Elyndra Valen                                ║");
-        System.out.println("║                                                            ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝");
         System.out.println();
         System.out.println("🔧 Spring Container wird gestartet...");

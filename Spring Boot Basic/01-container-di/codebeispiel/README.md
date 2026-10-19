@@ -4,8 +4,6 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 **Der Spring Container & Dependency Injection**
 
-Lernprojekt von Java Fleet Systems Consulting zur Demonstration von Spring Boot, dem IoC-Container und Dependency Injection.
-
 ---
 
 ## Überblick
@@ -201,7 +199,3 @@ Standardmäßig wird `DatabasePersonService` (100 Faker-Personen) genutzt. Für 
 
 ---
 
-## Lizenz & Autor
-
-- **Autor:** Elyndra Valen  
-- **Unternehmen:** Java Fleet Systems Consulting
