@@ -1,5 +1,5 @@
 # Tag10-JSF-PrimeFaces – JSF Application
-Namespace: `de.ibb` · Projektname: `Tag10-JSF-PrimeFaces` · Server: **Payara 7** (Jakarta EE 11, EclipseLink)
+Namespace: `de.ibb` · Projektname: `Tag10-JSF-PrimeFaces` · Server: **Payara 6** (Jakarta EE 10, EclipseLink)
 
 ## Features
 - **JSF** mit Standard-Komponenten (`h:dataTable`, `h:messages`, `h:inputText`, `h:commandButton`)
@@ -7,7 +7,7 @@ Namespace: `de.ibb` · Projektname: `Tag10-JSF-PrimeFaces` · Server: **Payara 7
 - **CRUD-Operationen** für Produkte
 
 ## Start
-1. Projekt via `pom.xml` in NetBeans öffnen und **Payara 7** wählen.
+1. Projekt via `pom.xml` in NetBeans öffnen und **Payara 6** wählen.
 2. Projekt bauen: `mvn clean package` (erstellt WAR-Datei mit MariaDB JDBC Driver).
 3. MySQL-Benutzer erstellen (falls noch nicht vorhanden):
    ```sql
@@ -72,7 +72,7 @@ Die MySQL-Datenquelle kann entweder über die **Payara Admin Console** (UI) oder
 Falls `glassfish-resources.xml` (oder `payara-resources.xml`) im `WEB-INF` Verzeichnis vorhanden ist, wird die Datenquelle beim Deployment automatisch erstellt. 
 
 **Hinweis:** 
-- Payara 7 verwendet `glassfish-resources.xml` für die automatische Ressourcen-Erstellung
+- Payara 6 verwendet `glassfish-resources.xml` für die automatische Ressourcen-Erstellung
 - Die Datei muss vor dem Deployment vorhanden sein
 - **Wichtig:** Falls die Ressourcen nach dem Deployment nicht sichtbar sind:
   1. Prüfe die Server-Logs auf Fehler

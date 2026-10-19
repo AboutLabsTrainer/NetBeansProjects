@@ -9,16 +9,16 @@
     <version>1.0.0</version>
     <packaging>war</packaging>
     <name>Tag7 – JPA vs JDBC • Provider &amp; Konfiguration</name>
-    <description>Mini-Challenge: JPA Product mit EclipseLink (Payara 7) und JDBC-Vergleich</description>
+    <description>Mini-Challenge: JPA Product mit EclipseLink (Payara 6) und JDBC-Vergleich</description>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakarta.ee.version>11.0.0</jakarta.ee.version>
+        <jakarta.ee.version>10.0.0</jakarta.ee.version>
     </properties>
 
     <dependencies>
-        <!-- Jakarta EE 11 Web API, vom Payara-7-Server gestellt. EclipseLink nicht ins WAR legen. -->
+        <!-- Jakarta EE 10 Web API, vom Payara-6-Server gestellt. EclipseLink nicht ins WAR legen. -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>

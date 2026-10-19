@@ -41,7 +41,7 @@
         <version>1.10.10</version>
         <configuration>
           <container>
-            <containerId>glassfish5x</containerId>
+            <containerId>glassfish7x</containerId>
             <type>remote</type>
           </container>
           <configuration>

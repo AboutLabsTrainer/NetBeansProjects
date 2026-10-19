@@ -73,7 +73,8 @@
     
     <target name="compile" description="Compile the source">
     <mkdir dir="build/classes"/>
-    <javac srcdir="src" destdir="build/classes" 
+    <javac srcdir="src" destdir="build/classes"
+           source="21" target="21"
            encoding="UTF-8" includeantruntime="false"/>
     </target>
 

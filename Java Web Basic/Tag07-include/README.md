@@ -3,7 +3,7 @@ Namespace: de.ibb · Projektname: Tag7
 
 ## Import & Start
 1) NetBeans → Datei → Öffnen → `pom.xml` wählen
-2) Run/Deploy auf Payara 7
+2) Run/Deploy auf Payara 6
 3) Aufrufen: `http://localhost:8080/Tag7/demo.jsp`
 
 ## Erfüllt (laut Mini‑Challenge)

@@ -1,5 +1,5 @@
 # Tag2 – Listener meistern (Event‑Driven)
-Namespace: `de.ibb` · Projektname: `Tag2` · Server: Payara 7 (Jakarta EE 10)
+Namespace: `de.ibb` · Projektname: `Tag2` · Server: Payara 6 (Jakarta EE 10)
 
 **Mini‑Challenge umgesetzt:**  
 1) **Application‑Startup** (ServletContextListener): Start‑Zeit loggen, Config laden (`environment`, `appVersion`)  
@@ -8,7 +8,7 @@ Namespace: `de.ibb` · Projektname: `Tag2` · Server: Payara 7 (Jakarta EE 10)
 4) **Admin‑Dashboard**: `/admin/monitor` HTML + **Bonus** `/admin/api/metrics` (JSON)
 
 ## Start (NetBeans)
-1. Projekt über `pom.xml` öffnen, Server **Payara 7** setzen  
+1. Projekt über `pom.xml` öffnen, Server **Payara 6** setzen  
 2. **Run/Deploy**  
 3. Browser: `http://localhost:8080/Tag2/` → Links zum Dashboard & JSON
 

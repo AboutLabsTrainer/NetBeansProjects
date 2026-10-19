@@ -1,9 +1,9 @@
 # HelloPayara – Tag 2 Übungen (HTTP & Sessions)
 
-Kleines NetBeans/Maven-WAR-Projekt für Payara 7 (Jakarta Servlet 6, Java 17). Es demonstriert grundlegende HTTP- und Session-Konzepte ohne Datenbank- oder JSP-Einsatz.
+Kleines NetBeans/Maven-WAR-Projekt für Payara 6 (Jakarta Servlet 6, Java 21). Es demonstriert grundlegende HTTP- und Session-Konzepte ohne Datenbank- oder JSP-Einsatz.
 
 ## Voraussetzungen
-- Java 17 (JDK)
+- Java 21 (JDK)
 - Maven 3.9+
 - Payara Server 7 (HTTP-Port 8080) (als lokal installierter oder in NetBeans konfigurierter Server)
 - NetBeans 21+ mit Payara-Plugin (optional, aber empfohlen)

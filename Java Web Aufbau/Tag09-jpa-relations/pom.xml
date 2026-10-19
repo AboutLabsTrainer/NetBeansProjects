@@ -20,11 +20,11 @@
     </properties>
     
     <dependencies>
-        <!-- Jakarta EE 11 Web API, vom Payara-7-Server gestellt. -->
+        <!-- Jakarta EE 10 Web API, vom Payara-6-Server gestellt. -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
-            <version>11.0.0</version>
+            <version>10.0.0</version>
             <scope>provided</scope>
         </dependency>
         

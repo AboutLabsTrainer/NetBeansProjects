@@ -29,8 +29,8 @@
         <javac srcdir="${src.dir}" 
                destdir="${classes.dir}" 
                includeantruntime="false"
-               source="1.8"
-               target="1.8"
+               source="21"
+               target="21"
                encoding="UTF-8">
             <classpath refid="classpath"/>
         </javac>

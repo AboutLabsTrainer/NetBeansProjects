@@ -6,8 +6,8 @@ Most lab folders include their own `README.md` with goals, commands, and notes. 
 
 ## Tooling
 
-- **JDK**: compile course modules with `maven.compiler.release` **21**. The same classes run on a Payara 7 JVM with JDK 21 or JDK 25. Do not compile labs with `--release 25`.
-- **Jakarta web with JPA** (`Java Web Aufbau` Tag 07–10): Payara Community **7.2026.8** or a newer 7.2026 build (EclipseLink 5.0.0 from 7.2026.6). API is `jakarta.jakartaee-web-api` **11.0.0**, scope `provided`. The JPA provider is the server EclipseLink. Do not put Hibernate or EclipseLink into the WAR, and do not set `class-loader delegate="false"`. In NetBeans, register **Payara 7** as the server. `Java Web Basic` stays on its servlet/JDBC setup and can deploy to that same server.
+- **JDK**: compile and run course modules with JDK **21.0.11** (`JAVA_HOME`, NetBeans 31 `netbeans_jdkhome`, Payara 6). Do not compile labs with `--release 25`.
+- **Jakarta web** (`Java Web Basic` and `Java Web Aufbau`): Payara Community **6.2025.10** at `C:\payara6`, **Jakarta EE 10**. API is `jakarta.jakartaee-web-api` or `jakarta.jakartaee-api` **10.0.0**, scope `provided`. Servlet 6.0, Persistence **3.1**. The JPA provider is the server EclipseLink **4.0.7**. Do not put Hibernate or EclipseLink into the WAR, and do not set `class-loader delegate="false"`. In NetBeans 31 the Payara deployer id stays `pfv5ee8`; the registered server home is Payara 6.
 - **SE JPA** (`Java Anwendungsentwicklung` Tag 08–10): EclipseLink **5.0.0** and Jakarta Persistence **3.2**, `RESOURCE_LOCAL`.
 - **Spring Boot JPA** (`Spring Boot AK` modules 02, 03, 04, 07): Spring Boot **3.5.16**, Java 21, Hibernate only from the Boot BOM. EclipseLink stays off this track; Boot 4 is a later course cut.
 - **Footguns to keep in view**: Lombok `@EqualsAndHashCode` on an entity whose `id` is still null makes `Set` membership wrong before the first persist. Spring Boot leaves Open Session in View on, so a lazy association can load during JSON rendering without an explicit transaction.

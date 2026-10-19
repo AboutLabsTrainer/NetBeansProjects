@@ -2,7 +2,7 @@
 
 **Namespace:** `de.ibb`  
 **Projektname:** `Tag10`  
-**Server:** Payara 7, HTTP-Port 8080 (Jakarta EE 10)  
+**Server:** Payara 6, HTTP-Port 8080 (Jakarta EE 10)  
 **Packaging:** Maven WAR
 
 ## Ziel der Mini‑Challenge
@@ -18,7 +18,7 @@ Baue ein lauffähiges **Benchmark‑Projekt** und messe:
 
 ## Start in NetBeans
 1. Öffne das Maven‑Projekt **Tag10**.
-2. Stelle sicher, dass Payara 7 als Server konfiguriert ist.
+2. Stelle sicher, dass Payara 6 als Server konfiguriert ist.
 3. Deploye das Projekt (F6).  
 4. Rufe `http://localhost:8080/Tag10/initdb` auf, dann `http://localhost:8080/Tag10/benchmark`.
 
@@ -63,7 +63,7 @@ Variante B – **manuell im Admin Console** (http://localhost:4848):
 - `BenchmarkServlet` – UI & Steuerlogik
 - `SeedServlet` – Schema & Seed
 - `ProductDAO` – JDBC‑Zugriffe (Prepared + Batch)
-- `web.xml` – **wichtig** für NetBeans/Payara 7
+- `web.xml` – **wichtig** für NetBeans/Payara 6
 - `glassfish-resources.xml` – (optional) Ressourcen‑Provisioning
 
 Viel Erfolg beim Unterrichten! ✨

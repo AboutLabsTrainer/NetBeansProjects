@@ -1,5 +1,5 @@
 # Tag5+6 – Custom Tags (Simple & Classic)
-Namespace: `de.ibb` · Projektname: `Tag56` · Server: Payara 7 (Jakarta EE 10)
+Namespace: `de.ibb` · Projektname: `Tag56` · Server: Payara 6 (Jakarta EE 10)
 
 **Inhalt**
 - SimpleTagSupport (Tag 5): Greeting, Badge, Truncate, Repeat
@@ -8,8 +8,8 @@ Namespace: `de.ibb` · Projektname: `Tag56` · Server: Payara 7 (Jakarta EE 10)
   - `WEB-INF/tlds/simple-tags.tld` → URI `https://de.ibb/simple` (Prefix z. B. `fleet`)
   - `WEB-INF/tlds/classic-tags.tld` → URI `https://de.ibb/classic` (Prefix z. B. `fleetx`)
 
-**Start in NetBeans (Payara 7)**
-1. Projekt über `pom.xml` öffnen, Server **Payara 7** wählen
+**Start in NetBeans (Payara 6)**
+1. Projekt über `pom.xml` öffnen, Server **Payara 6** wählen
 2. Run/Deploy
 3. Testen:
    - `http://localhost:8080/Tag56/` (Start)

@@ -1,9 +1,9 @@
 # Tag 4 – Deployment Descriptor & MVC (Model 2)
-NetBeans/Maven WAR-Projekt (Payara 7, Jakarta Servlet 6, Java 17) zur Demonstration von **web.xml** und **MVC**.
+NetBeans/Maven WAR-Projekt (Payara 6, Jakarta Servlet 6, Java 21) zur Demonstration von **web.xml** und **MVC**.
 
 ## Import
 1. NetBeans: `Datei → Öffnen` und Ordner mit `pom.xml` wählen.
-2. Rechtsklick → **Run/Deploy** auf Payara 7.
+2. Rechtsklick → **Run/Deploy** auf Payara 6.
 3. Basis-URL: `http://localhost:8080/HelloPayara-Tag4/`
 
 ## Endpunkte

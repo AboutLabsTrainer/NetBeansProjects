@@ -1,6 +1,6 @@
-# HelloPayara – Tag 1 Übungen (Jakarta Servlet 6, Java 17)
+# HelloPayara – Tag 1 Übungen (Jakarta Servlet 6, Java 21)
 Dieses Repository begleitet den ersten Schulungstag „Java EE/Jakarta EE Grundlagen“.  
-Im Fokus stehen Application Server, Webcontainer, HTTP und erste Servlets auf Payara 7.
+Im Fokus stehen Application Server, Webcontainer, HTTP und erste Servlets auf Payara 6.
 
 ## Voraussetzungen
 - JDK 17 (z. B. Temurin/OpenJDK)
@@ -15,7 +15,7 @@ Im Fokus stehen Application Server, Webcontainer, HTTP und erste Servlets auf Pa
 
 ## Import & Deployment mit NetBeans
 1. **Projekt öffnen:** `Datei → Öffnen` und Ordner `HelloPayara-Tag1-Exercises` (enthält `pom.xml`) wählen.
-2. **Server einrichten:** Payara 7 in NetBeans registrieren (Services-Tab → Servers).
+2. **Server einrichten:** Payara 6 in NetBeans registrieren (Services-Tab → Servers).
 3. **Context-Root festlegen:** In den Projekteigenschaften unter *Run* `Context Path` auf `/HelloPayara` setzen.
 4. **Deploy:** Rechtsklick auf das Projekt → `Run` oder `Deploy`. NetBeans baut automatisch und überträgt auf Payara.
 

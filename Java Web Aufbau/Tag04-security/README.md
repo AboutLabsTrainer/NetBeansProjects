@@ -1,12 +1,12 @@
 # Tag4 – Container‑Managed Security (Jakarta EE)
-Namespace: `de.ibb` · Projektname: `Tag4` · Server: Payara 7 (Jakarta EE 10)
+Namespace: `de.ibb` · Projektname: `Tag4` · Server: Payara 6 (Jakarta EE 10)
 
 **Mini‑Challenge umgesetzt:** JDBC‑Realm mit **3 Rollen** (`admin`, `manager`, `user`) und **3 Bereichen** (`/admin/*`, `/manager/*`, `/user/*`), **FORM‑Login** (`login.jsp` mit `j_security_check`) und Logout.
 
 ## Setup Schritt für Schritt
 
 ### 1. NetBeans/Maven
-1. Projekt über `pom.xml` importieren, Server **Payara 7** wählen.
+1. Projekt über `pom.xml` importieren, Server **Payara 6** wählen.
 2. `mvn clean package` erzeugt `target/Tag4.war`.
 
 ### 2. Datenbank vorbereiten (MySQL oder MariaDB)

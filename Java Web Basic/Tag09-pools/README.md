@@ -11,7 +11,7 @@ Drei Wege zur DataSource aus dem Payara-Pool: Resource-Injection, manueller JNDI
 5. `Product` – Modell für die JSP
 
 ## Start in NetBeans
-Projekt auf dem registrierten Payara-7-Server mit **Run** starten.
+Projekt auf dem registrierten Payara-6-Server mit **Run** starten.
 Context-Pfad: `/Tag9-ConnectionPools`
 URL: http://localhost:8080/Tag9-ConnectionPools/
 

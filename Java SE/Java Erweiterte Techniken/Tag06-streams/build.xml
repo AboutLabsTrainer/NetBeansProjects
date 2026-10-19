@@ -26,8 +26,8 @@
         <javac srcdir="${src.dir}" 
                destdir="${classes.dir}" 
                includeAntRuntime="false"
-               source="8"
-               target="8"
+               source="21"
+               target="21"
                encoding="UTF-8"
                debug="true"
                deprecation="true">

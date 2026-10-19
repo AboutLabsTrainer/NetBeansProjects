@@ -22,7 +22,7 @@
     <target name="compile" depends="clean">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"
-               debug="true" source="17" target="17"/>
+               debug="true" source="21" target="21"/>
     </target>
 
     <target name="jar" depends="compile">

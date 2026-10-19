@@ -1,5 +1,5 @@
 # 03-auth-db – Jakarta EE Authentication (DB)
-Namespace: `de.ibb` · Projektname: `03-auth-db` · Server: Payara 7 (Jakarta EE 10)
+Namespace: `de.ibb` · Projektname: `03-auth-db` · Server: Payara 6 (Jakarta EE 10)
 
 **Mini‑Challenge umgesetzt (gemäß Kursseite):**
 - Login gegen **MySQL** (Tabelle `jwebak03_customer`)
@@ -7,8 +7,8 @@ Namespace: `de.ibb` · Projektname: `03-auth-db` · Server: Payara 7 (Jakarta EE
 - **PreparedStatement** (SQL‑Injection‑Schutz)
 - **Session‑basiert** (Customer in Session)
 
-## Start (NetBeans + Payara 7)
-1. Projekt über `pom.xml` öffnen, als Server **Payara 7** wählen
+## Start (NetBeans + Payara 6)
+1. Projekt über `pom.xml` öffnen, als Server **Payara 6** wählen
 2. DB vorbereiten: `src/main/webapp/WEB-INF/sql/schema.sql` in MySQL ausführen (nutzt DB `jwebak_tag03_auth`)
 3. In `WEB-INF/web.xml` DB‑Zugangsdaten (context‑param) anpassen (Standard: `jwebak_tag03_auth` / `jwebak_tag03_auth`)
 4. Run/Deploy → Browser:

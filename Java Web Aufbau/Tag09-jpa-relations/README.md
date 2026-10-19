@@ -6,7 +6,7 @@
 
 ## 📋 Überblick
 
-Dieses Maven-Projekt demonstriert praktische JPA-Relationen mit Jakarta EE 11:
+Dieses Maven-Projekt demonstriert praktische JPA-Relationen mit Jakarta EE 10:
 - **@OneToOne:** User ↔ UserProfile (1:1 Beziehung)
 - **@ManyToOne:** Orders → User (N:1 Beziehung)
 - **Bidirektionale Relationen:** Navigation in beide Richtungen
@@ -37,9 +37,9 @@ Dieses Maven-Projekt demonstriert praktische JPA-Relationen mit Jakarta EE 11:
 ## 🛠️ Technologie-Stack
 
 - **Java:** JDK 21 LTS
-- **Jakarta EE:** 11.0.0 (`jakarta.jakartaee-web-api`, provided)
-- **JPA:** 3.2 (EclipseLink, vom Payara-7-Server gestellt)
-- **Server:** Payara 7 (Community 7.2026.8 oder neuer)
+- **Jakarta EE:** 10.0.0 (`jakarta.jakartaee-web-api`, provided)
+- **JPA:** 3.1 (EclipseLink 4.0.7, vom Payara-6-Server gestellt)
+- **Server:** Payara 6 (Community 6.2025.10)
 - **Bytecode:** JDK 21 (`maven.compiler.release`)
 - **Datenbank:** `jwebak_tag09_relations` (User und Passwort `jwebak_tag09_relations`, Tabellen-Präfix: `jwebak07_`)
 - **Build:** Maven 3.9+
@@ -84,7 +84,7 @@ JavaWebAufbauTag9/
 
 - **JDK 21 LTS** installiert
 - **Apache NetBeans 22** (oder IntelliJ IDEA)
-- **Payara 7** konfiguriert
+- **Payara 6** konfiguriert
 - **XAMPP mit MySQL (MariaDB)** läuft lokal
 - **Maven 3.9+** installiert
 
