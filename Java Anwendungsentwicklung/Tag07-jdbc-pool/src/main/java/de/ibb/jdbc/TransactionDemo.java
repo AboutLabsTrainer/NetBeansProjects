@@ -186,9 +186,9 @@ public class TransactionDemo {
     
     private static void setupDataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/ae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
-        config.setUsername("ae_tag07_jdbc");
-        config.setPassword("ae_tag07_jdbc");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/jae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+        config.setUsername("jae_tag07_jdbc");
+        config.setPassword("jae_tag07_jdbc");
         config.setPoolName("Transaction-Demo-Pool");
         dataSource = new HikariDataSource(config);
     }

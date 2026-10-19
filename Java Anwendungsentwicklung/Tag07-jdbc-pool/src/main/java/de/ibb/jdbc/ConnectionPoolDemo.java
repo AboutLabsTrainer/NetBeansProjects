@@ -28,9 +28,9 @@ public class ConnectionPoolDemo {
         // VERGLEICH: Ohne Pool vs. Mit Pool
         // ══════════════════════════════════════════════════════════════
         
-        String url = "jdbc:mysql://localhost:3306/ae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-        String user = "ae_tag07_jdbc";
-        String password = "ae_tag07_jdbc";
+        String url = "jdbc:mysql://localhost:3306/jae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String user = "jae_tag07_jdbc";
+        String password = "jae_tag07_jdbc";
         
         int anzahlOperationen = 100;
         

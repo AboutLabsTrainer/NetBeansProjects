@@ -26,7 +26,7 @@
     </properties>
 
     <dependencies>
-        <!-- MySQL-Treiber fuer ae_tag07_jdbc -->
+        <!-- MySQL-Treiber fuer jae_tag07_jdbc -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>

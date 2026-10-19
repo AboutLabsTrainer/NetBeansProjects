@@ -9,7 +9,7 @@ import java.sql.*;
  * Java Fleet Systems Consulting - java-developer.online
  * 
  * Die Übung spricht MySQL in XAMPP an.
- * Datenbank, Benutzer und Passwort heißen ae_tag06_jdbc.
+ * Datenbank, Benutzer und Passwort heißen jae_tag06_jdbc.
  * 
  * @author Franz-Martin (CTO, Java Fleet Systems Consulting)
  */
@@ -21,9 +21,9 @@ public class HalloJDBC {
     
     // Format: jdbc:<datenbank>:<verbindungsdetails>
     // MySQL in XAMPP: eine Datenbank pro Übung, Passwort = Name
-    private static final String URL = "jdbc:mysql://localhost:3306/ae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String USER = "ae_tag06_jdbc";
-    private static final String PASSWORD = "ae_tag06_jdbc";
+    private static final String URL = "jdbc:mysql://localhost:3306/jae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "jae_tag06_jdbc";
+    private static final String PASSWORD = "jae_tag06_jdbc";
     
     public static void main(String[] args) {
         System.out.println("═══════════════════════════════════════════════════════════");
@@ -135,7 +135,7 @@ public class HalloJDBC {
         
         System.out.println();
         System.out.println("═══════════════════════════════════════════════════════════");
-        System.out.println("  💡 Hinweis: Die Zeilen bleiben in MySQL (ae_tag06_jdbc), bis das Programm sie loescht.");
+        System.out.println("  💡 Hinweis: Die Zeilen bleiben in MySQL (jae_tag06_jdbc), bis das Programm sie loescht.");
         System.out.println("═══════════════════════════════════════════════════════════");
     }
 }

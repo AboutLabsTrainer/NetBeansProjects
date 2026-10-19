@@ -21,9 +21,9 @@ import java.util.Optional;
  */
 public class CrudBeispiel {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/ae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String USER = "ae_tag06_jdbc";
-    private static final String PASSWORD = "ae_tag06_jdbc";
+    private static final String URL = "jdbc:mysql://localhost:3306/jae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "jae_tag06_jdbc";
+    private static final String PASSWORD = "jae_tag06_jdbc";
     
     // ══════════════════════════════════════════════════════════════
     // ENTITY: Person (ein einfaches Datenobjekt)
