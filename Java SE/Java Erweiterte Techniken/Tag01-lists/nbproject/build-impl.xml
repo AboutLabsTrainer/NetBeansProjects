@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Minimal NetBeans Build Implementation -->
-<project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1"
-         xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3"
-         xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jaxrpc"
-         name="01-collections-lists-impl" basedir="..">
-    <fail message="Please build using the Ant build script (build.xml) at the root of the project if you are outside of NetBeans."/>
-</project>

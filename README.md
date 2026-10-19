@@ -1,6 +1,6 @@
 # NetBeansProjects
 
-Private monorepo of Java training material for classroom labs, demos, and self-study. Projects are organized by course track and day/tag so they open cleanly in **NetBeans** (and usually also in IntelliJ or VS Code/Cursor with Maven or Ant).
+Private monorepo of Java training material for classroom labs, demos, and self-study. Each course is a sequence of modules `00`–`0x`. A module folder is not itself a build. Open the leaf that contains `pom.xml`: `codebeispiel`, `uebung-stufe-1`, `uebung-stufe-2`, or `loesung/stufe-1` and `loesung/stufe-2`.
 
 Most lab folders include their own `README.md` with goals, commands, and notes. Use this file as the map of the workspace; open the nested README when you work on a specific exercise.
 
@@ -8,12 +8,12 @@ Most lab folders include their own `README.md` with goals, commands, and notes. 
 
 - **JDK**: compile and run course modules with JDK **21.0.11** (`JAVA_HOME`, NetBeans 31 `netbeans_jdkhome`, Payara 6). Do not compile labs with `--release 25`.
 - **Jakarta web** (`Java Web Basic` and `Java Web Aufbau`): Payara Community **6.2025.10** at `C:\payara6`, **Jakarta EE 10**. API is `jakarta.jakartaee-web-api` or `jakarta.jakartaee-api` **10.0.0**, scope `provided`. Servlet 6.0, Persistence **3.1**. The JPA provider is the server EclipseLink **4.0.7**. Do not put Hibernate or EclipseLink into the WAR, and do not set `class-loader delegate="false"`. In NetBeans 31 the Payara deployer id stays `pfv5ee8`; the registered server home is Payara 6.
-- **SE JPA** (`Java Anwendungsentwicklung` Tag 08–10): EclipseLink **5.0.0** and Jakarta Persistence **3.2**, `RESOURCE_LOCAL`.
-- **Spring Boot JPA** (`Spring Boot AK` modules 02, 03, 04, 07): Spring Boot **3.5.16**, Java 21, Hibernate only from the Boot BOM. EclipseLink stays off this track; Boot 4 is a later course cut.
+- **SE JPA** (`Java Anwendungsentwicklung` `08-jpa`, `09-jpa-abfragen`, `10-integration`): EclipseLink **5.0.0** and Jakarta Persistence **3.2**, `RESOURCE_LOCAL`.
+- **Spring Boot JPA** (`Spring Boot AK` `01-jpa`, `02-jpa-relationen`, `03-security`, `06-actuator`): Spring Boot **3.5.16**, Java 21, Hibernate only from the Boot BOM. EclipseLink stays off this track; Boot 4 is a later course cut.
 - **Footguns to keep in view**: Lombok `@EqualsAndHashCode` on an entity whose `id` is still null makes `Set` membership wrong before the first persist. Spring Boot leaves Open Session in View on, so a lazy association can load during JSON rendering without an explicit transaction.
-- **Build**: Maven (`pom.xml`) for most web/Spring modules; Ant/NetBeans (`build.xml` + `nbproject/`) for many SE/OO labs
+- **Build**: Maven (`pom.xml`) for every course leaf. JDK release is 21.
 - **Other servers**: embedded Tomcat via Spring Boot, ActiveMQ for messaging demos
-- **IDE**: NetBeans is the primary target; `.idea/` and build outputs are ignored
+- **IDE**: NetBeans, IntelliJ and VS Code open the folder that contains `pom.xml`. The steps are in [docs/ide-maven.md](docs/ide-maven.md). `.idea/` and build outputs are ignored
 
 ### Embedded Tomcat when switching Spring Boot labs
 
@@ -35,63 +35,38 @@ Labs that must run at the same time need different `server.port` values. `Spring
 
 ### `Java SE`
 
-Core language skills before frameworks.
+Core language skills before frameworks. `Java ist auch eine Insel` is not part of the numbered sequence.
 
-| Subfolder | Contents |
-|-----------|----------|
-| `Java Grundlagen` | Notebook-style intro, types, text/time tools, control flow, debugging exercises, small apps (e.g. ticket counter, book management) |
-| `Java Erweiterte Techniken` | Day labs on lists, sets/maps, generics, functional interfaces, streams, files, threads, synchronization, sockets |
+- `Java Grundlagen`: `00-notebook`, `01-typen`, `02-text-zeit`, `03-ticketkasse`, `04-ablaufsteuerung`, `05-debug`, `06-debug-zahlen`, `07-buchverwaltung`
+- `Java Erweiterte Techniken`: `00-listen`, `01-sets-maps`, `02-generics`, `03-lambda`, `04-funktionen`, `05-streams`, `06-dateien`, `07-threads`, `08-sync`, `09-sockets`
 
 ### `Java OO`
 
-Progressive object-oriented exercises around a vehicle / rental domain:
-
-1. Types and classes  
-2. `static` members  
-3. Inheritance  
-4. Interfaces (rental objects)  
-5. Exception handling  
+Vehicle and rental exercises: `00-typen`, `01-static`, `02-vererbung`, `03-interfaces`, `04-ausnahmen`.
 
 ### `Java Anwendungsentwicklung`
 
-Desktop and persistence track:
-
-- UI: AWT, Swing, layouts, JavaFX, ContactEditor sample  
-- Data: JDBC, connection pools, transactions/DAO patterns  
-- ORM: JPA entity lifecycle, relationships, JPQL  
-- Closing integration day
+Desktop and persistence: `00-awt`, `01-swing`, `02-layouts`, `03-tabellen`, `04-javafx`, `05-contact-editor`, `06-jdbc`, `07-jdbc-pool`, `08-jpa`, `09-jpa-abfragen`, `10-integration`.
 
 ### `Java Web Basic`
 
-Servlet/JSP foundation (roughly one topic per `TagXX-…` folder):
-
-Hello webapp → HTTP → Servlets → simple MVC → JSP → JavaBeans → includes → JSTL → pools → JDBC  
-
-Also includes material from *Professionell entwickeln mit Java EE 8*.
+Servlet and JSP foundation: `00-hello`, `01-http`, `02-servlet`, `03-mvc`, `04-jsp`, `05-beans`, `06-include`, `07-jstl`, `08-pools`, `09-jdbc`.
 
 ### `Java Web Aufbau`
 
-Next step after the basic web course:
-
-Filters, listeners, authentication, security, custom tags, JPA/JDBC, many-to-one and broader JPA relations, JSF  
-
-Again accompanied by Java EE 8 book sample trees where useful.
+Next step after the basic web course: `00-filter`, `01-listener`, `02-auth`, `03-security`, `04-eigene-tags`, `05-jpa-jdbc`, `06-many-to-one`, `07-jpa-relationen`, `08-jsf`.
 
 ### `Spring Boot Basic`
 
-Spring Boot fundamentals in numbered modules:
+`00-rest-api`, `01-container-di`, `02-thymeleaf`, `03-formulare`, `04-konfiguration`, `05-di-aop`, `06-scopes`, `07-websockets`, `08-jax-rs`, `09-integration`.
 
-REST APIs → container & DI → Thymeleaf controllers → forms/MVC → configuration & logging → DI/AOP → scopes → WebSockets → JAX-RS → integration
-
-Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs).  
+Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs).
 
 ### `Spring Boot AK`
 
-Advanced Spring Boot modules:
+`00-custom-starter`, `01-jpa`, `02-jpa-relationen`, `03-security`, `04-caching`, `05-messaging`, `06-actuator`, `07-template-engines`, `08-microservices`.
 
-Custom config / auto-starters → JPA basics & relations → Spring Security → caching → messaging & email (incl. ActiveMQ broker demo) → Actuator → template engines and a small microservices set (Eureka, API gateway, user/order services)
-
-Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs). Several of these modules share port 8080, including the broker.
+Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs). Several of these modules share port 8080, including the broker inside `05-messaging`.
 
 ### Supporting folders
 

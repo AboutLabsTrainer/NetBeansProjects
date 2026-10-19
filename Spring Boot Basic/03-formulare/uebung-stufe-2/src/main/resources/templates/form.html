@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form th:action="@{/notes}" th:object="${note}" method="post">
+<label>Titel <input type="text" th:field="*{title}"/></label>
+<label>E-Mail <input type="text" th:field="*{email}"/></label>
+<button type="submit">Speichern</button>
+</form>
+</body>
+</html>
