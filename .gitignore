@@ -61,6 +61,7 @@
 **/*~
 **/*.swp
 **/.vscode/
+.clinerules
 
 # Preserved nested-repo metadata (not part of monorepo)
 **/.git.nested-backup/
