@@ -6,6 +6,8 @@ Jedes Modul ist ein Elternordner ohne `pom.xml`. Geöffnet wird der Unterordner 
 
 Anleitung für NetBeans, IntelliJ und VS Code: [Maven-Projekt in der IDE starten](../docs/ide-maven.md).
 
+Workspace-Übersicht: [README.md](../README.md).
+
 - [00-awt](00-awt/README.md) – AWT-Farbspiel
 - [01-swing](01-swing/README.md) – Swing-Farbmischer
 - [02-layouts](02-layouts/README.md) – Layouts und Fenster-Trainer

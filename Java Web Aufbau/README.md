@@ -4,6 +4,8 @@ Die Module stehen in dieser Reihenfolge. Tag 06 aus der alten Zählung ist in 04
 
 Start in der IDE: [Maven-Projekt in der IDE starten](../docs/ide-maven.md).
 
+Workspace-Übersicht: [README.md](../README.md).
+
 | Nr | Modul | Thema |
 |----|--------|--------|
 | 00 | [00-filter](00-filter/README.md) | Filter-Entscheidung |

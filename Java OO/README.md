@@ -6,6 +6,8 @@ Jedes Modul ist ein Elternordner ohne `pom.xml`. Geöffnet wird der Unterordner 
 
 Anleitung für NetBeans, IntelliJ und VS Code: [Maven-Projekt in der IDE starten](../docs/ide-maven.md).
 
+Workspace-Übersicht: [README.md](../README.md).
+
 - [00-typen](00-typen/README.md) – Typen, Konstruktoren, Casts und Boxing
 - [01-static](01-static/README.md) – Statische Zähler, Konstanten und Methoden
 - [02-vererbung](02-vererbung/README.md) – Vererbung, Überschreiben und Polymorphie

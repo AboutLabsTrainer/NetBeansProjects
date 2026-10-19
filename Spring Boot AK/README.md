@@ -6,6 +6,8 @@ Vor dem nächsten Programm den vorherigen eingebetteten Tomcat beenden, sonst bl
 
 IDE und Maven: [Maven-Projekt in der IDE starten](../docs/ide-maven.md).
 
+Workspace-Übersicht: [README.md](../README.md).
+
 | Modul | Inhalt |
 | --- | --- |
 | [00-custom-starter](00-custom-starter/README.md) | Auto-Configuration und Properties |

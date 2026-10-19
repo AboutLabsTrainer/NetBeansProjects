@@ -4,6 +4,8 @@ Die Module stehen in dieser Reihenfolge. Jeder Elternordner hat keine `pom.xml`.
 
 Start in der IDE: [Maven-Projekt in der IDE starten](../docs/ide-maven.md).
 
+Workspace-Übersicht: [README.md](../README.md).
+
 | Nr | Modul | Thema |
 |----|--------|--------|
 | 00 | [00-hello](00-hello/README.md) | Erstes Servlet |

@@ -4,6 +4,8 @@ Die Tagesordner sind die Module 00 bis 09. Der Modulordner selbst ist kein Maven
 
 So starten Sie ein Unterprojekt in NetBeans, IntelliJ oder VS Code: [../../docs/ide-maven.md](../../docs/ide-maven.md)
 
+Kursübersicht: [Java SE](../README.md). Workspace: [README.md](../../README.md).
+
 - [00-listen](00-listen/README.md) – zwei Listen, danach Priorität ohne Duplikat
 - [01-sets-maps](01-sets-maps/README.md) – Set, Häufigkeit, Kursbelegung
 - [02-generics](02-generics/README.md) – typsichere Sammlung statt Raw Types

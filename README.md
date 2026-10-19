@@ -1,8 +1,17 @@
 # NetBeansProjects
 
-Private monorepo of Java training material for classroom labs, demos, and self-study. Each course is a sequence of modules `00`–`0x`. A module folder is not itself a build. Open the leaf that contains `pom.xml`: `codebeispiel`, `uebung-stufe-1`, `uebung-stufe-2`, or `loesung/stufe-1` and `loesung/stufe-2`.
+Private monorepo of Java training material for classroom labs, demos, and self-study. This file is the map of the workspace. Each course README lists its modules. Each module README has the goals, commands, and notes for that lab.
 
-Most lab folders include their own `README.md` with goals, commands, and notes. Use this file as the map of the workspace; open the nested README when you work on a specific exercise.
+## Module leaves
+
+A module folder has no `pom.xml` of its own. Open the leaf that contains `pom.xml`:
+
+- `codebeispiel` — the working demo
+- `uebung-stufe-1` — guided exercise
+- `uebung-stufe-2` — transfer exercise
+- `loesung/stufe-1` and `loesung/stufe-2` — solutions, after your own attempt
+
+How to open that leaf in NetBeans, IntelliJ, or VS Code is in [docs/ide-maven.md](docs/ide-maven.md).
 
 ## Tooling
 
@@ -31,42 +40,56 @@ Do not free port 8080 blindly. The messaging broker uses it too.
 
 Labs that must run at the same time need different `server.port` values. `Spring Boot Basic` already does this (for example 8081, 8094, 8100). There is no hook on project open that should kill whatever is listening.
 
+## Reading order
+
+Classroom sequence for the language and Jakarta track:
+
+1. [Java Grundlagen](Java%20SE/Java%20Grundlagen/README.md)
+2. [Java Erweiterte Techniken](Java%20SE/Java%20Erweiterte%20Techniken/README.md)
+3. [Java OO](Java%20OO/README.md)
+4. [Java Anwendungsentwicklung](Java%20Anwendungsentwicklung/README.md)
+5. [Java Web Basic](Java%20Web%20Basic/README.md)
+6. [Java Web Aufbau](Java%20Web%20Aufbau/README.md)
+
+The Spring Boot courses sit beside that sequence. Work [Spring Boot Basic](Spring%20Boot%20Basic/README.md) before [Spring Boot AK](Spring%20Boot%20AK/README.md).
+
 ## Course tracks
 
-### `Java SE`
+### [Java SE](Java%20SE/README.md)
 
-Core language skills before frameworks. `Java ist auch eine Insel` is not part of the numbered sequence.
+Core language skills before frameworks. Two numbered sequences: [Java Grundlagen](Java%20SE/Java%20Grundlagen/README.md) and [Java Erweiterte Techniken](Java%20SE/Java%20Erweiterte%20Techniken/README.md). [Java ist auch eine Insel](Java%20SE/Java%20ist%20auch%20eine%20Insel/README.md) sits outside that sequence.
 
-- `Java Grundlagen`: `00-notebook`, `01-typen`, `02-text-zeit`, `03-ticketkasse`, `04-ablaufsteuerung`, `05-debug`, `06-debug-zahlen`, `07-buchverwaltung`
-- `Java Erweiterte Techniken`: `00-listen`, `01-sets-maps`, `02-generics`, `03-lambda`, `04-funktionen`, `05-streams`, `06-dateien`, `07-threads`, `08-sync`, `09-sockets`
+[Java Grundlagen](Java%20SE/Java%20Grundlagen/README.md): [00-notebook](Java%20SE/Java%20Grundlagen/00-notebook/README.md), [01-typen](Java%20SE/Java%20Grundlagen/01-typen/README.md), [02-text-zeit](Java%20SE/Java%20Grundlagen/02-text-zeit/README.md), [03-ticketkasse](Java%20SE/Java%20Grundlagen/03-ticketkasse/README.md), [04-ablaufsteuerung](Java%20SE/Java%20Grundlagen/04-ablaufsteuerung/README.md), [05-debug](Java%20SE/Java%20Grundlagen/05-debug/README.md), [06-debug-zahlen](Java%20SE/Java%20Grundlagen/06-debug-zahlen/README.md), [07-buchverwaltung](Java%20SE/Java%20Grundlagen/07-buchverwaltung/README.md)
 
-### `Java OO`
+[Java Erweiterte Techniken](Java%20SE/Java%20Erweiterte%20Techniken/README.md): [00-listen](Java%20SE/Java%20Erweiterte%20Techniken/00-listen/README.md), [01-sets-maps](Java%20SE/Java%20Erweiterte%20Techniken/01-sets-maps/README.md), [02-generics](Java%20SE/Java%20Erweiterte%20Techniken/02-generics/README.md), [03-lambda](Java%20SE/Java%20Erweiterte%20Techniken/03-lambda/README.md), [04-funktionen](Java%20SE/Java%20Erweiterte%20Techniken/04-funktionen/README.md), [05-streams](Java%20SE/Java%20Erweiterte%20Techniken/05-streams/README.md), [06-dateien](Java%20SE/Java%20Erweiterte%20Techniken/06-dateien/README.md), [07-threads](Java%20SE/Java%20Erweiterte%20Techniken/07-threads/README.md), [08-sync](Java%20SE/Java%20Erweiterte%20Techniken/08-sync/README.md), [09-sockets](Java%20SE/Java%20Erweiterte%20Techniken/09-sockets/README.md)
 
-Vehicle and rental exercises: `00-typen`, `01-static`, `02-vererbung`, `03-interfaces`, `04-ausnahmen`.
+### [Java OO](Java%20OO/README.md)
 
-### `Java Anwendungsentwicklung`
+Vehicle and rental exercises: [00-typen](Java%20OO/00-typen/README.md), [01-static](Java%20OO/01-static/README.md), [02-vererbung](Java%20OO/02-vererbung/README.md), [03-interfaces](Java%20OO/03-interfaces/README.md), [04-ausnahmen](Java%20OO/04-ausnahmen/README.md).
 
-Desktop and persistence: `00-awt`, `01-swing`, `02-layouts`, `03-tabellen`, `04-javafx`, `05-contact-editor`, `06-jdbc`, `07-jdbc-pool`, `08-jpa`, `09-jpa-abfragen`, `10-integration`.
+### [Java Anwendungsentwicklung](Java%20Anwendungsentwicklung/README.md)
 
-### `Java Web Basic`
+Desktop and persistence: [00-awt](Java%20Anwendungsentwicklung/00-awt/README.md), [01-swing](Java%20Anwendungsentwicklung/01-swing/README.md), [02-layouts](Java%20Anwendungsentwicklung/02-layouts/README.md), [03-tabellen](Java%20Anwendungsentwicklung/03-tabellen/README.md), [04-javafx](Java%20Anwendungsentwicklung/04-javafx/README.md), [05-contact-editor](Java%20Anwendungsentwicklung/05-contact-editor/README.md), [06-jdbc](Java%20Anwendungsentwicklung/06-jdbc/README.md), [07-jdbc-pool](Java%20Anwendungsentwicklung/07-jdbc-pool/README.md), [08-jpa](Java%20Anwendungsentwicklung/08-jpa/README.md), [09-jpa-abfragen](Java%20Anwendungsentwicklung/09-jpa-abfragen/README.md), [10-integration](Java%20Anwendungsentwicklung/10-integration/README.md).
 
-Servlet and JSP foundation: `00-hello`, `01-http`, `02-servlet`, `03-mvc`, `04-jsp`, `05-beans`, `06-include`, `07-jstl`, `08-pools`, `09-jdbc`.
+### [Java Web Basic](Java%20Web%20Basic/README.md)
 
-### `Java Web Aufbau`
+Servlet and JSP foundation: [00-hello](Java%20Web%20Basic/00-hello/README.md), [01-http](Java%20Web%20Basic/01-http/README.md), [02-servlet](Java%20Web%20Basic/02-servlet/README.md), [03-mvc](Java%20Web%20Basic/03-mvc/README.md), [04-jsp](Java%20Web%20Basic/04-jsp/README.md), [05-beans](Java%20Web%20Basic/05-beans/README.md), [06-include](Java%20Web%20Basic/06-include/README.md), [07-jstl](Java%20Web%20Basic/07-jstl/README.md), [08-pools](Java%20Web%20Basic/08-pools/README.md), [09-jdbc](Java%20Web%20Basic/09-jdbc/README.md).
 
-Next step after the basic web course: `00-filter`, `01-listener`, `02-auth`, `03-security`, `04-eigene-tags`, `05-jpa-jdbc`, `06-many-to-one`, `07-jpa-relationen`, `08-jsf`.
+### [Java Web Aufbau](Java%20Web%20Aufbau/README.md)
 
-### `Spring Boot Basic`
+Next step after the basic web course: [00-filter](Java%20Web%20Aufbau/00-filter/README.md), [01-listener](Java%20Web%20Aufbau/01-listener/README.md), [02-auth](Java%20Web%20Aufbau/02-auth/README.md), [03-security](Java%20Web%20Aufbau/03-security/README.md), [04-eigene-tags](Java%20Web%20Aufbau/04-eigene-tags/README.md), [05-jpa-jdbc](Java%20Web%20Aufbau/05-jpa-jdbc/README.md), [06-many-to-one](Java%20Web%20Aufbau/06-many-to-one/README.md), [07-jpa-relationen](Java%20Web%20Aufbau/07-jpa-relationen/README.md), [08-jsf](Java%20Web%20Aufbau/08-jsf/README.md).
 
-`00-rest-api`, `01-container-di`, `02-thymeleaf`, `03-formulare`, `04-konfiguration`, `05-di-aop`, `06-scopes`, `07-websockets`, `08-jax-rs`, `09-integration`.
+### [Spring Boot Basic](Spring%20Boot%20Basic/README.md)
+
+[00-rest-api](Spring%20Boot%20Basic/00-rest-api/README.md), [01-container-di](Spring%20Boot%20Basic/01-container-di/README.md), [02-thymeleaf](Spring%20Boot%20Basic/02-thymeleaf/README.md), [03-formulare](Spring%20Boot%20Basic/03-formulare/README.md), [04-konfiguration](Spring%20Boot%20Basic/04-konfiguration/README.md), [05-di-aop](Spring%20Boot%20Basic/05-di-aop/README.md), [06-scopes](Spring%20Boot%20Basic/06-scopes/README.md), [07-websockets](Spring%20Boot%20Basic/07-websockets/README.md), [08-jax-rs](Spring%20Boot%20Basic/08-jax-rs/README.md), [09-integration](Spring%20Boot%20Basic/09-integration/README.md).
 
 Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs).
 
-### `Spring Boot AK`
+### [Spring Boot AK](Spring%20Boot%20AK/README.md)
 
-`00-custom-starter`, `01-jpa`, `02-jpa-relationen`, `03-security`, `04-caching`, `05-messaging`, `06-actuator`, `07-template-engines`, `08-microservices`.
+[00-custom-starter](Spring%20Boot%20AK/00-custom-starter/README.md), [01-jpa](Spring%20Boot%20AK/01-jpa/README.md), [02-jpa-relationen](Spring%20Boot%20AK/02-jpa-relationen/README.md), [03-security](Spring%20Boot%20AK/03-security/README.md), [04-caching](Spring%20Boot%20AK/04-caching/README.md), [05-messaging](Spring%20Boot%20AK/05-messaging/README.md), [06-actuator](Spring%20Boot%20AK/06-actuator/README.md), [07-template-engines](Spring%20Boot%20AK/07-template-engines/README.md), [08-microservices](Spring%20Boot%20AK/08-microservices/README.md).
 
-Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs). Several of these modules share port 8080, including the broker inside `05-messaging`.
+Stop the previous embedded Tomcat before starting the next lab. See [Embedded Tomcat when switching Spring Boot labs](#embedded-tomcat-when-switching-spring-boot-labs). Several of these modules share port 8080, including the broker inside [05-messaging](Spring%20Boot%20AK/05-messaging/README.md).
 
 ### Supporting folders
 
