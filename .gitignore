@@ -65,3 +65,6 @@
 
 # Preserved nested-repo metadata (not part of monorepo)
 **/.git.nested-backup/
+
+# Local scratch workspace. Plans under .cursor/plans stay tracked.
+/Tmp/
