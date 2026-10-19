@@ -1,0 +1,57 @@
+@startuml
+class Dataloader.controller.UserController {
+- AppUserDetailsService appUserDetailsService
+- {static} Logger log
++ Map<String,Object> currentUser(Authentication)
++ void createUser(UserConfig)
+}
+
+
+class SimpleListController {
+- List<String> items
++ String index(Model)
++ String addItem(String)
++ String removeItem(int)
+}
+
+
+class CommandlineController {
+- int MAXLENGTH
+- List<CommandlineHistory> history
+- CommandlineRepository commandlineRepository
+- SimpMessagingTemplate messagingTemplate
++ List<CommandlineHistory> list(Model)
++ void call(String)
+- Optional<String> normalizeAndValidate(String)
+- void append(CommandlineHistory)
+}
+
+
+class PageController {
++ String root()
++ String dashboard()
++ String dummy()
++ String login()
+}
+
+class LogController {
+- {static} Logger logger
+- LogService logService
++ void create(CreateLogRequest)
++ List<?> recent()
++ List<?> all()
+}
+
+
+class LogController$CreateLogRequest {
+- LogLevel level
+- String message
++ String message()
++ LogLevel level()
+}
+
+
+
+
+LogController +.. LogController$CreateLogRequest
+@enduml

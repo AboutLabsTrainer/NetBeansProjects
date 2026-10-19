@@ -1,0 +1,40 @@
+@startuml
+' Prevent absurdly deep nesting for folders
+set namespaceSeparator none
+
+package "tech.eta.dataloader_d" as DL {
+}
+
+
+' Restore auto-creation of folders
+set namespaceSeparator .
+package "DL.config" {
+  class "WebSocketConfig" as WSC {
+    + void configureMessageBroker(MessageBrokerRegistry)
+    + void registerStompEndpoints(StompEndpointRegistry)
+  }
+}
+
+' note how apparently the alias thing does not want to work in conjunction with
+' creating shortened alias-spaces... maybe an alias-of-alias issue?
+' It works just well with a package between though...
+
+class "DL.config.SecurityConfig" {
+~ SecurityFilterChain securityFilterChain(HttpSecurity)
+~ PasswordEncoder passwordEncoder()
+}
+
+class "DL.config.LoggingConfig" {
+- RealLogAppender appender
++ void registerAppender()
+}
+
+
+' Prevent absurdly deep nesting, again
+set namespaceSeparator none
+package "org.springframework.web.socket.config.annotation" {
+   class "WebSocketMessageBrokerConfigurer" as MesBroker
+}
+
+MesBroker <|.. "WSC"
+@enduml

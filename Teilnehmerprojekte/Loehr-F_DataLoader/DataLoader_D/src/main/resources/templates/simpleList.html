@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>String Liste Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        form { margin-bottom: 20px; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 10px 0; display: flex; gap: 10px; align-items: center; }
+        button { cursor: pointer; }
+        .remove-btn { color: red; }
+    </style>
+</head>
+<body>
+
+<h1>Meine String-Liste</h1>
+
+<!-- Formular zum Hinzufügen -->
+<form th:action="@{/simpleList/add}" method="post">
+    <input type="text" name="newItem" placeholder="Neuer Text..." required />
+    <button type="submit">Hinzufügen</button>
+</form>
+
+<!-- Anzeige der Liste -->
+<ul>
+    <!-- stat.index liefert den aktuellen 0-basierten Index -->
+    <li th:each="item, stat : ${items}">
+        <span th:text="${item}">Text</span>
+
+        <!-- Formular zum Löschen per Index -->
+        <form th:action="@{/simpleList/remove}" method="post" style="display:inline; margin:0;">
+            <input type="hidden" name="index" th:value="${stat.index}" />
+            <button type="submit" class="remove-btn">X</button>
+        </form>
+    </li>
+</ul>
+
+<!-- Hinweis, wenn die Liste leer ist -->
+<p th:if="${items.empty}">Die Liste ist aktuell leer.</p>
+
+</body>
+</html>

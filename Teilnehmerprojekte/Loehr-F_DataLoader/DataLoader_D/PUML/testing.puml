@@ -1,0 +1,26 @@
+@startuml
+' Verhindert, dass Punkte automatisch neue Unterordner erzeugen
+set namespaceSeparator none
+
+package "A.B.C" as ABC {
+    class "d1" as ABC_d1
+package "A.B" {
+    class "d2" as ABC_d2
+    class "d3" as ABC_d3
+}
+}
+
+set namespaceSeparator .
+
+package "ABC.A.B" {
+    class "d2" as ABC_d2
+    class "d3" as ABC_d3
+}
+
+package "X.Y.Z" {
+    class "e" as XYZ_e
+}
+
+' Beziehungen im Code nutzen dann die Aliase:
+ABC_d1 --> XYZ_e
+@enduml

@@ -1,0 +1,180 @@
+package tech.eta.dataloader_d.repositories;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+public class tmp_cmdline {
+
+    public final class CommandLineParser {
+
+        public enum Command {
+            USER, SQL, LOG
+        }
+
+        public record ParseResult(
+                Command command,
+                List<String> arguments,
+                String help
+        ) {
+            public boolean isHelp() {
+                return help != null;
+            }
+        }
+
+        public ParseResult parse(String commandLine) {
+            if (commandLine == null || commandLine.isBlank()) {
+                throw new ParseException("A command is required.");
+            }
+
+            List<String> tokens = tokenize(commandLine);
+            if (tokens.isEmpty()) {
+                throw new ParseException("A command is required.");
+            }
+
+            String first = tokens.get(0);
+
+            // Supports: HELP USER
+            if (first.equalsIgnoreCase("HELP")) {
+                if (tokens.size() != 2) {
+                    throw new ParseException("Usage: HELP <USER|SQL|LOG>");
+                }
+
+                Command command = parseCommand(tokens.get(1));
+                return new ParseResult(command, List.of(), helpFor(command));
+            }
+
+            Command command = parseCommand(first);
+
+            // Supports: USER --help, SQL --help, LOG --help
+            if (tokens.size() == 2 && tokens.get(1).equalsIgnoreCase("--help")) {
+                return new ParseResult(command, List.of(), helpFor(command));
+            }
+
+            List<String> arguments = new ArrayList<>(tokens.subList(1, tokens.size()));
+            return new ParseResult(command, arguments, null);
+        }
+
+        private Command parseCommand(String value) {
+            try {
+                return Command.valueOf(value.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                        "Unknown command: " + value
+                                + ". Expected USER, SQL, LOG, or HELP."
+                );
+            }
+        }
+
+        private String helpFor(Command command) {
+            return switch (command) {
+                case USER -> """
+                    USER
+
+                    Manage the current user.
+
+                    Usage:
+                      USER <name>
+                      USER --help
+
+                    Arguments:
+                      <name>    User name to select or create.
+                    """;
+
+                case SQL -> """
+                    SQL
+
+                    Execute a SQL statement.
+
+                    Usage:
+                      SQL <statement>
+                      SQL --help
+
+                    Arguments:
+                      <statement>    SQL statement to execute.
+
+                    Examples:
+                      SQL SELECT * FROM users
+                      SQL "SELECT * FROM users WHERE id = 1"
+                    """;
+
+                case LOG -> """
+                    LOG
+
+                    Write a message to the application log.
+
+                    Usage:
+                      LOG <message>
+                      LOG --help
+
+                    Arguments:
+                      <message>    Message to write to the log.
+                    """;
+            };
+        }
+
+        /**
+         * Splits a command line on whitespace while preserving text inside
+         * single or double quotes.
+         */
+        private List<String> tokenize(String input) {
+            List<String> tokens = new ArrayList<>();
+            StringBuilder current = new StringBuilder();
+
+            boolean quoted = false;
+            char quoteCharacter = 0;
+
+            for (int i = 0; i < input.length(); i++) {
+                char c = input.charAt(i);
+
+                if ((c == '"' || c == '\'') && !quoted) {
+                    quoted = true;
+                    quoteCharacter = c;
+                } else if (quoted && c == quoteCharacter) {
+                    quoted = false;
+                } else if (Character.isWhitespace(c) && !quoted) {
+                    if (!current.isEmpty()) {
+                        tokens.add(current.toString());
+                        current.setLength(0);
+                    }
+                } else {
+                    current.append(c);
+                }
+            }
+
+            if (quoted) {
+                throw new ParseException("Unterminated quoted argument.");
+            }
+
+            if (!current.isEmpty()) {
+                tokens.add(current.toString());
+            }
+
+            return tokens;
+        }
+
+        public static class ParseException extends RuntimeException {
+            public ParseException(String message) {
+                super(message);
+            }
+        }
+
+        public static void main(String[] args) {
+            CommandLineParser parser = new CommandLineParser();
+
+            ParseResult result = parser.parse("HELP SQL");
+            System.out.println(result.help());
+
+            result = parser.parse("SQL --help");
+            System.out.println(result.help());
+
+            result = parser.parse("SQL \"SELECT * FROM users WHERE id = 1\"");
+            System.out.println("Command: " + result.command());
+            System.out.println("Arguments: " + result.arguments());
+
+            result = parser.parse("LOG Application started");
+            System.out.println("Command: " + result.command());
+            System.out.println("Arguments: " + result.arguments());
+        }
+    }
+}

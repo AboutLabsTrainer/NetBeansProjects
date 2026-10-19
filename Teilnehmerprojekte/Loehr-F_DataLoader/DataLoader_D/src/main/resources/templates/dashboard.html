@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script defer src="/app.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        section {
+            border: 1px solid #bbb;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        button, input, select {
+            margin: 4px;
+            padding: 7px;
+        }
+
+        .log {
+            margin: 0px 0; /* only used by non-table-style display */
+            padding: 7px; /* for tables this only works if applied directly to the cell */
+            border-bottom: 1px dashed darkgray; /* #ddd  #777 darkgray could be used for both ... dashed instead of solid?*/
+            background: #1e1e1e;
+            white-space: pre-wrap;
+            vertical-align: top; /* only used by table-style display */
+        }
+
+        /*.ERROR {color: darkred; font-weight: bold;}*/
+        /*.WARN {color: darkorange; font-weight: bold;}*/
+        /*.NOTE {color: darkblue;}*/
+        /*.INFO {color: darkgreen;}*/
+        /** COLORS FIT FOR LIGHT AND DARK MODE **/
+        .ERROR {
+            color: red;
+            font-weight: bold;
+        }
+
+        .WARN {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .NOTE {
+            color: dodgerblue;
+        }
+
+        .INFO {
+            color: limegreen; /* limegreen is better in light mode than lawngreen (lawngreen is warmer though) */
+        }
+
+        /** This is to support scrollable tables **/
+        .logScroll {
+            /* these two must be applied to a div surrounding the table in question, else they dont work and the table locks to the main window */
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .logScroll table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .logScroll thead th {
+            background-color: #eeeeee;
+            position: sticky;
+        }
+        .logScroll thead td {
+            background-color: #eeeeee;
+            position: sticky;
+        }
+        .logScroll thead tr:nth-child(1) th {
+            top: 0;
+            height: 1.5em;
+        }
+        .logScroll thead tr:nth-child(1) td {
+            top: 0;
+            height: 1.5em;
+        }
+        .logScroll thead tr:nth-child(2) th {
+            top: 1.5em;
+        }
+        .logScroll thead tr:nth-child(2) td {
+            top: 1.5em;
+        }
+
+        /* shorten multiline-summary display to ... (display, not text) if collapsed */
+        .single-line-summary:not([open]) summary span{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            /*max-width: calc(100% - 40px);*/ /*this doesnt work somehow*/
+            max-width: 300px;
+        }
+        /*.single-line-summary:not([open]) summary::before {*/
+        /*    content: "▶";*/
+        /*    display: inline-block;*/
+        /*    transition: transform 0.2s ease; !* Schöne Drehanimation *!*/
+        /*}*/
+        /*.single-line-summary:not([open]) summary::-webkit-details-marker {*/
+        /*    display: list-item;*/
+        /*    !*display: inline-block;*!*/
+        /*}*/
+
+    </style>
+</head>
+
+<body>
+
+<h1>Dashboard (Von allen erreichbar)</h1>
+
+<p>
+    Benutzer:
+    <strong sec:authorize="isAuthenticated()"
+            sec:authentication="name"></strong>
+
+    <span sec:authorize="isAnonymous()">
+        Anonymous
+    </span>
+</p>
+
+<p>
+    Rolle:
+    <strong sec:authorize="hasRole('ADMIN')">ADMIN</strong>
+
+    <strong sec:authorize="isAuthenticated() and !hasRole('ADMIN')">
+        USER
+    </strong>
+
+    <strong sec:authorize="isAnonymous()">
+        NONE
+    </strong>
+</p>
+
+<p>
+    <a href="/dummy">Log-Dummy Seite</a>
+    <br>
+    <a href="/simpleList">Simple Liste</a>
+</p>
+
+<section sec:authorize="isAnonymous()">
+    <h2>Login</h2>
+
+    <!-- Standard Spring Security form login -->
+    <form method="post" action="/login">
+        <input name="username"
+               placeholder="Username"
+               required>
+
+<!--        <input name="password"-->
+<!--               type="password"-->
+<!--               placeholder="Password"-->
+<!--               required>-->
+        <span style="display: inline-flex"> <!-- Let's make it visible and pretty ... -->
+            <input name="password" type="password" id="loginPassword" style="margin-right: 0" placeholder="password" required>
+            <button type="button" id="loginPasswordEye" style="margin-left: 0; width: 35px; padding-left: 0; padding-right: 5px;" onclick="
+                    const show = loginPassword.type === 'password';
+                    loginPassword.type = show ? 'text' : 'password';
+                    this.textContent  = show ? 'X_x' : 'o_O';
+                    this.style.paddingLeft = show?'5px':'0px';
+                    this.style.paddingRight= show?'0px':'5px';
+            ">o_o</button> <!-- simply margin-left:0 and width: 35px already gives a "head turn", but let's really lean into it -->
+        </span>
+
+        <button type="submit">Login</button>
+    </form>
+</section>
+
+<section sec:authorize="isAuthenticated()">
+<!--    <h2>Logout <span sec:authorize="hasRole('ADMIN')">Administrator</span><span sec:authorize="!hasRole('ADMIN')">User</span></h2>-->
+    <h2>Logout</h2>
+    <form method="post" action="/logout" style="word-wrap: break-word; word-break: normal;">
+        <button type="submit">Logout</button>
+
+        <strong>User:</strong>
+        <span sec:authentication="name"></span>
+
+        <strong>Rolls:</strong>
+        <!-- 1. Schritt: Wir filtern die Liste direkt im th:each mit .?[...] -->
+        <!-- 2. Schritt: stat.last bezieht sich jetzt exakt auf die gefilterte Liste -->
+        <th:block th:each="auth, stat : ${#authentication.getAuthorities().?[#strings.startsWith(getAuthority(), 'ROLE_')]}">
+            <span th:text="${#strings.replace(auth.getAuthority(), 'ROLE_', '')}"></span>
+            <th:block th:if="${!stat.last}">, </th:block>
+        </th:block>
+    </form>
+
+    <!--We could list all authorities super easily, but that would list not only roles, and have the ROLE_ prefix-->
+    <!--    <span sec:authentication="principal.authorities"></span>-->
+    <!--We could process each authority, but since stat belongs to all authorities that may lead to trailing commata-->
+    <!--    <p>-->
+    <!--        <strong>Rollen:</strong>-->
+    <!--        <th:block th:each="auth, stat : ${#authentication.getAuthorities()}">-->
+    <!--            <span th:if="${#strings.startsWith(auth.getAuthority(), 'ROLE_')}">-->
+    <!--                <span th:text="${#strings.replace(auth.getAuthority(), 'ROLE_', '')}"></span>-->
+    <!--                <th:block th:if="${!stat.last}">, </th:block>-->
+    <!--            </span>-->
+    <!--        </th:block>-->
+    <!--    </p>-->
+    <!--Instead we first filter the list directly with the .?[...] syntax. Now the stat belongs to the filtered list.-->
+    <!--This allows string replacement and adding the comma only where needed-->
+<!--    <p style="word-wrap: break-word; word-break: normal;">-->
+<!--        <strong>User:</strong>-->
+<!--        <span sec:authentication="name"></span>-->
+
+<!--        <strong>Rolls:</strong>-->
+<!--        &lt;!&ndash; 1. Schritt: Wir filtern die Liste direkt im th:each mit .?[...] &ndash;&gt;-->
+<!--        &lt;!&ndash; 2. Schritt: stat.last bezieht sich jetzt exakt auf die gefilterte Liste &ndash;&gt;-->
+<!--        <th:block th:each="auth, stat : ${#authentication.getAuthorities().?[#strings.startsWith(getAuthority(), 'ROLE_')]}">-->
+<!--            <span th:text="${#strings.replace(auth.getAuthority(), 'ROLE_', '')}"></span>-->
+<!--            <th:block th:if="${!stat.last}">, </th:block>-->
+<!--        </th:block>-->
+<!--    </p>-->
+</section>
+
+<section id="panelA">
+    <h2>Creating Log-Entries for testing</h2>
+
+    <p id="panelANotice"
+       sec:authorize="isAnonymous()">
+        Login is required to create Log-Entries.
+    </p>
+
+    <div sec:authorize="isAuthenticated()">
+        <button data-level="INFO">INFO</button>
+        <button data-level="NOTE">NOTE</button>
+        <button data-level="WARN">WARN</button>
+        <button data-level="ERROR">ERROR</button>
+
+        <p id="message"></p>
+    </div>
+</section>
+
+<section id="panelB">
+    <h2>Logging-Messages</h2>
+
+    <p id="panelBNotice"
+       sec:authorize="!hasRole('ADMIN')">
+        Administrator access is required to view logs.
+    </p>
+
+<!--    <style>-->
+<!--        /* Standard-Zustand des Buttons (Geschlossen) */-->
+<!--        .toggle-details summary {-->
+<!--            display: inline-block;-->
+<!--            padding: 6px 12px;-->
+<!--            background-color: #333333; /* Dunkel im geschlossenen Zustand */-->
+<!--            color: white;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--            font-family: sans-serif;-->
+<!--            font-size: 14px;-->
+<!--            transition: background-color 0.2s;-->
+<!--        }-->
+
+<!--        /* ZUSTANDSÄNDERUNG: Wenn das details-Element offen [open] ist */-->
+<!--        .toggle-details[open] summary {-->
+<!--            background-color: #3399ff; /* Ändert sich zu High-Contrast Blau */-->
+<!--        }-->
+
+<!--        /* Optional: Textinhalt basierend auf Zustand ändern */-->
+<!--        .toggle-details summary::after {-->
+<!--            content: " ➕ Öffnen";-->
+<!--        }-->
+<!--        .toggle-details[open] summary::after {-->
+<!--            content: " ➖ Schließen";-->
+<!--        }-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash; Das HTML-Element nutzt die CSS-Klasse &ndash;&gt;-->
+<!--    <details class="toggle-details">-->
+<!--        <summary></summary> &lt;!&ndash; Der Text wird hier automatisch über das CSS-::after eingefügt &ndash;&gt;-->
+
+<!--        <div style="margin-top: 8px; padding: 8px; background-color: #f5f5f5; display: inline-block;">-->
+<!--            <input type="text" placeholder="Eingabe..." style="padding: 6px; width: 150px;">-->
+<!--        </div>-->
+<!--    </details>-->
+
+
+    <div sec:authorize="hasRole('ADMIN')" class="logScroll">
+        <table id="logs:Table">
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Level</th>
+                <th>Message</th>
+            </tr>
+            <tr>
+                <td align="right" style="width:15em">
+                    <label>From<input id="logs:Filter:Time:from" type="datetime-local"
+                                style="width:13em;padding:3px;margin-bottom:0">
+                    </label><br>
+                    <label>To<input id="logs:Filter:Time:to" type="datetime-local"
+                                style="width: 13em; padding: 3px; margin-top:0">
+                </label></td>
+                <td>
+                    <select id="logs:Filter:Level:from" style="padding: 2px; margin-bottom:0">
+                    <option value="" selected="selected">---</option>
+                    <option value="INFO">INFO</option>
+                    <option value="NOTE">NOTE</option>
+                    <option value="WARN">WARN</option>
+                    <option value="ERROR">ERROR</option>
+                    </select> <br>
+                    <select id="logs:Filter:Level:to" style="padding: 2px; margin-top:0">
+                    <option value="" selected="selected">---</option>
+                    <option value="INFO">INFO</option>
+                    <option value="NOTE">NOTE</option>
+                    <option value="WARN">WARN</option>
+                    <option value="ERROR">ERROR</option>
+                    </select>
+                </td>
+                <td align="right">
+                    <label>Include
+                        <input id="logs:Filter:Text:include" type="text" style="width:18em; padding: 2px; margin-bottom:0">
+                        <select id="logs:Filter:Text:includeCase" style="padding: 2px; margin-bottom:0">
+                        <option value="Case Sensitive" selected="selected">Case Sensitive</option>
+                        <option value="Case InSensitive">Case InSensitive</option>
+                        </select>
+                    </label><br>
+                    <label>Exclude
+                        <input id="logs:Filter:Text:exclude" type="text" style="width:18em; padding: 2px; margin-top:0">
+                        <select id="logs:Filter:Text:excludeCase" style="padding: 2px; margin-top:0">
+                        <option value="Case Sensitive" selected="selected">Case Sensitive</option>
+                        <option value="Case InSensitive">Case InSensitive</option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            </thead>
+            <tbody class="log" style="border-collapse: collapse;" id="logs:Table:body">
+            <!-- This will be replaced by the actual logs -->
+            <tr>
+                <td class="log ERROR">[2026-09-29T00:24:09.955]</td>
+                <td class="log WARN">INFO:</td>
+                <td class="log ERROR">This will be replaced by the actual log entries.
+                    Note that its message can wrap over multiple rows for a single log entry.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<section id="panelC">
+    <h2>Adding users</h2>
+
+    <p id="panelCNotice"
+       sec:authorize="!hasRole('ADMIN')">
+        Administrator access is required to manage users.
+    </p>
+
+    <form sec:authorize="hasRole('ADMIN')">
+        <!--          method="post">-->
+        <!--          th:action="@{/api/user/create}"-->
+        <label>
+            Username
+            <input type="text" id="userName" placeholder="username" required/>
+        </label>
+        <label>
+            Password
+            <span style="display: inline-flex">
+            <input type="password" id="userPassword" style="margin-right: 0" placeholder="password" required/>
+            <button type="button" id="userPasswordEye" style="margin-left: 0; width: 35px; padding-left: 0; padding-right: 5px;" onclick="
+                    const show = userPassword.type === 'password';
+                    userPassword.type = show ? 'text' : 'password';
+                    this.textContent  = show ? 'X_x' : 'o_O';
+                    this.style.paddingLeft = show?'5px':'0px';
+                    this.style.paddingRight= show?'0px':'5px';
+            ">o_o</button> <!-- simply margin-left:0 and width: 35px already gives a "head turn", but let's really lean into it -->
+            </span>
+        </label>
+        <!--We use a checkbox to toggle visibility. We make the checkbox pretty by letting the span in a surrounding label handle the drawing-->
+        <!--            <label>-->
+        <!--                <input type="checkbox" id="showUserPassword" style="display: none;"-->
+        <!--                       onclick="userPassword.type = this.checked ? 'text' : 'password'; userPasswordEye.textContent = this.checked ? '\_/' : 'O';">-->
+        <!--                <span id="icon" style="cursor: pointer; font-size: 1.2rem;">👁️</span>-->
+        <!--            </label>-->
+        <!--            <button onclick="userPassword.type = this.checked ? 'text' : 'password';"></button>-->
+        <!--            <button type="button" id="userPasswordEye" style="margin-left: 0; width: 35px" onclick="-->
+        <!--                    const show = userPassword.type === 'password';-->
+        <!--                    userPassword.type = show ? 'text' : 'password';-->
+        <!--                    this.textContent = show ? '-_-' : 'o_o';-->
+        <!--                ">o_o</button>-->
+        <br><label>
+            Roles (comma-separated)
+            <input type="text" id="userRoles" placeholder="USER" required/>
+        </label>
+        <button type="button" id="add-user-btn">Create User</button>
+        <!--        <button type="submit" id="add-user-btn">Create User</button>-->
+    </form>
+</section>
+
+
+
+<section id="Console:Panel">
+    <h2>Console / REPL</h2>
+
+    <p id="Console:Notice"
+       sec:authorize="!hasRole('ADMIN')">
+        Administrator access is required to user commandline.
+    </p>
+
+    <span sec:authorize="hasRole('ADMIN')">
+
+        <label>Command Line
+    <!--        <input id="console:cli" type="text" style="width:18em; padding: 2px; margin-bottom:0">-->
+    <!--        <input id="console:cli:input" type="text">-->
+            <textarea id="console:cli:input" rows="4" spellcheck="false"
+                      style="resize: none; width: 100%; font-family: monospace;">
+            </textarea>
+            <button id="console:cli:input:send">Send</button>
+
+            <!--        <select id="console:Filter:Text:includeCase" style="padding: 2px; margin-bottom:0">-->
+    <!--            <option value="Case Sensitive" selected="selected">Case Sensitive</option>-->
+    <!--            <option value="Case InSensitive">Case InSensitive</option>-->
+    <!--        </select>-->
+        </label>
+        <div id="CLI:Number"></div>
+        <div id="cli:message"></div>
+
+    <div class="logScroll">
+        <table id="console-table">
+            <thead>
+            <tr>
+    <!--            <th>Timestamp</th>-->
+    <!--            <th>Level</th>-->
+    <!--            <th>Message</th>-->
+                <th>CLI History (click to unhide result)</th>
+    <!--            <th>Result</th>-->
+            </tr>
+    <!--        <tr>-->
+    <!--            <td align="right" style="width:15em">-->
+    <!--                <label>From<input id="console:Filter:Time:from" type="datetime-local"-->
+    <!--                                  style="width:13em;padding:3px;margin-bottom:0">-->
+    <!--                </label><br>-->
+    <!--                <label>To<input id="console:Filter:Time:to" type="datetime-local"-->
+    <!--                                style="width: 13em; padding: 3px; margin-top:0">-->
+    <!--                </label></td>-->
+    <!--            <td>-->
+    <!--                <select id="console:Filter:Level:from" style="padding: 2px; margin-bottom:0">-->
+    <!--                    <option value="" selected="selected">-&#45;&#45;</option>-->
+    <!--                    <option value="INFO">INFO</option>-->
+    <!--                    <option value="NOTE">NOTE</option>-->
+    <!--                    <option value="WARN">WARN</option>-->
+    <!--                    <option value="ERROR">ERROR</option>-->
+    <!--                </select> <br>-->
+    <!--                <select id="console:Filter:Level:to" style="padding: 2px; margin-top:0">-->
+    <!--                    <option value="" selected="selected">-&#45;&#45;</option>-->
+    <!--                    <option value="INFO">INFO</option>-->
+    <!--                    <option value="NOTE">NOTE</option>-->
+    <!--                    <option value="WARN">WARN</option>-->
+    <!--                    <option value="ERROR">ERROR</option>-->
+    <!--                </select>-->
+    <!--            </td>-->
+    <!--            <td align="right">-->
+    <!--                <label>Include-->
+    <!--                    <input id="console:Filter:Text:include" type="text" style="width:18em; padding: 2px; margin-bottom:0">-->
+    <!--                    <select id="console:Filter:Text:includeCase" style="padding: 2px; margin-bottom:0">-->
+    <!--                        <option value="Case Sensitive" selected="selected">Case Sensitive</option>-->
+    <!--                        <option value="Case InSensitive">Case InSensitive</option>-->
+    <!--                    </select>-->
+    <!--                </label><br>-->
+    <!--                <label>Exclude-->
+    <!--                    <input id="console:Filter:Text:exclude" type="text" style="width:18em; padding: 2px; margin-top:0">-->
+    <!--                    <select id="console:Filter:Text:excludeCase" style="padding: 2px; margin-top:0">-->
+    <!--                        <option value="Case Sensitive" selected="selected">Case Sensitive</option>-->
+    <!--                        <option value="Case InSensitive">Case InSensitive</option>-->
+    <!--                    </select>-->
+    <!--                </label>-->
+    <!--            </td>-->
+    <!--        </tr>-->
+            </thead>
+            <tbody class="log" style="border-collapse: collapse;" id="console:Table:body">
+            <!-- This will be replaced by the actual logs -->
+
+            <tr th:each="item, stat : ${history}">
+    <!--            <td class="log ERROR" th:text="${item.command()}">Text</td>-->
+                <td class="log ERROR" th:text="${item.command()}">Text</td>
+                <td class="log ERROR" th:text="${item.result()}">Text</td>
+    <!--            <td class="log WARN">INFO:</td>-->
+    <!--            <td class="log ERROR">This will be replaced by the actual log entries.-->
+    <!--                Note that its message can wrap over multiple rows for a single log entry.-->
+    <!--            </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </span>
+</section>
+
+
+<!--<label>-->
+<!--    Password-->
+<!--    <input type="password" id="userPassword" placeholder="password" required=""><input type="checkbox" onclick="userPassword.type = this.checked ? 'text' : 'password'">-->
+
+<!--    <input type="password" id="pw">-->
+<!--    <button onclick="pw.type = pw.type === 'password' ? 'text' : 'password'">👁️</button>-->
+
+<!--</label>-->
+
+<!--<label>-->
+<!--<input type="checkbox" id="toggle" style="display: none;" onclick="pw.type = this.checked ? 'text' : 'password'; document.getElementById('icon').textContent = this.checked ? '🙈' : '👁️';">-->
+<!--<span id="icon" style="cursor: pointer; font-size: 1.2rem;">👁️</span>-->
+<!--</label>-->
+
+
+
+</body>
+</html>
