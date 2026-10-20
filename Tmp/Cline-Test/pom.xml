@@ -16,23 +16,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <servlet.api.version>4.0.1</servlet.api.version>
-        <jsp.api.version>2.3.3</jsp.api.version>
+        <servlet.api.version>6.0.0</servlet.api.version>
+        <jsp.api.version>3.1.0</jsp.api.version>
         <jetty.version>9.4.51.v20230217</jetty.version>
     </properties>
 
     <dependencies>
-        <!-- Java EE 8 Servlet API (provided by the servlet container at runtime) -->
+        <!-- Jakarta EE 10 Servlet API (provided by Payara 6 at runtime) -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <version>${servlet.api.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- JSP API -->
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
             <version>${jsp.api.version}</version>
             <scope>provided</scope>
         </dependency>

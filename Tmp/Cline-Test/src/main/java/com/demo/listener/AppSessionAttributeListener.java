@@ -1,11 +1,11 @@
 package com.demo.listener;
 
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
 
 /**
  * Session attribute listener: logs when attributes are added, replaced, or
- * removed from an {@link javax.servlet.http.HttpSession}.
+ * removed from an {@link jakarta.servlet.http.HttpSession}.
  */
 public class AppSessionAttributeListener implements HttpSessionAttributeListener {
 
