@@ -11,7 +11,7 @@ class PersonenDaoTest {
     @Test
     void speichertInH2() {
         JdbcDataSource dataSource = new JdbcDataSource();
-        dataSource.setURL("jdbc:h2:mem:personen06;DB_CLOSE_DELAY=-1");
+        dataSource.setURL("jdbc:h2:mem:jae06_personen06;DB_CLOSE_DELAY=-1");
         PersonenDao dao = new PersonenDao(dataSource);
         dao.erstelleTabelle();
         int id = dao.speichere("Max Mustermann", 28, "max@example.com");

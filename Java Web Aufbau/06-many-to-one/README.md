@@ -10,7 +10,7 @@ Start in der IDE: [Maven-Projekt in der IDE starten](../../docs/ide-maven.md).
 
 - Context-Pfad: `/Tag8`
 - URL: http://localhost:8080/Tag8/jpa
-- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `Tag8PU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/jwebak_tag08_manytoone`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `Tag8PU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/ibb`, Tabellen `jwebak06_authors` und `jwebak06_books`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 

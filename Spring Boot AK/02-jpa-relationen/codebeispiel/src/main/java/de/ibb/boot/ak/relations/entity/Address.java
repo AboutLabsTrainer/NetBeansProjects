@@ -25,7 +25,7 @@ import lombok.ToString;
  * Der Fremdschlüssel liegt hier. Anlegen und Entfernen entlang der Beziehung steuert die One-to-Many-Seite an Person.
  */
 @Entity
-@Table(name = "addresses")
+@Table(name = "jsprbak02_addresses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

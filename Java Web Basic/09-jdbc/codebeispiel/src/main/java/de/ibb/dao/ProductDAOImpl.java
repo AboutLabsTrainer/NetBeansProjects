@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Sucht die DataSource jdbc/jwebb_tag10_jdbc per Injection oder JNDI und führt die JDBC-Zugriffe aus.
+ * Sucht die DataSource jdbc/ibb per Injection oder JNDI und führt die JDBC-Zugriffe aus.
  */
 
 public class ProductDAOImpl implements ProductDAO {
 
-    @Resource(lookup = "jdbc/jwebb_tag10_jdbc")
+    @Resource(lookup = "jdbc/ibb")
     private DataSource injected;
 
     private DataSource dataSource;
@@ -31,20 +31,20 @@ public class ProductDAOImpl implements ProductDAO {
         }
         try {
             InitialContext ctx = new InitialContext();
-            return (DataSource) ctx.lookup("java:comp/env/jdbc/jwebb_tag10_jdbc");
+            return (DataSource) ctx.lookup("java:comp/env/jdbc/ibb");
         } catch (NamingException ex) {
             try {
                 InitialContext ctx = new InitialContext();
-                return (DataSource) ctx.lookup("jdbc/jwebb_tag10_jdbc");
+                return (DataSource) ctx.lookup("jdbc/ibb");
             } catch (NamingException e) {
-                throw new RuntimeException("Could not find DataSource 'jdbc/jwebb_tag10_jdbc' in JNDI. Configure Payara resource.", e);
+                throw new RuntimeException("Could not find DataSource 'jdbc/ibb' in JNDI. Configure Payara resource.", e);
             }
         }
     }
 
     @Override
     public Optional<Product> findById(int id) throws Exception {
-        String sql = "SELECT id, name, price, stock FROM jwebb_products WHERE id = ?";
+        String sql = "SELECT id, name, price, stock FROM jwebb09_products WHERE id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -64,7 +64,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void insertSingle(Product p) throws Exception {
-        String sql = "INSERT INTO jwebb_products(name, price, stock) VALUES(?,?,?)";
+        String sql = "INSERT INTO jwebb09_products(name, price, stock) VALUES(?,?,?)";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getName());
@@ -76,7 +76,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void insertBatch(List<Product> items) throws Exception {
-        String sql = "INSERT INTO jwebb_products(name, price, stock) VALUES(?,?,?)";
+        String sql = "INSERT INTO jwebb09_products(name, price, stock) VALUES(?,?,?)";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             conn.setAutoCommit(false);
@@ -93,8 +93,8 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void transactionCommitAndRollback() throws Exception {
-        String sqlOk = "INSERT INTO jwebb_products(name, price, stock) VALUES(?,?,?)";
-        String sqlFail = "INSERT INTO jwebb_products(id, name, price, stock) VALUES(1,?,?,?)"; // provoke PK clash
+        String sqlOk = "INSERT INTO jwebb09_products(name, price, stock) VALUES(?,?,?)";
+        String sqlFail = "INSERT INTO jwebb09_products(id, name, price, stock) VALUES(1,?,?,?)"; // provoke PK clash
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ok = conn.prepareStatement(sqlOk);
              PreparedStatement fail = conn.prepareStatement(sqlFail)) {

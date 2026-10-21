@@ -27,7 +27,7 @@ import java.util.Set;
  * Die Collections sind lazy. Equals lässt die Beziehungen außen vor, damit der Persistence-Context keine Zyklen vergleicht.
  */
 @Entity
-@Table(name = "persons")
+@Table(name = "jsprbak02_persons")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

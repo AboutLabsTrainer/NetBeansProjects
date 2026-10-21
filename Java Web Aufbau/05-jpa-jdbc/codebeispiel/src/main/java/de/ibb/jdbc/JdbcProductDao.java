@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Liest Produktnamen über die injizierte DataSource jdbc/jwebak_tag07_jpa. Das ist der JDBC-Weg neben dem EntityManager.
+ * Liest Produktnamen über die injizierte DataSource jdbc/ibb. Das ist der JDBC-Weg neben dem EntityManager.
  */
 @RequestScoped
 public class JdbcProductDao {
 
-    @Resource(lookup = "jdbc/jwebak_tag07_jpa")
+    @Resource(lookup = "jdbc/ibb")
     private DataSource ds;
 
     public List<String> findAllProductNames() throws SQLException {
         try (Connection con = ds.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT name FROM products ORDER BY id");
+             PreparedStatement ps = con.prepareStatement("SELECT name FROM jwebak05_products ORDER BY id");
              ResultSet rs = ps.executeQuery()) {
             List<String> names = new ArrayList<>();
             while (rs.next()) names.add(rs.getString(1));

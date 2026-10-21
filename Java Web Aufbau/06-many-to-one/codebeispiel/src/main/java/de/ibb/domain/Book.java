@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Besitzende Seite der @ManyToOne-Beziehung. Die Fremdschlüsselspalte author_id liegt in der Buch-Tabelle.
  */
 @Entity
-@Table(name = "books")
+@Table(name = "jwebak06_books")
 public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

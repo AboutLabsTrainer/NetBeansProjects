@@ -8,15 +8,15 @@
 
   <context-param>
     <param-name>db.url</param-name>
-    <param-value>jdbc:mysql://localhost:3306/jwebak_tag03_auth?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC</param-value>
+    <param-value>jdbc:mysql://localhost:3306/ibb-db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC</param-value>
   </context-param>
   <context-param>
     <param-name>db.user</param-name>
-    <param-value>jwebak_tag03_auth</param-value>
+    <param-value>ibb-user</param-value>
   </context-param>
   <context-param>
     <param-name>db.password</param-name>
-    <param-value>jwebak_tag03_auth</param-value>
+    <param-value>ibb-pw</param-value>
   </context-param>
 
   <session-config>

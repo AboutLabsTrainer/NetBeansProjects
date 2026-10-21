@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
  * Die Beziehung ist lazy. Wer die Person mitlesen will, braucht eine Abfrage, die sie mitlädt.
  */
 @Entity
-@Table(name = "orders")
+@Table(name = "jsprbak02_orders")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -7,8 +7,8 @@ import java.sql.*;
  * 
  * Tag 6 des Kurses "Java Anwendungsentwicklung"
  * 
- * Die Übung spricht MySQL in XAMPP an.
- * Datenbank, Benutzer und Passwort heißen jae_tag06_jdbc.
+ * Die Übung spricht MySQL in Docker an.
+ * Datenbank ibb-db, Benutzer ibb-user, Passwort ibb-pw.
  */
 public class HalloJDBC {
     
@@ -17,10 +17,10 @@ public class HalloJDBC {
     // ══════════════════════════════════════════════════════════════
     
     // Format: jdbc:<datenbank>:<verbindungsdetails>
-    // MySQL in XAMPP: eine Datenbank pro Übung, Passwort = Name
-    private static final String URL = "jdbc:mysql://localhost:3306/jae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String USER = "jae_tag06_jdbc";
-    private static final String PASSWORD = "jae_tag06_jdbc";
+    // MySQL in Docker: Datenbank ibb-db, Benutzer ibb-user, Passwort ibb-pw
+    private static final String URL = "jdbc:mysql://localhost:3306/ibb-db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "ibb-user";
+    private static final String PASSWORD = "ibb-pw";
     
     public static void main(String[] args) {
         System.out.println("═══════════════════════════════════════════════════════════");
@@ -46,7 +46,7 @@ public class HalloJDBC {
             // ──────────────────────────────────────────────────────────
             
             String createTableSQL = """
-                CREATE TABLE personen (
+                CREATE TABLE jae06_personen (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name VARCHAR(100) NOT NULL,
                     `alter` INT,
@@ -56,14 +56,14 @@ public class HalloJDBC {
             
             try (Statement stmt = conn.createStatement()) {
                 stmt.execute(createTableSQL);
-                System.out.println("✅ Tabelle 'personen' erstellt!");
+                System.out.println("✅ Tabelle 'jae06_personen' erstellt!");
             }
             
             // ──────────────────────────────────────────────────────────
             // SCHRITT 3: Daten einfügen (DML mit PreparedStatement)
             // ──────────────────────────────────────────────────────────
             
-            String insertSQL = "INSERT INTO personen (name, `alter`, email) VALUES (?, ?, ?)";
+            String insertSQL = "INSERT INTO jae06_personen (name, `alter`, email) VALUES (?, ?, ?)";
             
             try (PreparedStatement ps = conn.prepareStatement(insertSQL)) {
                 // Erste Person
@@ -92,7 +92,7 @@ public class HalloJDBC {
             // SCHRITT 4: Daten abfragen (SELECT)
             // ──────────────────────────────────────────────────────────
             
-            String selectSQL = "SELECT id, name, `alter`, email FROM personen";
+            String selectSQL = "SELECT id, name, `alter`, email FROM jae06_personen";
             
             try (Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(selectSQL)) {
@@ -132,7 +132,7 @@ public class HalloJDBC {
         
         System.out.println();
         System.out.println("═══════════════════════════════════════════════════════════");
-        System.out.println("  💡 Hinweis: Die Zeilen bleiben in MySQL (jae_tag06_jdbc), bis das Programm sie loescht.");
+        System.out.println("  💡 Hinweis: Die Zeilen bleiben in MySQL (ibb-db), bis das Programm sie loescht.");
         System.out.println("═══════════════════════════════════════════════════════════");
     }
 }

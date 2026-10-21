@@ -15,12 +15,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Liest Produkte über die per @Resource injizierte DataSource jdbc/jwebb_tag09_pools.
+ * Liest Produkte über die per @Resource injizierte DataSource jdbc/ibb.
  */
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
 
-    @Resource(name = "jdbc/jwebb_tag09_pools")
+    @Resource(name = "jdbc/ibb")
     private DataSource dataSource;
 
     @Override
@@ -30,7 +30,7 @@ public class ProductServlet extends HttpServlet {
 
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM jwebb_products")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM jwebb08_products")) {
 
             java.util.List<String> productNames = new java.util.ArrayList<>();
 

@@ -10,7 +10,7 @@ import java.util.List;
  * Tag 9 des Kurses "Java Anwendungsentwicklung"
  * 
  * JPQL ist wie SQL, aber für Objekte:
- * - SELECT p FROM Person p (nicht: SELECT * FROM personen)
+ * - SELECT p FROM Person p (nicht: SELECT * FROM jae09_personen)
  * - Arbeitet mit Entity-Namen, nicht Tabellennamen
  * - Datenbank-unabhängig
  */

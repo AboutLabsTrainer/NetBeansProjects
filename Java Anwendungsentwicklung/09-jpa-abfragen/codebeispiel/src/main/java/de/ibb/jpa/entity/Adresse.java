@@ -6,7 +6,7 @@ import jakarta.persistence.*;
  * Adresse, die in diesem Beispiel zu genau einer Person gehört.
  */
 @Entity
-@Table(name = "adressen")
+@Table(name = "jae09_adressen")
 public class Adresse {
     
     @Id

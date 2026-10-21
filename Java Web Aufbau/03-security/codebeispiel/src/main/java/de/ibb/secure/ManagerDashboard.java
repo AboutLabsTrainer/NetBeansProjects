@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Geschützte Manager-Seite. Der Container prüft die Rolle manager im Realm jwebak_tag04_securityRealm, bevor dieses Servlet läuft.
+ * Geschützte Manager-Seite. Der Container prüft die Rolle manager im Realm ibb-realm, bevor dieses Servlet läuft.
  */
 @WebServlet(name="ManagerDashboard", urlPatterns={"/manager/dashboard"})
 public class ManagerDashboard extends HttpServlet {

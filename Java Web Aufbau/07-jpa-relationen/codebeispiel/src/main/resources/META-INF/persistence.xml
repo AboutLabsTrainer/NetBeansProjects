@@ -6,7 +6,7 @@
     
     <persistence-unit name="JavaWebAufbauPU" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <jta-data-source>jdbc/jwebak_tag09_relations</jta-data-source>
+        <jta-data-source>jdbc/ibb</jta-data-source>
         
         <class>de.ibb.model.User</class>
         <class>de.ibb.model.UserProfile</class>

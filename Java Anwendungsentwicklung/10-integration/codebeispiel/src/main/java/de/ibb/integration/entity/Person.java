@@ -6,7 +6,7 @@ import jakarta.persistence.*;
  * Person Entity für die integrierte Anwendung.
  */
 @Entity
-@Table(name = "personen")
+@Table(name = "jae10_personen")
 public class Person {
     
     @Id

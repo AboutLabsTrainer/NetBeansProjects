@@ -17,7 +17,7 @@ mvn -q -DskipTests compile
 mvn exec:java
 ```
 
-`mvn exec:java` spricht MySQL auf `localhost` an (`jae_tag06_jdbc`) und läuft ohne diesen Server nicht. Kompilieren braucht den Server nicht. Weitere Mains: `CrudBeispiel`, `SqlInjectionDemo`.
+`mvn exec:java` spricht MySQL auf `localhost` an (`ibb-db`, Benutzer `ibb-user`, Tabellen `jae06_personen` und `jae06_users`) und läuft ohne diesen Server nicht. Kompilieren braucht den Server nicht. Weitere Mains: `CrudBeispiel`, `SqlInjectionDemo`.
 
 ## Stufe 1
 

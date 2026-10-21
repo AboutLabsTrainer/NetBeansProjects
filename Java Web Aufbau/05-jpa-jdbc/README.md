@@ -10,7 +10,7 @@ Dieselbe Produkttabelle läuft einmal über JPA und einmal über JDBC. EclipseLi
 
 - Context-Pfad: `/Tag7`
 - URL: http://localhost:8080/Tag7/ , http://localhost:8080/Tag7/jpa , http://localhost:8080/Tag7/jdbc
-- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `Tag7PU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/jwebak_tag07_jpa`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `Tag7PU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/ibb`, Tabelle `jwebak05_products`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 
@@ -18,7 +18,7 @@ Dieselbe Produkttabelle läuft einmal über JPA und einmal über JDBC. EclipseLi
 
 ## Stufe 2
 
-`StockSql.updateStock` liefert `UPDATE products SET stock = ? WHERE id = ?`. Der erste Parameter ist der Bestand, der zweite die Id.
+`StockSql.updateStock` liefert `UPDATE jwebak05_products SET stock = ? WHERE id = ?`. Der erste Parameter ist der Bestand, der zweite die Id.
 
 ## Abnahme
 

@@ -1,9 +1,8 @@
 -- MySQL schema for Tag10-JSF-PrimeFaces (JSF Application)
--- Database: jwebak_tag10_jsf, user: jwebak_tag10_jsf
-CREATE DATABASE IF NOT EXISTS jwebak_tag10_jsf CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE jwebak_tag10_jsf;
+-- Database: ibb-db, user: ibb-user
+USE `ibb-db`;
 
-CREATE TABLE IF NOT EXISTS products (
+CREATE TABLE IF NOT EXISTS jwebak08_products (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(120) NOT NULL,
   description VARCHAR(1000),
@@ -12,7 +11,7 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 -- Insert mock product data
-INSERT INTO products (name, description, price, stock) VALUES
+INSERT INTO jwebak08_products (name, description, price, stock) VALUES
 ('Laptop Pro 15"', 'High-performance laptop with 16GB RAM, 512GB SSD, Intel i7 processor', 1299.99, 25),
 ('Wireless Mouse', 'Ergonomic wireless mouse with 2.4GHz connection, battery life up to 12 months', 29.99, 150),
 ('Mechanical Keyboard', 'RGB backlit mechanical keyboard with Cherry MX switches', 89.99, 45),

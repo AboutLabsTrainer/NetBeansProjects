@@ -9,7 +9,7 @@ class StockSqlTest {
     @Test
     void bindsStockBeforeId() {
         BoundSql sql = StockSql.updateStock(9L, 4);
-        assertEquals("UPDATE products SET stock = ? WHERE id = ?", sql.sql());
+        assertEquals("UPDATE jwebak05_products SET stock = ? WHERE id = ?", sql.sql());
         assertEquals(List.of(4, 9L), sql.parameters());
     }
 }

@@ -10,11 +10,11 @@ class PersonenSqlTest {
     @Test
     void statementsWieImBeispiel() {
         String create = PersonenSql.createTableSql().replaceAll("\\s+", " ").trim();
-        assertTrue(create.contains("CREATE TABLE personen"));
+        assertTrue(create.contains("CREATE TABLE jae06_personen"));
         assertTrue(create.contains("AUTO_INCREMENT"));
         assertTrue(create.contains("`alter`"));
         assertTrue(create.contains("email VARCHAR(100)"));
-        assertEquals("INSERT INTO personen (name, `alter`, email) VALUES (?, ?, ?)", PersonenSql.insertSql());
-        assertEquals("SELECT id, name, `alter`, email FROM personen", PersonenSql.selectAlleSql());
+        assertEquals("INSERT INTO jae06_personen (name, `alter`, email) VALUES (?, ?, ?)", PersonenSql.insertSql());
+        assertEquals("SELECT id, name, `alter`, email FROM jae06_personen", PersonenSql.selectAlleSql());
     }
 }

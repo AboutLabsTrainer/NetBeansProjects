@@ -7,7 +7,7 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 
 /**
- * Kleines DAO zur Tabelle personen. Spalte lebensalter statt des MySQL-Spaltennamens alter,
+ * Kleines DAO zur Tabelle jae06_personen. Spalte lebensalter statt des MySQL-Spaltennamens alter,
  * damit die Übung auf H2 läuft. Das Codebeispiel spricht weiter MySQL an.
  */
 public class PersonenDao {

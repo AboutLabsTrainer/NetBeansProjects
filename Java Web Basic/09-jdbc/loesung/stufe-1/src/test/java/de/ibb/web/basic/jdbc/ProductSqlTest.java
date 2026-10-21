@@ -9,7 +9,7 @@ class ProductSqlTest {
     @Test
     void bindsInsertParametersInOrder() {
         BoundSql sql = ProductSql.insert("Stift", 1.5d, 3);
-        assertEquals("INSERT INTO jwebb_products(name, price, stock) VALUES(?,?,?)", sql.sql());
+        assertEquals("INSERT INTO jwebb09_products(name, price, stock) VALUES(?,?,?)", sql.sql());
         assertEquals(List.of("Stift", 1.5d, 3), sql.parameters());
     }
 }

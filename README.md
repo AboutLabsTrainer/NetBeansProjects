@@ -21,6 +21,7 @@ How to open that leaf in NetBeans, IntelliJ, or VS Code is in [docs/ide-maven.md
 - **Spring Boot JPA** (`Spring Boot AK` `01-jpa`, `02-jpa-relationen`, `03-security`, `06-actuator`): Spring Boot **3.5.16**, Java 21, Hibernate only from the Boot BOM. EclipseLink stays off this track; Boot 4 is a later course cut.
 - **Footguns to keep in view**: Lombok `@EqualsAndHashCode` on an entity whose `id` is still null makes `Set` membership wrong before the first persist. Spring Boot leaves Open Session in View on, so a lazy association can load during JSON rendering without an explicit transaction.
 - **Build**: Maven (`pom.xml`) for every course leaf. JDK release is 21.
+- **MySQL**: Docker Compose in [docker/mysql](docker/mysql) (`docker compose up -d`). Database `ibb-db`, user `ibb-user`, password `ibb-pw`. Adminer at http://localhost:8088. Payara pool `jdbc/ibb`, JDBC realm `ibb-realm`. Stop XAMPP MySQL so port 3306 is free.
 - **Other servers**: embedded Tomcat via Spring Boot, ActiveMQ for messaging demos
 - **IDE**: NetBeans, IntelliJ and VS Code open the folder that contains `pom.xml`. The steps are in [docs/ide-maven.md](docs/ide-maven.md). `.idea/` and build outputs are ignored
 

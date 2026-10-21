@@ -9,7 +9,7 @@ Eine Person als JPA-Entity, ein Spring-Data-Repository mit der abgeleiteten Abfr
 ## Wichtige Klassen in Lesereihenfolge
 
 1. `DemoApplication` – Start
-2. `Person` – Entity der Tabelle `persons`
+2. `Person` – Entity der Tabelle `jsprbak01_persons`
 3. `PersonRepository` – Spring Data JPA
 4. `PersonService` – Transaktion um die Anwendungsfälle
 5. `PersonController` – REST unter `/api/persons`
@@ -28,7 +28,7 @@ Die Anwendung lauscht auf Port **8080** (`server.port` in `application.propertie
 
 Aktives Profil: **mysql** (`spring.profiles.active`). Verbindungsdaten stehen in `application-mysql.properties`.
 
-Die Anwendung nutzt die MariaDB-Datenbank **jsprbak_tag02_jpa**.
+Die Anwendung nutzt MySQL **ibb-db** (Benutzer `ibb-user`, Tabelle `jsprbak01_persons`).
 
 Das Profil `h2` in `application-h2.properties` ist für Tests vorgesehen (In-Memory). Die laufende Anwendung aktiviert es nicht. Tests bleiben auf H2.
 

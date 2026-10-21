@@ -17,7 +17,7 @@ mvn -q -DskipTests compile
 mvn exec:java
 ```
 
-`persistence.xml` nennt den Provider `org.eclipse.persistence.jpa.PersistenceProvider`, Transaktionen `RESOURCE_LOCAL` und MySQL `jae_tag08_jpa`. Der Lauf braucht diese Datenbank. Kompilieren nicht. Weitere Mains: `EntityLifecycleDemo`, `JpaCrudDemo`.
+`persistence.xml` nennt den Provider `org.eclipse.persistence.jpa.PersistenceProvider`, Transaktionen `RESOURCE_LOCAL` und MySQL `ibb-db` (Benutzer `ibb-user`, Tabelle `jae08_personen`). Der Lauf braucht diese Datenbank. Kompilieren nicht. Weitere Mains: `EntityLifecycleDemo`, `JpaCrudDemo`.
 
 ## Stufe 1
 

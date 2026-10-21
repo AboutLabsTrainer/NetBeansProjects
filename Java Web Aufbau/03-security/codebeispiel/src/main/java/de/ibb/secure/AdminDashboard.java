@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Geschützte Admin-Seite. Der Container lässt über das Realm jwebak_tag04_securityRealm nur die Rolle admin an /admin/dashboard.
+ * Geschützte Admin-Seite. Der Container lässt über das Realm ibb-realm nur die Rolle admin an /admin/dashboard.
  */
 @WebServlet(name="AdminDashboard", urlPatterns={"/admin/dashboard"})
 public class AdminDashboard extends HttpServlet {

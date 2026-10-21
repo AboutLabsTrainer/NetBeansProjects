@@ -26,9 +26,9 @@ public class DaoDemo {
         
         // DataSource erstellen (HikariCP Pool)
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/jae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
-        config.setUsername("jae_tag07_jdbc");
-        config.setPassword("jae_tag07_jdbc");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/ibb-db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+        config.setUsername("ibb-user");
+        config.setPassword("ibb-pw");
         config.setPoolName("DAO-Demo-Pool");
         
         try (HikariDataSource dataSource = new HikariDataSource(config)) {
@@ -128,7 +128,7 @@ public class DaoDemo {
              Statement stmt = conn.createStatement()) {
             
             stmt.execute("""
-                CREATE TABLE personen (
+                CREATE TABLE jae07_personen (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name VARCHAR(100) NOT NULL,
                     alter INT,

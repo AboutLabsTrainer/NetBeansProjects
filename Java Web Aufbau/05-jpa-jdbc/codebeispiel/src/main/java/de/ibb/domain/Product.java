@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * JPA-Entität Product. Dieselbe Tabelle liest JdbcProductDao zum Vergleich per SQL.
  */
 @Entity
-@Table(name = "products")
+@Table(name = "jwebak05_products")
 @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p ORDER BY p.id")
 public class Product implements Serializable {
     @Id

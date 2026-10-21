@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class SearchPatternTest {
     @Test
     void wrapsTheTerm() {
-        assertEquals("jdbc/jwebb_tag09_pools", SearchPattern.JNDI);
+        assertEquals("jdbc/ibb", SearchPattern.JNDI);
         assertEquals("%Stift%", SearchPattern.like("Stift"));
     }
 }

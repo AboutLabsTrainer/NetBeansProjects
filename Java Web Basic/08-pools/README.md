@@ -10,11 +10,11 @@ Die DataSource kommt aus dem Payara-Pool. Die Suche bindet den Begriff als Param
 
 - Context-Pfad: `/Tag9-ConnectionPools`
 - URL: http://localhost:8080/Tag9-ConnectionPools/
-- Deploy: Ordner `codebeispiel` auf Payara 6. JNDI `jdbc/jwebb_tag09_pools`, Datenbank `jwebb_tag09_pools`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. JNDI `jdbc/ibb`, Datenbank `ibb-db`, Tabelle `jwebb08_products`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 
-`SearchPattern.JNDI` bleibt `jdbc/jwebb_tag09_pools`. `like` setzt den Suchbegriff zwischen zwei Prozentzeichen.
+`SearchPattern.JNDI` ist `jdbc/ibb`. `like` setzt den Suchbegriff zwischen zwei Prozentzeichen.
 
 ## Stufe 2
 

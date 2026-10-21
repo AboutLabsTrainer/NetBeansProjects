@@ -16,7 +16,7 @@ Ordner [`codebeispiel`](codebeispiel/README.md). Main-Klasse: `de.ibb.integratio
 mvn -q -DskipTests compile
 ```
 
-Das Fenster und MySQL (`jae_tag10_jpa`) braucht nur der Start, nicht das Kompilieren. `PersonService.validate` prüft Name, Alter und E-Mail, danach wird die E-Mail klein und ohne Rand geschrieben. Eine leere Suche lädt alle Personen.
+Das Fenster und MySQL (`ibb-db`, Benutzer `ibb-user`, Tabelle `jae10_personen`) braucht nur der Start, nicht das Kompilieren. `PersonService.validate` prüft Name, Alter und E-Mail, danach wird die E-Mail klein und ohne Rand geschrieben. Eine leere Suche lädt alle Personen.
 
 ## Stufe 1
 

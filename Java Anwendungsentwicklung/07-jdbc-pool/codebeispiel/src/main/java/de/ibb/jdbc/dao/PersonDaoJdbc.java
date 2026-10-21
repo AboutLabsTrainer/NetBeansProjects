@@ -34,7 +34,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public Optional<Person> findById(int id) {
-        String sql = "SELECT id, name, alter, email FROM personen WHERE id = ?";
+        String sql = "SELECT id, name, alter, email FROM jae07_personen WHERE id = ?";
         
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -56,7 +56,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public List<Person> findAll() {
-        String sql = "SELECT id, name, alter, email FROM personen ORDER BY id";
+        String sql = "SELECT id, name, alter, email FROM jae07_personen ORDER BY id";
         List<Person> result = new ArrayList<>();
         
         try (Connection conn = dataSource.getConnection();
@@ -76,7 +76,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public List<Person> findByNameContaining(String name) {
-        String sql = "SELECT id, name, alter, email FROM personen WHERE LOWER(name) LIKE ? ORDER BY name";
+        String sql = "SELECT id, name, alter, email FROM jae07_personen WHERE LOWER(name) LIKE ? ORDER BY name";
         List<Person> result = new ArrayList<>();
         
         try (Connection conn = dataSource.getConnection();
@@ -99,7 +99,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public Person save(Person person) {
-        String sql = "INSERT INTO personen (name, alter, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO jae07_personen (name, alter, email) VALUES (?, ?, ?)";
         
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -127,7 +127,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public boolean update(Person person) {
-        String sql = "UPDATE personen SET name = ?, alter = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE jae07_personen SET name = ?, alter = ?, email = ? WHERE id = ?";
         
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -146,7 +146,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public boolean deleteById(int id) {
-        String sql = "DELETE FROM personen WHERE id = ?";
+        String sql = "DELETE FROM jae07_personen WHERE id = ?";
         
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -161,7 +161,7 @@ public class PersonDaoJdbc implements PersonDao {
     
     @Override
     public long count() {
-        String sql = "SELECT COUNT(*) FROM personen";
+        String sql = "SELECT COUNT(*) FROM jae07_personen";
         
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();

@@ -7,7 +7,7 @@ public final class ProductSql {
 
     public static BoundSql insert(String name, double price, int stock) {
         return new BoundSql(
-                "INSERT INTO jwebb_products(name, price, stock) VALUES(?,?,?)",
+                "INSERT INTO jwebb09_products(name, price, stock) VALUES(?,?,?)",
                 List.of(name, price, stock));
     }
 }

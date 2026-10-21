@@ -18,7 +18,7 @@ import jakarta.persistence.*;
  * - @Column: Optionale Spalten-Konfiguration
  */
 @Entity
-@Table(name = "personen")
+@Table(name = "jae08_personen")
 public class Person {
     
     // ══════════════════════════════════════════════════════════════

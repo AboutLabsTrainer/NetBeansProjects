@@ -8,7 +8,7 @@ import java.util.List;
  * Person mit optionaler Adresse und mehreren Bestellungen für die Beziehungs-Demos.
  */
 @Entity
-@Table(name = "personen")
+@Table(name = "jae09_personen")
 public class Person {
     
     @Id

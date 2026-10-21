@@ -14,7 +14,7 @@ Main-Klasse: `de.ibb.boot.ak.relations.PersonManagementApplication`
 
 `server.port`: **8080**
 
-Das Codebeispiel nutzt das Profil `mysql`. Die Übung braucht kein MySQL.
+Das Codebeispiel nutzt das Profil `mysql` und die Datenbank `ibb-db`. Die Übung braucht kein MySQL.
 
 Im Ordner `codebeispiel`:
 

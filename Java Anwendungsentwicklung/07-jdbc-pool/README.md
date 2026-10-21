@@ -17,7 +17,7 @@ mvn -q -DskipTests compile
 mvn exec:java
 ```
 
-Der Lauf braucht MySQL (`jae_tag07_jdbc`). Kompilieren nicht. `Person` ist ein Record, `PersonDaoJdbc` bekommt die `DataSource` von außen. Weitere Mains: `TransactionDemo`, `de.ibb.jdbc.dao.DaoDemo`.
+Der Lauf braucht MySQL (`ibb-db`, Benutzer `ibb-user`, Tabellen `jae07_personen` und `jae07_konten`). Kompilieren nicht. `Person` ist ein Record, `PersonDaoJdbc` bekommt die `DataSource` von außen. Weitere Mains: `TransactionDemo`, `de.ibb.jdbc.dao.DaoDemo`.
 
 ## Stufe 1
 

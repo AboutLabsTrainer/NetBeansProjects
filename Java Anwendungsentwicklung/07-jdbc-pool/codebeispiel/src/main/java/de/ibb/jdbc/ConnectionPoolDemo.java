@@ -25,9 +25,9 @@ public class ConnectionPoolDemo {
         // VERGLEICH: Ohne Pool vs. Mit Pool
         // ══════════════════════════════════════════════════════════════
         
-        String url = "jdbc:mysql://localhost:3306/jae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-        String user = "jae_tag07_jdbc";
-        String password = "jae_tag07_jdbc";
+        String url = "jdbc:mysql://localhost:3306/ibb-db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String user = "ibb-user";
+        String password = "ibb-pw";
         
         int anzahlOperationen = 100;
         

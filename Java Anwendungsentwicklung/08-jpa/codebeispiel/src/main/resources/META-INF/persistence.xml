@@ -21,9 +21,9 @@
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jae_tag08_jpa?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
-            <property name="jakarta.persistence.jdbc.user" value="jae_tag08_jpa"/>
-            <property name="jakarta.persistence.jdbc.password" value="jae_tag08_jpa"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ibb-db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="ibb-user"/>
+            <property name="jakarta.persistence.jdbc.password" value="ibb-pw"/>
 
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="eclipselink.target-database" value="MySQL"/>

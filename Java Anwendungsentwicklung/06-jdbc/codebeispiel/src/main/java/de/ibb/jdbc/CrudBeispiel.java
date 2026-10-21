@@ -18,9 +18,9 @@ import java.util.Optional;
  */
 public class CrudBeispiel {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/jae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String USER = "jae_tag06_jdbc";
-    private static final String PASSWORD = "jae_tag06_jdbc";
+    private static final String URL = "jdbc:mysql://localhost:3306/ibb-db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "ibb-user";
+    private static final String PASSWORD = "ibb-pw";
     
     // ══════════════════════════════════════════════════════════════
     // ENTITY: Person (ein einfaches Datenobjekt)
@@ -134,7 +134,7 @@ public class CrudBeispiel {
      * Gibt die Person MIT generierter ID zurück.
      */
     private static Person create(Connection conn, Person person) throws SQLException {
-        String sql = "INSERT INTO personen (name, `alter`, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO jae06_personen (name, `alter`, email) VALUES (?, ?, ?)";
         
         // RETURN_GENERATED_KEYS → Wir wollen die generierte ID!
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -162,18 +162,18 @@ public class CrudBeispiel {
      * READ ALL - Alle Personen lesen.
      */
     private static List<Person> readAll(Connection conn) throws SQLException {
-        String sql = "SELECT id, name, `alter`, email FROM personen ORDER BY id";
-        List<Person> personen = new ArrayList<>();
+        String sql = "SELECT id, name, `alter`, email FROM jae06_personen ORDER BY id";
+        List<Person> jae06_personen = new ArrayList<>();
         
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
             while (rs.next()) {
-                personen.add(mapRow(rs));
+                jae06_personen.add(mapRow(rs));
             }
         }
         
-        return personen;
+        return jae06_personen;
     }
     
     /**
@@ -181,7 +181,7 @@ public class CrudBeispiel {
      * Gibt Optional zurück (leer wenn nicht gefunden).
      */
     private static Optional<Person> readById(Connection conn, int id) throws SQLException {
-        String sql = "SELECT id, name, `alter`, email FROM personen WHERE id = ?";
+        String sql = "SELECT id, name, `alter`, email FROM jae06_personen WHERE id = ?";
         
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -201,7 +201,7 @@ public class CrudBeispiel {
      * Gibt true zurück wenn erfolgreich.
      */
     private static boolean update(Connection conn, Person person) throws SQLException {
-        String sql = "UPDATE personen SET name = ?, `alter` = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE jae06_personen SET name = ?, `alter` = ?, email = ? WHERE id = ?";
         
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, person.name());
@@ -219,7 +219,7 @@ public class CrudBeispiel {
      * Gibt true zurück wenn erfolgreich.
      */
     private static boolean delete(Connection conn, int id) throws SQLException {
-        String sql = "DELETE FROM personen WHERE id = ?";
+        String sql = "DELETE FROM jae06_personen WHERE id = ?";
         
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -238,7 +238,7 @@ public class CrudBeispiel {
      */
     private static void erstelleTabelle(Connection conn) throws SQLException {
         String sql = """
-            CREATE TABLE IF NOT EXISTS personen (
+            CREATE TABLE IF NOT EXISTS jae06_personen (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(100) NOT NULL,
                 `alter` INT,

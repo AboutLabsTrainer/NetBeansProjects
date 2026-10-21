@@ -15,7 +15,7 @@ import java.util.Set;
  * Das Passwort liegt kodiert vor. UserDetailsService lädt den Datensatz in den SecurityContext.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "jsprbak03_users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,7 +39,7 @@ public class User {
     private Role role = Role.USER;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_authorities",
+    @CollectionTable(name = "jsprbak03_user_authorities",
             joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "authority")

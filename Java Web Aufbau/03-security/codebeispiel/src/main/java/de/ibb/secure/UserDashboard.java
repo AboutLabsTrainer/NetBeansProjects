@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Geschützte Benutzerseite. Der Container prüft die Rolle user im Realm jwebak_tag04_securityRealm, bevor dieses Servlet läuft.
+ * Geschützte Benutzerseite. Der Container prüft die Rolle user im Realm ibb-realm, bevor dieses Servlet läuft.
  */
 @WebServlet(name="UserDashboard", urlPatterns={"/user/dashboard"})
 public class UserDashboard extends HttpServlet {

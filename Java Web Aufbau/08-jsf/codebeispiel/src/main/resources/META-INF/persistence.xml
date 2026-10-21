@@ -5,7 +5,7 @@
              version="3.1">
   <persistence-unit name="Tag10JSFPrimeFacesPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>jdbc/jwebak_tag10_jsf</jta-data-source>
+    <jta-data-source>jdbc/ibb</jta-data-source>
     <class>de.ibb.domain.Product</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>

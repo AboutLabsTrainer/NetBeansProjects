@@ -8,7 +8,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <resource-ref>
-    <res-ref-name>jdbc/jwebak_tag07_jpa</res-ref-name>
+    <res-ref-name>jdbc/ibb</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
   </resource-ref>
 </web-app>

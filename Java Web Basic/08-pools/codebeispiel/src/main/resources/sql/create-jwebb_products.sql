@@ -1,8 +1,8 @@
--- Tabelle jwebb_products für Tag9-ConnectionPools (JNDI jdbc/jwebb_tag09_pools)
--- Datenbank: jwebb_tag09_pools (MariaDB/MySQL), Nutzer jwebb_tag09_pools
--- Ausführen in phpMyAdmin oder MySQL-Client
+-- Tabelle jwebb08_products für Tag9-ConnectionPools (JNDI jdbc/ibb)
+-- Datenbank: ibb-db (MySQL), Nutzer ibb-user
+-- Ausführen in Adminer
 
-CREATE TABLE IF NOT EXISTS jwebb_products (
+CREATE TABLE IF NOT EXISTS jwebb08_products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description VARCHAR(1000),
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS jwebb_products (
 );
 
 -- Beispielprodukte
-INSERT INTO jwebb_products (name, description, price, stock) VALUES
+INSERT INTO jwebb08_products (name, description, price, stock) VALUES
   ('Notebook', 'Leistungsstarker Laptop für Büro und Studium', 599.99, 12),
   ('Wireless Maus', 'Ergonomische Funkmaus mit USB-Empfänger', 29.99, 45),
   ('USB-Stick 32GB', 'Schneller USB-3.0 Speicherstick', 14.99, 80),

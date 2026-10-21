@@ -26,7 +26,7 @@
             <version>${jakarta.ee.version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- MariaDB driver für JNDI DataSource jdbc/jWeb -->
+        <!-- Der Pool jdbc/ibb liegt auf Payara und nutzt den MySQL-Treiber des Servers. -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>

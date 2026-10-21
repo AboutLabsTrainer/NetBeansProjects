@@ -106,7 +106,7 @@ public class TransactionDemo {
             System.out.println("   📤 Überweise " + betrag + "€ von Konto " + von + " nach " + nach);
             
             // Schritt 1: Geld abbuchen
-            String abbuchenSQL = "UPDATE konten SET stand = stand - ? WHERE konto_id = ?";
+            String abbuchenSQL = "UPDATE jae07_konten SET stand = stand - ? WHERE konto_id = ?";
             try (PreparedStatement ps = conn.prepareStatement(abbuchenSQL)) {
                 ps.setDouble(1, betrag);
                 ps.setString(2, von);
@@ -121,7 +121,7 @@ public class TransactionDemo {
             }
             
             // Schritt 2: Geld gutschreiben
-            String gutschreibenSQL = "UPDATE konten SET stand = stand + ? WHERE konto_id = ?";
+            String gutschreibenSQL = "UPDATE jae07_konten SET stand = stand + ? WHERE konto_id = ?";
             try (PreparedStatement ps = conn.prepareStatement(gutschreibenSQL)) {
                 ps.setDouble(1, betrag);
                 ps.setString(2, nach);
@@ -160,7 +160,7 @@ public class TransactionDemo {
     }
     
     private static void zeigeKontostaende() throws SQLException {
-        String sql = "SELECT konto_id, inhaber, stand FROM konten ORDER BY konto_id";
+        String sql = "SELECT konto_id, inhaber, stand FROM jae07_konten ORDER BY konto_id";
         
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
@@ -183,9 +183,9 @@ public class TransactionDemo {
     
     private static void setupDataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/jae_tag07_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
-        config.setUsername("jae_tag07_jdbc");
-        config.setPassword("jae_tag07_jdbc");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/ibb-db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+        config.setUsername("ibb-user");
+        config.setPassword("ibb-pw");
         config.setPoolName("Transaction-Demo-Pool");
         dataSource = new HikariDataSource(config);
     }
@@ -195,15 +195,15 @@ public class TransactionDemo {
              Statement stmt = conn.createStatement()) {
             
             stmt.execute("""
-                CREATE TABLE konten (
+                CREATE TABLE jae07_konten (
                     konto_id VARCHAR(10) PRIMARY KEY,
                     inhaber VARCHAR(100) NOT NULL,
                     stand DECIMAL(10,2) NOT NULL
                 )
                 """);
             
-            stmt.execute("INSERT INTO konten VALUES ('A', 'Max Mustermann', 1000.00)");
-            stmt.execute("INSERT INTO konten VALUES ('B', 'Lisa Schmidt', 500.00)");
+            stmt.execute("INSERT INTO jae07_konten VALUES ('A', 'Max Mustermann', 1000.00)");
+            stmt.execute("INSERT INTO jae07_konten VALUES ('B', 'Lisa Schmidt', 500.00)");
         }
     }
 }

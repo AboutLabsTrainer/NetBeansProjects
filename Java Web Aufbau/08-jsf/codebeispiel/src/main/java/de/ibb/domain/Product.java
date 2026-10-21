@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * JPA-Entität eines Produkts für die JSF-Oberfläche. ProductBean und ProductService lesen und speichern diese Klasse.
  */
 @Entity
-@Table(name = "products")
+@Table(name = "jwebak08_products")
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

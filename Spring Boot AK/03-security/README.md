@@ -14,7 +14,7 @@ Main-Klasse: `de.ibb.boot.ak.security.PersonManagementApplication`
 
 `server.port`: **8080**
 
-Das Codebeispiel spricht MariaDB an. Die Übung hält Benutzer nur im Speicher und braucht keine Datenbank.
+Das Codebeispiel spricht MySQL (`ibb-db`) an. Die Übung hält Benutzer nur im Speicher und braucht keine Datenbank.
 
 Im Ordner `codebeispiel`:
 

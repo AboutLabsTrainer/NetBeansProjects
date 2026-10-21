@@ -4,7 +4,7 @@ Die Aufgabe dieses Moduls steht in der [README des Elternordners](../README.md).
 
 ## Was dieses Beispiel übt
 
-Eine SecurityFilterChain mit Formular-Login, HTTP Basic und JWT, Rollen und Authorities, Methodensicherheit und einen eigenen Security-Ausdruck. Benutzer und Personen liegen in MariaDB.
+Eine SecurityFilterChain mit Formular-Login, HTTP Basic und JWT, Rollen und Authorities, Methodensicherheit und einen eigenen Security-Ausdruck. Benutzer und Personen liegen in MySQL.
 
 ## Wichtige Klassen in Lesereihenfolge
 
@@ -28,11 +28,11 @@ Die Anwendung lauscht auf Port **8080** (`server.port` in `application.propertie
 
 ## Datenbank
 
-Die Anwendung nutzt die MariaDB-Datenbank **jsprbak_tag04_security**. Benutzer und Passwort der DataSource stehen in `application.properties`.
+Die Anwendung nutzt MySQL **ibb-db** (Benutzer `ibb-user`, Tabellen `jsprbak03_users`, `jsprbak03_user_authorities`, `jsprbak03_persons`). Benutzer und Passwort der DataSource stehen in `application.properties`.
 
 Beim Start legt `DataLoader` zwei Konten an, falls sie noch fehlen: `admin` / `admin123` (Rolle ADMIN, inklusive `DELETE_PRIVILEGES`) und `user` / `user123` (Rolle USER, ohne Löschrecht).
 
-Tests laufen mit dem Profil `test` auf H2 (`src/test/resources/application-test.properties`), nicht gegen MariaDB.
+Tests laufen mit dem Profil `test` auf H2 (`src/test/resources/application-test.properties`), nicht gegen MySQL.
 
 ## Ausprobieren
 

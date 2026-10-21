@@ -10,7 +10,7 @@ Start in der IDE: [Maven-Projekt in der IDE starten](../../docs/ide-maven.md).
 
 - Context-Pfad: `/javawebaufbau-tag9`
 - URL: http://localhost:8080/javawebaufbau-tag9/ und http://localhost:8080/javawebaufbau-tag9/orders
-- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `JavaWebAufbauPU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/jwebak_tag09_relations`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `JavaWebAufbauPU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/ibb`, Tabellen `jwebak07_users`, `jwebak07_user_profiles`, `jwebak07_orders`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 

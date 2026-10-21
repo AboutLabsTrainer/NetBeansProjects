@@ -1,2 +1,1 @@
-CREATE DATABASE IF NOT EXISTS jwebak_tag07_jpa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
+-- ibb-db wird vom Docker-MySQL angelegt. Der Payara-Pool jdbc/ibb zeigt darauf.

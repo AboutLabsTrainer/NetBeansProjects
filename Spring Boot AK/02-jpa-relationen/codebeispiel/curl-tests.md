@@ -82,7 +82,7 @@ curl http://localhost:8080/api/orders/latest
 curl "http://localhost:8080/api/persons?page=0&size=5&sortField=lastname&sortDir=asc"
 ```
 
-## MariaDB statt H2
+## MySQL statt H2
 
 In `application.properties` Profil ändern:
 
@@ -90,4 +90,4 @@ In `application.properties` Profil ändern:
 spring.profiles.active=mysql
 ```
 
-Datenbank `persondb` muss existieren.
+Die Datenbank `ibb-db` kommt aus Docker. Tabellen: `jsprbak02_persons`, `jsprbak02_addresses`, `jsprbak02_orders`.

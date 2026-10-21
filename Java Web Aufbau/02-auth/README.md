@@ -10,7 +10,7 @@ Das Passwort liegt als SHA-256-Hex in der Datenbank. Der Vergleich läuft über 
 
 - Context-Pfad: `/03-auth-db`
 - URL: http://localhost:8080/03-auth-db/signin.jsp
-- Deploy: Ordner `codebeispiel` auf Payara 6. Datenbank `jwebak_tag03_auth`. Demo-Login `test@example.com` / `test123`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. Datenbank `ibb-db` (Benutzer `ibb-user`, Tabelle `jwebak02_customer`). Demo-Login `test@example.com` / `test123`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 

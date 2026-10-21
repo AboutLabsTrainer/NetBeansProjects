@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Programmatisches Login gegen jwebak03_customer. Die JDBC-Daten kommen aus den Context-Parametern in web.xml, nicht aus einem Server-Realm.
+ * Programmatisches Login gegen jwebak02_customer. Die JDBC-Daten kommen aus den Context-Parametern in web.xml, nicht aus einem Server-Realm.
  */
 @WebServlet(name = "SigninServlet", urlPatterns = {"/signin"})
 public class SigninServlet extends HttpServlet {
@@ -45,7 +45,7 @@ public class SigninServlet extends HttpServlet {
         String hashed = hash(password);
         try (Connection con = new GConnection(getServletContext()).getConnection();
              PreparedStatement ps = con.prepareStatement(
-                     "SELECT id, email FROM jwebak03_customer WHERE email=? AND password=?")) {
+                     "SELECT id, email FROM jwebak02_customer WHERE email=? AND password=?")) {
 
             ps.setString(1, email);
             ps.setString(2, hashed);

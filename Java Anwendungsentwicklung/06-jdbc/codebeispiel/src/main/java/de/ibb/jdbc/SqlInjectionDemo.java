@@ -12,9 +12,9 @@ import java.sql.*;
  */
 public class SqlInjectionDemo {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/jae_tag06_jdbc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String USER = "jae_tag06_jdbc";
-    private static final String PASSWORD = "jae_tag06_jdbc";
+    private static final String URL = "jdbc:mysql://localhost:3306/ibb-db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "ibb-user";
+    private static final String PASSWORD = "ibb-pw";
     
     public static void main(String[] args) {
         System.out.println("═══════════════════════════════════════════════════════════");
@@ -84,13 +84,13 @@ public class SqlInjectionDemo {
             System.out.println("─────────────────────────────────────────────────────────");
             System.out.println();
             System.out.println("❌ UNSICHERE Abfrage (String-Konkatenation):");
-            System.out.println("   SELECT * FROM users WHERE name='' OR '1'='1' --' AND pass='egal'");
+            System.out.println("   SELECT * FROM jae06_users WHERE name='' OR '1'='1' --' AND pass='egal'");
             System.out.println("                              ^^^^^^^^^^^^^^^^^^^");
             System.out.println("   '1'='1' ist IMMER wahr! -- kommentiert den Rest aus.");
             System.out.println("   → Gibt den ERSTEN User zurück = Login als Admin!");
             System.out.println();
             System.out.println("✅ SICHERE Abfrage (PreparedStatement):");
-            System.out.println("   SELECT * FROM users WHERE name=? AND pass=?");
+            System.out.println("   SELECT * FROM jae06_users WHERE name=? AND pass=?");
             System.out.println("   Parameter: [\"' OR '1'='1' --\", \"egal\"]");
             System.out.println("   → Sucht nach einem User mit dem Namen \"' OR '1'='1' --\"");
             System.out.println("   → Findet nichts = Login fehlgeschlagen!");
@@ -118,7 +118,7 @@ public class SqlInjectionDemo {
             throws SQLException {
         
         // ❌ FALSCH: String-Konkatenation = SQL Injection möglich!
-        String sql = "SELECT * FROM users WHERE name='" + username + "' AND pass='" + password + "'";
+        String sql = "SELECT * FROM jae06_users WHERE name='" + username + "' AND pass='" + password + "'";
         
         System.out.println("      SQL: " + sql);
         
@@ -139,7 +139,7 @@ public class SqlInjectionDemo {
             throws SQLException {
         
         // ✅ RICHTIG: Prepared Statement mit Platzhaltern
-        String sql = "SELECT * FROM users WHERE name = ? AND pass = ?";
+        String sql = "SELECT * FROM jae06_users WHERE name = ? AND pass = ?";
         
         System.out.println("      SQL: " + sql);
         System.out.println("      Params: [\"" + username + "\", \"" + password + "\"]");
@@ -162,7 +162,7 @@ public class SqlInjectionDemo {
         try (Statement stmt = conn.createStatement()) {
             // Tabelle erstellen
             stmt.execute("""
-                CREATE TABLE users (
+                CREATE TABLE jae06_users (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name VARCHAR(100) NOT NULL,
                     pass VARCHAR(100) NOT NULL,
@@ -171,9 +171,9 @@ public class SqlInjectionDemo {
                 """);
             
             // Testdaten (in Produktion: Passwörter HASHEN!)
-            stmt.execute("INSERT INTO users (name, pass, role) VALUES ('admin', 'geheim123', 'ADMIN')");
-            stmt.execute("INSERT INTO users (name, pass, role) VALUES ('user1', 'pass1', 'USER')");
-            stmt.execute("INSERT INTO users (name, pass, role) VALUES ('user2', 'pass2', 'USER')");
+            stmt.execute("INSERT INTO jae06_users (name, pass, role) VALUES ('admin', 'geheim123', 'ADMIN')");
+            stmt.execute("INSERT INTO jae06_users (name, pass, role) VALUES ('user1', 'pass1', 'USER')");
+            stmt.execute("INSERT INTO jae06_users (name, pass, role) VALUES ('user2', 'pass2', 'USER')");
         }
         
         System.out.println("📦 Datenbank vorbereitet: 3 User (admin, user1, user2)");

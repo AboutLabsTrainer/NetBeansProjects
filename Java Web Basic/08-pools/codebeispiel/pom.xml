@@ -20,7 +20,7 @@
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Der Pool jdbc/jwebb_tag09_pools liegt auf Payara und nutzt den MySQL-Treiber des Servers. -->
+        <!-- Der Pool jdbc/ibb liegt auf Payara und nutzt den MySQL-Treiber des Servers. -->
     </dependencies>
     
     <build>

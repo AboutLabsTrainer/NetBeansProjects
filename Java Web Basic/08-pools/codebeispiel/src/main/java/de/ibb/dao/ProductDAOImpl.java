@@ -21,13 +21,13 @@ import java.util.Optional;
 @Stateless
 public class ProductDAOImpl implements ProductDAO {
 
-    @Resource(name = "jdbc/jwebb_tag09_pools")
+    @Resource(name = "jdbc/ibb")
     private DataSource dataSource;
 
     @Override
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM jwebb_products ORDER BY name";
+        String sql = "SELECT * FROM jwebb08_products ORDER BY name";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -45,7 +45,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Optional<Product> findById(int id) {
-        String sql = "SELECT * FROM jwebb_products WHERE id = ?";
+        String sql = "SELECT * FROM jwebb08_products WHERE id = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -67,7 +67,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public List<Product> searchByName(String query) {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM jwebb_products WHERE name LIKE ? ORDER BY name";
+        String sql = "SELECT * FROM jwebb08_products WHERE name LIKE ? ORDER BY name";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -88,7 +88,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void save(Product product) {
-        String sql = "INSERT INTO jwebb_products (name, description, price, stock) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO jwebb08_products (name, description, price, stock) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -118,7 +118,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void update(Product product) {
-        String sql = "UPDATE jwebb_products SET name = ?, description = ?, price = ?, stock = ? WHERE id = ?";
+        String sql = "UPDATE jwebb08_products SET name = ?, description = ?, price = ?, stock = ? WHERE id = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -141,7 +141,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE FROM jwebb_products WHERE id = ?";
+        String sql = "DELETE FROM jwebb08_products WHERE id = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

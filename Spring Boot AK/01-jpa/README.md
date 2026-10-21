@@ -14,7 +14,7 @@ Main-Klasse: `com.example.demo.DemoApplication`
 
 `server.port`: **8080**
 
-Das Codebeispiel startet mit Profil `mysql`. Die Übung nutzt H2 und braucht kein MySQL.
+Das Codebeispiel startet mit Profil `mysql` und der Datenbank `ibb-db`. Die Übung nutzt H2 und braucht kein MySQL.
 
 Im Ordner `codebeispiel`:
 

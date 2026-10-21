@@ -11,7 +11,7 @@ import java.util.List;
  * Inverse Seite: ein Autor, viele Bücher. @OneToMany ist mit mappedBy author an Book.author gekoppelt.
  */
 @Entity
-@Table(name = "authors")
+@Table(name = "jwebak06_authors")
 public class Author implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

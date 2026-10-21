@@ -10,11 +10,11 @@ Start in der IDE: [Maven-Projekt in der IDE starten](../../docs/ide-maven.md).
 
 - Context-Pfad: `/Tag10`
 - URL: http://localhost:8080/Tag10/initdb und http://localhost:8080/Tag10/benchmark
-- Deploy: Ordner `codebeispiel` auf Payara 6. JNDI `jdbc/jwebb_tag10_jdbc`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. JNDI `jdbc/ibb`, Tabelle `jwebb09_products`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 
-`ProductSql.insert` liefert das SQL `INSERT INTO jwebb_products(name, price, stock) VALUES(?,?,?)` und die Parameter in der Reihenfolge Name, Preis, Bestand.
+`ProductSql.insert` liefert das SQL `INSERT INTO jwebb09_products(name, price, stock) VALUES(?,?,?)` und die Parameter in der Reihenfolge Name, Preis, Bestand.
 
 ## Stufe 2
 

@@ -10,11 +10,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * JPA-Entity für die Tabelle persons.
+ * JPA-Entity für die Tabelle jsprbak01_persons.
  * Der Persistence-Context verfolgt Änderungen an verwalteten Instanzen und schreibt sie am Transaktionsende.
  */
 @Entity
-@Table(name = "persons")
+@Table(name = "jsprbak01_persons")
 public class Person {
 
 	@Id

@@ -1,7 +1,6 @@
-CREATE DATABASE IF NOT EXISTS jwebak_tag07_jpa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE jwebak_tag07_jpa;
+USE `ibb-db`;
 
-CREATE TABLE IF NOT EXISTS products (
+CREATE TABLE IF NOT EXISTS jwebak05_products (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
   price DECIMAL(13,2) NOT NULL,

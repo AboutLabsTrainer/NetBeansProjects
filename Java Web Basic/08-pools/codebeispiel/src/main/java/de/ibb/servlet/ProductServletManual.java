@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Holt die DataSource jdbc/jwebb_tag09_pools einmal per JNDI-Lookup in init().
+ * Holt die DataSource jdbc/ibb einmal per JNDI-Lookup in init().
  */
 @WebServlet("/products-manual")
 public class ProductServletManual extends HttpServlet {
@@ -28,7 +28,7 @@ public class ProductServletManual extends HttpServlet {
     public void init() throws ServletException {
         try {
             Context ctx = new InitialContext();
-            dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/jwebb_tag09_pools");
+            dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/ibb");
         } catch (NamingException e) {
             throw new ServletException("JNDI lookup failed", e);
         }
@@ -41,7 +41,7 @@ public class ProductServletManual extends HttpServlet {
 
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM jwebb_products")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM jwebb08_products")) {
 
             java.util.List<String> productNames = new java.util.ArrayList<>();
 

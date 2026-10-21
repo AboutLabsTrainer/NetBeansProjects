@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
  * Der Eigentümer verknüpft den Datensatz mit dem Benutzer, den die eigenen Security-Ausdrücke prüfen.
  */
 @Entity
-@Table(name = "persons")
+@Table(name = "jsprbak03_persons")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

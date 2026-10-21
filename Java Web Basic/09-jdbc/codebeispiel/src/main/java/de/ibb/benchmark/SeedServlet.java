@@ -15,12 +15,12 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 /**
- * Legt jwebb_products an und füllt sie über den Pool jdbc/jwebb_tag10_jdbc.
+ * Legt jwebb09_products an und füllt sie über den Pool jdbc/ibb.
  */
 @WebServlet(name = "SeedServlet", urlPatterns = {"/initdb"})
 public class SeedServlet extends HttpServlet {
 
-    @Resource(lookup = "jdbc/jwebb_tag10_jdbc")
+    @Resource(lookup = "jdbc/ibb")
     private DataSource ds;
 
     @Override
@@ -30,17 +30,17 @@ public class SeedServlet extends HttpServlet {
              Connection conn = ds.getConnection()) {
 
             try (Statement st = conn.createStatement()) {
-                st.execute("CREATE TABLE IF NOT EXISTS jwebb_products (\n" +
+                st.execute("CREATE TABLE IF NOT EXISTS jwebb09_products (\n" +
                         "  id INT PRIMARY KEY AUTO_INCREMENT,\n" +
                         "  name VARCHAR(200) NOT NULL,\n" +
                         "  price DECIMAL(10,2) NOT NULL,\n" +
                         "  stock INT NOT NULL\n" +
                         ")");
-                st.execute("DELETE FROM jwebb_products"); // reset
+                st.execute("DELETE FROM jwebb09_products"); // reset
             }
 
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO jwebb_products(name, price, stock) VALUES (?,?,?)")) {
+                    "INSERT INTO jwebb09_products(name, price, stock) VALUES (?,?,?)")) {
                 conn.setAutoCommit(false);
                 for (int i = 1; i <= 1000; i++) {
                     ps.setString(1, "Product " + i);
@@ -54,7 +54,7 @@ public class SeedServlet extends HttpServlet {
             }
 
             resp.setStatus(200);
-            out.println("OK: Schema jwebb_products created and 1000 products inserted.");
+            out.println("OK: Schema jwebb09_products created and 1000 products inserted.");
         } catch (Exception e) {
             throw new ServletException("Init failed: " + e.getMessage(), e);
         }

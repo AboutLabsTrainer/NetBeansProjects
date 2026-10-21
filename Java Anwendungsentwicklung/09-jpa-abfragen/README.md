@@ -17,7 +17,7 @@ mvn -q -DskipTests compile
 mvn exec:java
 ```
 
-Die Persistence Unit bleibt `RESOURCE_LOCAL` mit EclipseLink und MySQL `jae_tag09_jpa`. Der Lauf braucht die Datenbank. Weitere Mains: `RelationshipDemo`, `de.ibb.jpa.repository.RepositoryDemo`. Die Abfrage älterer Personen lautet `SELECT p FROM Person p WHERE p.alter > :minAlter ORDER BY p.alter`.
+Die Persistence Unit bleibt `RESOURCE_LOCAL` mit EclipseLink und MySQL `ibb-db` (Benutzer `ibb-user`, Tabellen `jae09_personen`, `jae09_adressen`, `jae09_bestellungen`). Der Lauf braucht die Datenbank. Weitere Mains: `RelationshipDemo`, `de.ibb.jpa.repository.RepositoryDemo`. Die Abfrage älterer Personen lautet `SELECT p FROM Person p WHERE p.alter > :minAlter ORDER BY p.alter`.
 
 ## Stufe 1
 

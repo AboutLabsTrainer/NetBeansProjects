@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ibb-mysql
+    environment:
+      MYSQL_DATABASE: ibb-db
+      MYSQL_USER: ibb-user
+      MYSQL_PASSWORD: ibb-pw
+      MYSQL_ROOT_PASSWORD: ibb-root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ibb-mysql-data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uibb-user", "-pibb-pw"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  adminer:
+    image: adminer
+    container_name: ibb-adminer
+    ports:
+      - "8088:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  ibb-mysql-data:

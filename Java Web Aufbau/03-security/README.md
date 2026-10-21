@@ -10,7 +10,7 @@ Der Container prüft Rollen an URL-Mustern. `admin` darf die Flächen der andere
 
 - Context-Pfad: `/Tag4`
 - URL: http://localhost:8080/Tag4/user/dashboard , http://localhost:8080/Tag4/manager/dashboard , http://localhost:8080/Tag4/admin/dashboard
-- Deploy: Ordner `codebeispiel` auf Payara 6, JDBC-Realm `jwebak_tag04_securityRealm`. Konten `user`/`user123`, `manager`/`manager123`, `admin`/`admin123`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6, JDBC-Realm `ibb-realm`, Tabellen `jwebak03_users` und `jwebak03_user_roles`. Konten `user`/`user123`, `manager`/`manager123`, `admin`/`admin123`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 

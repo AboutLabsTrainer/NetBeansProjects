@@ -30,7 +30,7 @@ Die Anwendung lauscht auf Port **8080** (`server.port` in `application.propertie
 
 Aktives Profil: **mysql**. Verbindungsdaten stehen in `application-mysql.properties`.
 
-Die Anwendung nutzt die MariaDB-Datenbank **jsprbak_tag03_jpa**.
+Die Anwendung nutzt MySQL **ibb-db** (Benutzer `ibb-user`, Tabellen `jsprbak02_persons`, `jsprbak02_addresses`, `jsprbak02_orders`).
 
 ## Ausprobieren
 

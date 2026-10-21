@@ -10,7 +10,7 @@ Die JSF-Seite bindet das Formular an eine View-Scoped Bean. Die Prüfung von Nam
 
 - Context-Pfad: `/Tag10JSFPrimeFaces`
 - URL: http://localhost:8080/Tag10JSFPrimeFaces/product-list.xhtml
-- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `Tag10JSFPrimeFacesPU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/jwebak_tag10_jsf`. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- Deploy: Ordner `codebeispiel` auf Payara 6. Persistence-Unit `Tag10JSFPrimeFacesPU`, Provider `org.eclipse.persistence.jpa.PersistenceProvider`, JPA 3.1, JNDI `jdbc/ibb`, Tabelle `jwebak08_products`. `mvn -q -DskipTests compile` oder `mvn -q package`.
 
 ## Stufe 1
 

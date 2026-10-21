@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * Bestellung, die zu genau einer Person gehört.
  */
 @Entity
-@Table(name = "bestellungen")
+@Table(name = "jae09_bestellungen")
 public class Bestellung {
     
     @Id

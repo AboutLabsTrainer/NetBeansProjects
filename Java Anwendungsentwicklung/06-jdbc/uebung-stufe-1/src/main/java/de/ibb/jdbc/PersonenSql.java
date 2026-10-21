@@ -7,7 +7,7 @@ public final class PersonenSql {
     }
 
     public static String createTableSql() {
-        // TODO: CREATE TABLE personen mit id, name, `alter`, email wie in HalloJDBC
+        // TODO: CREATE TABLE jae06_personen mit id, name, `alter`, email wie in HalloJDBC
         return "";
     }
 
@@ -17,7 +17,7 @@ public final class PersonenSql {
     }
 
     public static String selectAlleSql() {
-        // TODO: SELECT id, name, `alter`, email FROM personen
+        // TODO: SELECT id, name, `alter`, email FROM jae06_personen
         return "";
     }
 }
