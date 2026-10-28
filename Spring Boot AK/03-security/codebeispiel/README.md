@@ -11,7 +11,7 @@ Eine SecurityFilterChain mit Formular-Login, HTTP Basic und JWT, Rollen und Auth
 1. `PersonManagementApplication` und `DataLoader` – Start und Demo-Benutzer
 2. `User`, `Role`, `Authority` – Konto und Rechte
 3. `CustomUserDetailsService` – lädt das Konto in den SecurityContext
-4. `SecurityConfig` – Filterkette
+4. `SecurityConfig` – zwei Filterketten: `/api/**` zustandslos mit JWT und HTTP Basic, die Webseiten mit Formular-Login, Session und CSRF
 5. `JwtTokenProvider` und `JwtAuthenticationFilter` – Bearer-Token
 6. `AuthApiController`, `WebController`, `AdminController`, `PersonController` – die geschützten Einstiege
 7. `CustomSecurityExpressions` – Ausdruck `isOwner` für die Methodensicherheit
@@ -33,6 +33,20 @@ Die Anwendung nutzt MySQL **ibb-db** (Benutzer `ibb-user`, Tabellen `jsprbak03_u
 Beim Start legt `DataLoader` zwei Konten an, falls sie noch fehlen: `admin` / `admin123` (Rolle ADMIN, inklusive `DELETE_PRIVILEGES`) und `user` / `user123` (Rolle USER, ohne Löschrecht).
 
 Tests laufen mit dem Profil `test` auf H2 (`src/test/resources/application-test.properties`), nicht gegen MySQL.
+
+## Regeln, die `SecurityRulesTests` prüft
+
+- `DELETE /api/persons/{id}` verlangt die Authority `DELETE_PRIVILEGES` und zusätzlich Owner oder Admin. `user` bekommt 403.
+- Ein Refresh-Token öffnet keine API (401), ein Access-Token erneuert nichts. Der Claim `type` trennt beide.
+- Die API liest keine Session. Ein Session-Cookie aus dem Formular-Login meldet unter `/api/**` niemanden an, deshalb braucht die API kein CSRF-Token.
+- `GET /api/users/me/full` liefert kein Passwort-Feld.
+- Vertrauliche Personen sieht nur ihr Owner oder ein Admin, in der Liste (`@PostFilter`) wie im Einzelabruf (`@PostAuthorize`).
+- `POST /api/persons/addPerson` validiert den Body (400) und ignoriert eine mitgeschickte `id`.
+- Eine fehlende Person liefert 404, nicht 500.
+
+```bash
+mvn test
+```
 
 ## Ausprobieren
 

@@ -22,10 +22,7 @@ public class CustomSecurityExpressions {
         String currentUsername = auth.getName();
 
         Person person = personRepository.findById(personId).orElse(null);
-        if (person == null) {
-            return false;
-        }
-        return person.getOwner().getUsername().equals(currentUsername);
+        return person != null && isOwnedBy(person, currentUsername);
     }
 
     public boolean isOwnerOrAdmin(Long personId) {
@@ -49,8 +46,12 @@ public class CustomSecurityExpressions {
             return true;
         }
         if (person.isConfidential()) {
-            return person.getOwner().getUsername().equals(auth.getName());
+            return isOwnedBy(person, auth.getName());
         }
         return true;
+    }
+
+    private boolean isOwnedBy(Person person, String username) {
+        return person.getOwner() != null && person.getOwner().getUsername().equals(username);
     }
 }

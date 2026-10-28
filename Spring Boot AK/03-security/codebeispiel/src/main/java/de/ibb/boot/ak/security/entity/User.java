@@ -1,11 +1,13 @@
 package de.ibb.boot.ak.security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,7 @@ import java.util.Set;
 /**
  * JPA-Entity des Kontos mit Passwort, Rolle und Authorities.
  * Das Passwort liegt kodiert vor. UserDetailsService lädt den Datensatz in den SecurityContext.
+ * Der Hash verlässt die Anwendung nicht: weder als JSON noch über toString im Log.
  */
 @Entity
 @Table(name = "jsprbak03_users")
@@ -32,6 +35,8 @@ public class User {
 
     @NotBlank(message = "Password darf nicht leer sein")
     @Column(nullable = false)
+    @JsonIgnore
+    @ToString.Exclude
     private String password;
 
     @Enumerated(EnumType.STRING)

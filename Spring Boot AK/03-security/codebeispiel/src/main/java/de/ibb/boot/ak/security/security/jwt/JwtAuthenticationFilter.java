@@ -19,7 +19,7 @@ import java.io.IOException;
 
 /**
  * Einmal pro Request: liest das Bearer-Token und setzt bei Gültigkeit die Authentication in den SecurityContext.
- * Ohne Token bleibt der Request für die nachfolgenden Regeln der Filterkette anonym.
+ * Nur ein Access-Token zählt, ein Refresh-Token wird abgewiesen. Ohne Token bleibt der Request für die nachfolgenden Regeln der Filterkette anonym.
  */
 @Component
 @RequiredArgsConstructor
@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String jwt = getJwtFromRequest(request);
 
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+            if (StringUtils.hasText(jwt) && tokenProvider.validateAccessToken(jwt)) {
                 String username = tokenProvider.getUsernameFromToken(jwt);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 

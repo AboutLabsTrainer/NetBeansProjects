@@ -2,23 +2,29 @@ package de.ibb.boot.ak.security.security;
 
 import de.ibb.boot.ak.security.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 /**
- * Definiert die SecurityFilterChain für Formular-Login, HTTP Basic und JWT.
- * Die Kette entscheidet pro Pfad über anonym, Rolle oder Authority. Der JWT-Filter liegt vor dem Username-Password-Filter.
+ * Zwei SecurityFilterChains: eine zustandslose für /api/** (JWT und HTTP Basic) und eine für die Webseiten (Formular-Login).
+ * Die API-Kette liest keine Session. Deshalb braucht sie kein CSRF-Token, und ein Session-Cookie aus dem Browser
+ * meldet dort niemanden an. Die Web-Kette behält CSRF-Schutz, Session und Remember-me.
  */
 @Configuration
 @EnableWebSecurity
@@ -37,8 +43,7 @@ public class SecurityConfig {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -48,17 +53,48 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
+    /**
+     * Der JWT-Filter ist eine Bean. Ohne diese Registrierung hängt Spring Boot ihn zusätzlich
+     * in die Servlet-Filterkette des Containers, also außerhalb von Spring Security.
+     */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public FilterRegistrationBean<JwtAuthenticationFilter> jwtFilterRegistration() {
+        FilterRegistrationBean<JwtAuthenticationFilter> registration = new FilterRegistrationBean<>(jwtAuthFilter);
+        registration.setEnabled(false);
+        return registration;
+    }
+
+    @Bean
+    @Order(1)
+    public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/api/**")
+                .securityMatcher("/api/**")
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .securityContext(context -> context
+                        .securityContextRepository(new RequestAttributeSecurityContextRepository())
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/register", "/api/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/persons/**").hasAuthority("DELETE_PRIVILEGES")
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .httpBasic(basic -> {});
+
+        return http.build();
+    }
+
+    @Bean
+    @Order(2)
+    public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        // /error offen lassen, sonst wird aus einem 404 oder 403 der API ein Redirect zum Login.
+                        .requestMatchers("/", "/login", "/register", "/error").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/persons/delete/**").hasAuthority("DELETE_PRIVILEGES")
-                        .requestMatchers("/api/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -76,11 +112,9 @@ public class SecurityConfig {
                         .tokenValiditySeconds(86400 * 30)
                         .rememberMeParameter("remember-me")
                 )
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                )
-                .httpBasic(basic -> {});
+                );
 
         return http.build();
     }

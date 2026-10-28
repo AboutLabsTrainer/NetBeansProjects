@@ -4,6 +4,7 @@ import de.ibb.boot.ak.security.entity.Person;
 import de.ibb.boot.ak.security.entity.User;
 import de.ibb.boot.ak.security.security.CurrentUser;
 import de.ibb.boot.ak.security.service.PersonService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,8 @@ import java.util.List;
 
 /**
  * REST-Schnittstelle der Personen hinter der Security-Filterkette.
- * Löschen verlangt die Authority DELETE_PRIVILEGES, die übrigen API-Pfade eine angemeldete Identität.
+ * Löschen verlangt die Authority DELETE_PRIVILEGES (Filterkette, HTTP-Methode DELETE) und zusätzlich Owner oder Admin
+ * (Methodensicherheit). Die übrigen API-Pfade verlangen eine angemeldete Identität.
  */
 @RestController
 @RequestMapping("/api/persons")
@@ -32,12 +34,12 @@ public class PersonController {
     }
 
     @PostMapping("/addPerson")
-    public Person create(@RequestBody Person person, @CurrentUser User currentUser) {
+    public Person create(@Valid @RequestBody Person person, @CurrentUser User currentUser) {
         return personService.create(person, currentUser);
     }
 
     @PutMapping("/{id}")
-    public Person update(@PathVariable Long id, @RequestBody Person person) {
+    public Person update(@PathVariable Long id, @Valid @RequestBody Person person) {
         return personService.update(id, person);
     }
 

@@ -49,7 +49,7 @@ public class AuthApiController {
     public ResponseEntity<?> refresh(@RequestBody RefreshRequest refreshRequest) {
         String refreshToken = refreshRequest.getRefreshToken();
 
-        if (tokenProvider.validateToken(refreshToken)) {
+        if (tokenProvider.validateRefreshToken(refreshToken)) {
             String username = tokenProvider.getUsernameFromToken(refreshToken);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
