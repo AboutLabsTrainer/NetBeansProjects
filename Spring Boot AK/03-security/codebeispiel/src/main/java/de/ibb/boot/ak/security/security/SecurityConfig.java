@@ -2,6 +2,7 @@ package de.ibb.boot.ak.security.security;
 
 import de.ibb.boot.ak.security.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -89,7 +90,8 @@ public class SecurityConfig {
 
     @Bean
     @Order(2)
-    public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain webFilterChain(HttpSecurity http,
+                                              @Value("${app.remember-me.key}") String rememberMeKey) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
                         // /error offen lassen, sonst wird aus einem 404 oder 403 der API ein Redirect zum Login.
@@ -108,7 +110,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .rememberMe(remember -> remember
-                        .key("mySecretRememberMeKey")
+                        .key(rememberMeKey)
                         .tokenValiditySeconds(86400 * 30)
                         .rememberMeParameter("remember-me")
                 )

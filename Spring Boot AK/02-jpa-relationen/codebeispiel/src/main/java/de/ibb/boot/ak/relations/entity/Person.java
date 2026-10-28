@@ -13,9 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -30,8 +28,6 @@ import java.util.Set;
 @Table(name = "jsprbak02_persons")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(exclude = {"addresses", "orders"})
 public class Person {
 
     @Id
@@ -90,5 +86,26 @@ public class Person {
     public void removeOrder(Order order) {
         orders.remove(order);
         order.setPerson(null);
+    }
+
+    /**
+     * Gleich ist nur dieselbe Zeile in der Datenbank, also dieselbe id. Neue Objekte ohne id sind nur sich selbst gleich.
+     * hashCode hängt nicht von id oder Feldern ab und bleibt deshalb über persist und Änderungen hinweg stabil.
+     * Der Vergleich liest other.getId(), damit er auch mit einem Hibernate-Proxy funktioniert.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Person other)) {
+            return false;
+        }
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Person.class.hashCode();
     }
 }

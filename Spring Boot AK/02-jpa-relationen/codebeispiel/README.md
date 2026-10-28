@@ -50,4 +50,4 @@ curl -X POST http://localhost:8080/api/persons/1/addresses -H "Content-Type: app
 
 ## Fußangeln
 
-`Address` und `Order` nutzen Lombok-`equals`/`hashCode` über alle Felder außer der Gegenseite. Solange `id` noch null ist, gelten zwei neue Adressen im `Set` als gleich. Open Session in View ist in Spring Boot standardmäßig an: eine lazy Beziehung kann deshalb noch während der JSON-Ausgabe laden, auch ohne eigene Transaktion im Controller.
+`Person`, `Address` und `Order` vergleichen nur über die `id`, `hashCode` ist pro Klasse konstant. Lombok-`equals`/`hashCode` über die Felder wäre hier falsch: Nach `persist` ändert sich der Hash, `removeAddress` findet die Adresse im `Set` nicht mehr, und `orphanRemoval` löscht nichts. `EntityIdentityTests` prüft das. Die Regeln stehen in [Lombok und JPA](../../../docs/lombok-jpa.md). Open Session in View ist in Spring Boot standardmäßig an: eine lazy Beziehung kann deshalb noch während der JSON-Ausgabe laden, auch ohne eigene Transaktion im Controller.

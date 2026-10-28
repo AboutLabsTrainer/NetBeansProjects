@@ -11,6 +11,7 @@ Listener zählen Requests und Sessions. Die Dauer landet in einem Korb, der höc
 - Context-Pfad: `/Tag2`
 - URL: http://localhost:8080/Tag2/ , http://localhost:8080/Tag2/admin/monitor , http://localhost:8080/Tag2/admin/api/metrics
 - Deploy: Ordner `codebeispiel` auf Payara 6. `mvn -q -DskipTests compile` oder `mvn -q package`.
+- `/admin/*` ist hier ohne Login erreichbar, damit das Lab ohne MySQL und Realm läuft. In einer echten Anwendung gehört eine `security-constraint` davor, wie in [03-security](../03-security/README.md).
 
 ## Stufe 1
 

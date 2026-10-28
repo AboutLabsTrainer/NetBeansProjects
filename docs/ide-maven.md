@@ -18,6 +18,7 @@ Die Aufgabe steht in der `README.md` des Elternordners. Diese Datei gilt für Ne
 - **Jakarta-Web** (`Java Web Basic`, `Java Web Aufbau`): Payara Community **6** unter `C:\payara6`. Die API kommt aus dem Server, Scope `provided`.
 - **Spring Boot**: eingebetteter Tomcat. Vor dem nächsten Lab die vorherige Anwendung beenden, sonst bleibt der Port belegt.
 - **MySQL**: Docker, nicht XAMPP. Im Ordner `docker/mysql` den Befehl `docker compose up -d` ausführen. Datenbank `ibb-db`, Benutzer `ibb-user`, Passwort `ibb-pw`. Adminer unter http://localhost:8088, Server `mysql`. Payara nutzt den Pool `jdbc/ibb` und das Realm `ibb-realm`. XAMPP-MySQL muss gestoppt sein, sonst ist Port 3306 belegt. Das Root-Passwort des Containers ist `ibb-root`.
+- **Payara einrichten**: `docker/payara/configure-ibb.ps1` in PowerShell ausführen, wenn MySQL läuft. Das Skript legt Pool `jdbc/ibb` und Realm `ibb-realm` neu an und entfernt vorher alle deployten Anwendungen und eigenen JDBC-Pools von `domain1`. Es zählt auf, was es löscht, und fragt nach. `-Force` überspringt die Rückfrage. Voraussetzung: `mysql-connector-j-*.jar` liegt in `C:\payara6\glassfish\lib`.
 
 ## NetBeans
 

@@ -1,11 +1,22 @@
 # Resets domain1 JDBC resources and installs the single pool jdbc/ibb plus realm ibb-realm.
 # Domain, admin user and ports stay. Deployed applications are removed.
+# Fragt vor dem Loeschen nach. -Force ueberspringt die Rueckfrage.
+param([switch]$Force)
+
 $ErrorActionPreference = "Continue"
 $PSNativeCommandUseErrorActionPreference = $false
 $asadmin = "C:\payara6\bin\asadmin.bat"
 if (-not (Test-Path $asadmin)) {
     throw "asadmin nicht gefunden: $asadmin"
 }
+
+# Der Pool nutzt com.mysql.cj.jdbc.MysqlDataSource. Ohne den Treiber im Server-Classpath scheitert erst ping-connection-pool am Ende.
+$driverDirs = @("C:\payara6\glassfish\lib", "C:\payara6\glassfish\domains\domain1\lib", "C:\payara6\glassfish\domains\domain1\lib\ext")
+$driver = $driverDirs | Where-Object { Test-Path $_ } | ForEach-Object { Get-ChildItem -Path $_ -Filter "mysql-connector-j-*.jar" } | Select-Object -First 1
+if (-not $driver) {
+    throw "MySQL Connector/J fehlt. mysql-connector-j-*.jar nach C:\payara6\glassfish\lib kopieren oder 'asadmin add-library <jar>' ausfuehren."
+}
+Write-Host "Treiber gefunden: $($driver.FullName)"
 
 $passwordFile = Join-Path $env:TEMP "payara-ibb-password.txt"
 # domain1 auf diesem Rechner hat ein leeres Admin-Passwort. NetBeans speichert deshalb keinen Benutzernamen.
@@ -46,8 +57,23 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "domain1 antwortet auf Port 4848."
 }
 
+$apps = @(Get-AsadminLines list-applications)
+$pools = @(Get-AsadminLines list-jdbc-connection-pools | Where-Object { $_ -notlike "__*" })
+if (-not $Force) {
+    Write-Host ""
+    Write-Host "Dieses Skript entfernt auf domain1:"
+    Write-Host "  Anwendungen: $(if ($apps) { ($apps | ForEach-Object { ($_ -split '\s+')[0] }) -join ', ' } else { '(keine)' })"
+    Write-Host "  JDBC-Pools:  $(if ($pools) { $pools -join ', ' } else { '(keine)' })"
+    Write-Host "  Realms:      jwebak04Realm, ibb-realm"
+    $answer = Read-Host "Fortfahren? (j/n)"
+    if ($answer -notmatch '^[jJyY]') {
+        Write-Host "Abgebrochen. Nichts geaendert."
+        exit 1
+    }
+}
+
 Write-Host "Entferne deployte Anwendungen."
-foreach ($app in (Get-AsadminLines list-applications)) {
+foreach ($app in $apps) {
     $name = ($app -split '\s+')[0]
     if ($name) {
         Write-Host "undeploy $name"
