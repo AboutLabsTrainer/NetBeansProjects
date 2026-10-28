@@ -9,10 +9,11 @@ import java.lang.annotation.Target;
 
 /**
  * Löst einen Methodenparameter zum angemeldeten Domain-User auf.
- * Der Ausdruck liest den Namen aus der Authentication und holt den User über den UserService.
+ * Der Ausdruck wird auf dem Principal (UserDetails) ausgewertet: username liest dessen Namen,
+ * anschließend wird der User über den UserService geholt.
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-@AuthenticationPrincipal(expression = "@userService.getUserByUsername(authentication.name)")
+@AuthenticationPrincipal(expression = "@userService.getUserByUsername(username)")
 public @interface CurrentUser {
 }

@@ -31,7 +31,7 @@ public class PersonController {
         return personService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/addPerson")
     public Person create(@RequestBody Person person, @CurrentUser User currentUser) {
         return personService.create(person, currentUser);
     }
