@@ -1,0 +1,44 @@
+# Kompiliert die Maven-Leaves, die ein Push oder Pull Request ändert. Den vollen Lauf über alle Leaves
+# startet man von Hand (Actions -> Build -> Run workflow), weil er im privaten Repo viele Minuten kostet.
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build changed leaves
+        if: github.event_name != 'workflow_dispatch'
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          # Neuer Branch oder Force-Push: before fehlt oder ist unbekannt, dann gegen den Vorgänger-Commit bauen.
+          if [ -z "$BASE" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            BASE=HEAD~1
+          fi
+          scripts/build-leaves.sh changed "$BASE"
+
+      - name: Build all leaves
+        if: github.event_name == 'workflow_dispatch'
+        run: scripts/build-leaves.sh all
