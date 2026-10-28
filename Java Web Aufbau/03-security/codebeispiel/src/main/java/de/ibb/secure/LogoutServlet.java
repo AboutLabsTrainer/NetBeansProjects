@@ -15,11 +15,12 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Erst beim Container abmelden, dann die Session verwerfen. Umgekehrt arbeitet logout() auf einer ungültigen Session.
+        request.logout();
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        request.logout();
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
 }

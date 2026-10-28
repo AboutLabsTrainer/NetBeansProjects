@@ -98,8 +98,8 @@ Stop the previous embedded Tomcat before starting the next lab. See [Embedded To
 |--------|------|
 | `Mini Projekte` | Small scratch projects (e.g. `ScratchPad`) outside the main day structure |
 | `Rheinwerk` | Publisher/book sample code (`Java ist auch eine Insel`, `buch_spring_boot_code`, Date4u-related demos, etc.) |
-| `Tmp` | Experiments and WIP (`BookShop`, `DockerJavaEE`, quick Spring Boot trials) |
-| `Debug` | Ad-hoc debugging space |
+| `Teilnehmerprojekte` | Participant projects |
+| `Tmp` | Local experiments and WIP. Gitignored, so nothing in it reaches the remote |
 
 ## Repository conventions
 

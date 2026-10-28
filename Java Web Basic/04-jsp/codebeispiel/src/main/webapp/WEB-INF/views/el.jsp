@@ -16,10 +16,11 @@
 </ul>
 
 <h3>param / header / cookie</h3>
+<%-- Diese Werte schickt der Browser. Roh ausgegeben wäre ?q=<script>...</script> ausführbar, deshalb c:out. --%>
 <ul>
-  <li>param.q = <strong>${param.q}</strong></li>
-  <li>header.User-Agent = <strong>${header['User-Agent']}</strong></li>
-  <li>cookie.demo = <strong>${cookie.demo.value}</strong></li>
+  <li>param.q = <strong><c:out value="${param.q}"/></strong></li>
+  <li>header.User-Agent = <strong><c:out value="${header['User-Agent']}"/></strong></li>
+  <li>cookie.demo = <strong><c:out value="${cookie.demo.value}"/></strong></li>
 </ul>
 
 <c:if test="${empty cookie.demo.value}">

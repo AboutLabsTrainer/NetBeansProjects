@@ -54,6 +54,8 @@ public class SigninServlet extends HttpServlet {
                 if (rs.next()) {
                     Customer c = new Customer(rs.getLong("id"), rs.getString("email"));
                     HttpSession session = request.getSession(true);
+                    // signin.jsp hat schon eine Session angelegt. Neue ID nach dem Login, sonst gilt eine untergeschobene ID weiter (Session Fixation).
+                    request.changeSessionId();
                     session.setAttribute("customer", c);
                     response.sendRedirect(request.getContextPath() + "/index.jsp");
                 } else {

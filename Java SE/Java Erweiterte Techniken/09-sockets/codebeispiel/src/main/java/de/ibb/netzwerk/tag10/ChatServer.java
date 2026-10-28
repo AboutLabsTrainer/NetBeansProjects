@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
 
 /**
  * Verteilt jede eingehende Zeile an alle verbundenen Clients. Ein Thread-Pool hält die Verbindungen parallel offen.
+ * Jeder Client belegt einen Pool-Thread, solange er verbunden ist. Ab dem 21. Client wartet die Verbindung
+ * in der Queue des Executors, bis jemand den Chat verlässt.
  */
 public class ChatServer {
 
@@ -64,18 +66,25 @@ public class ChatServer {
                  PrintWriter out = new PrintWriter(client.getOutputStream(), true)) {
 
                 CLIENTS.add(out);
-                broadcast("Client " + threadName + " hat den Chat betreten.", out);
-                out.println("Willkommen im Chat! Tippe Nachrichten, '/quit' zum Verlassen.");
+                try {
+                    broadcast("Client " + threadName + " hat den Chat betreten.", out);
+                    out.println("Willkommen im Chat! Tippe Nachrichten, '/quit' zum Verlassen.");
 
-                String line;
-                while ((line = in.readLine()) != null) {
-                    if ("/quit".equalsIgnoreCase(line.trim())) {
-                        out.println("Du verlässt den Chat. Tschüss!");
-                        break;
+                    String line;
+                    while ((line = in.readLine()) != null) {
+                        if ("/quit".equalsIgnoreCase(line.trim())) {
+                            out.println("Du verlässt den Chat. Tschüss!");
+                            break;
+                        }
+                        String message = "[" + threadName + "] " + line;
+                        System.out.println("Broadcast: " + message);
+                        broadcast(message, null);
                     }
-                    String message = "[" + threadName + "] " + line;
-                    System.out.println("Broadcast: " + message);
-                    broadcast(message, null);
+                } finally {
+                    // Ohne remove bliebe der Writer nach dem Trennen in der Liste. PrintWriter meldet
+                    // Schreibfehler nicht, also würde jeder Broadcast still an tote Sockets gehen.
+                    CLIENTS.remove(out);
+                    broadcast("Client " + threadName + " hat den Chat verlassen.", null);
                 }
             } catch (IOException e) {
                 System.out.println("Fehler in ChatClientHandler (" + threadName + "): " + e.getMessage());
