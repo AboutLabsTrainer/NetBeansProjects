@@ -97,8 +97,8 @@ Stop the previous embedded Tomcat before starting the next lab. See [Embedded To
 | Folder | Role |
 |--------|------|
 | `Mini Projekte` | Small scratch projects (e.g. `ScratchPad`) outside the main day structure |
-| `Rheinwerk` | Publisher/book sample code (`Java ist auch eine Insel`, `buch_spring_boot_code`, Date4u-related demos, etc.) |
-| `Teilnehmerprojekte` | Participant projects |
+| `Rheinwerk` | Publisher/book sample code. Gitignored, kept locally only |
+| `Teilnehmerprojekte` | Participant projects. Gitignored, kept locally only |
 | `Tmp` | Local experiments and WIP. Gitignored, so nothing in it reaches the remote |
 
 ## Repository conventions

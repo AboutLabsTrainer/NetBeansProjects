@@ -66,5 +66,10 @@
 # Preserved nested-repo metadata (not part of monorepo)
 **/.git.nested-backup/
 
-# Local scratch workspace. Plans under .cursor/plans stay tracked.
+# Cursor editor metadata
+**/.cursor/
+
+# Local-only folders (not part of the repo)
 /Tmp/
+/Rheinwerk/
+/Teilnehmerprojekte/

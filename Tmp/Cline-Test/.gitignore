@@ -1,6 +1,0 @@
-target/
-*.log
-!jetty.xml
-.classpath
-.project
-.settings/
