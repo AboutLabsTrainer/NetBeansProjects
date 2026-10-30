@@ -76,7 +76,7 @@ class DefaultGreetingServiceTest {
         @DisplayName("sollte Uppercase anwenden")
         void shouldApplyUppercase() {
             properties.setUppercase(true);
-            assertThat(service.greet("Petra")).isEqualTo("HELLO, Petra!");
+            assertThat(service.greet("Petra")).isEqualTo("HELLO, PETRA!");
         }
 
         @Test
@@ -96,7 +96,7 @@ class DefaultGreetingServiceTest {
 
             String result = service.greet("Petra");
 
-            assertThat(result).isEqualTo("🎉 [PREMIUM] WILLKOMMEN, Petra! 🎉");
+            assertThat(result).isEqualTo("🎉 [PREMIUM] WILLKOMMEN, PETRA! 🎉");
         }
     }
 

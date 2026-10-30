@@ -80,7 +80,7 @@ class GreetingAutoConfigurationTest {
                     .withPropertyValues("greeting.uppercase=true")
                     .run(context -> {
                         GreetingService service = context.getBean(GreetingService.class);
-                        assertThat(service.greet("Petra")).isEqualTo("HELLO, Petra!");
+                        assertThat(service.greet("Petra")).isEqualTo("HELLO, PETRA!");
                     });
         }
 
