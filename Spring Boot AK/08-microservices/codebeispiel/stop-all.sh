@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" || exit 1
+
 echo "🛑 Stopping all Microservices..."
 echo ""
 
@@ -28,11 +30,18 @@ if [ -d ".pids" ]; then
 else
     echo "No PIDs found. Trying to kill by port..."
     
-    # Kill by port
-    lsof -ti:8761 | xargs kill -9 2>/dev/null && echo "✓ Stopped Eureka (8761)"
-    lsof -ti:8081 | xargs kill -9 2>/dev/null && echo "✓ Stopped User Service (8081)"
-    lsof -ti:8082 | xargs kill -9 2>/dev/null && echo "✓ Stopped Order Service (8082)"
-    lsof -ti:8080 | xargs kill -9 2>/dev/null && echo "✓ Stopped API Gateway (8080)"
+    # Kill by port. lsof fehlt in manchen WSL-Distributionen, dann hilft fuser aus psmisc.
+    kill_port() {
+        if command -v lsof > /dev/null; then
+            lsof -ti:"$1" | xargs -r kill -9 2>/dev/null
+        else
+            fuser -k "$1"/tcp > /dev/null 2>&1
+        fi
+    }
+    kill_port 8761 && echo "✓ Stopped Eureka (8761)"
+    kill_port 8081 && echo "✓ Stopped User Service (8081)"
+    kill_port 8082 && echo "✓ Stopped Order Service (8082)"
+    kill_port 8080 && echo "✓ Stopped API Gateway (8080)"
 fi
 
 echo ""

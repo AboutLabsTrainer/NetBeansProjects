@@ -9,16 +9,18 @@ Jedes Modul ist ein Elternordner (`00-thema`, `01-thema`, …). Der Elternordner
 | `uebung-stufe-2` | Transferaufgabe, weniger Gerüst |
 | `loesung/stufe-1` und `loesung/stufe-2` | Lösungen, erst nach dem eigenen Versuch |
 
-Die Aufgabe steht in der `README.md` des Elternordners. Diese Datei gilt für NetBeans, IntelliJ und VS Code.
+Die Aufgabe steht in der `README.md` des Elternordners. Diese Datei gilt für NetBeans, IntelliJ und VS Code unter Windows, Linux und WSL.
+
+**WSL**: Das Repository im Linux-Dateisystem klonen (zum Beispiel `~/GitHub`), nicht unter `/mnt/c`. Dort ist Maven deutlich schneller, und Windows-Git wandelt keine Zeilenenden um. Docker Desktop mit WSL-Integration stellt `docker compose` in der Distribution bereit.
 
 ## Voraussetzungen
 
-- **JDK 21** (auf diesem Kursrechner `C:\Program Files\Java\jdk-21.0.11`). `JAVA_HOME` muss auf dieses JDK zeigen.
+- **JDK 21**. Windows-Kursrechner: `C:\Program Files\Java\jdk-21.0.11`. Linux/WSL: `sudo apt install openjdk-21-jdk maven`, das JDK liegt dann unter `/usr/lib/jvm/java-21-openjdk-amd64`. `JAVA_HOME` muss auf dieses JDK zeigen.
 - **Maven 3.6+** (`mvn -version` zeigt Java 21).
-- **Jakarta-Web** (`Java Web Basic`, `Java Web Aufbau`): Payara Community **6** unter `C:\payara6`. Die API kommt aus dem Server, Scope `provided`.
+- **Jakarta-Web** (`Java Web Basic`, `Java Web Aufbau`): Payara Community **6** unter `C:\payara6` (Windows) oder `~/payara6` (Linux/WSL). Die API kommt aus dem Server, Scope `provided`.
 - **Spring Boot**: eingebetteter Tomcat. Vor dem nächsten Lab die vorherige Anwendung beenden, sonst bleibt der Port belegt.
 - **MySQL**: Docker, nicht XAMPP. Im Ordner `docker/mysql` den Befehl `docker compose up -d` ausführen. Datenbank `ibb-db`, Benutzer `ibb-user`, Passwort `ibb-pw`. Adminer unter http://localhost:8088, Server `mysql`. Payara nutzt den Pool `jdbc/ibb` und das Realm `ibb-realm`. XAMPP-MySQL muss gestoppt sein, sonst ist Port 3306 belegt. Das Root-Passwort des Containers ist `ibb-root`.
-- **Payara einrichten**: `docker/payara/configure-ibb.ps1` in PowerShell ausführen, wenn MySQL läuft. Das Skript legt Pool `jdbc/ibb` und Realm `ibb-realm` neu an und entfernt vorher alle deployten Anwendungen und eigenen JDBC-Pools von `domain1`. Es zählt auf, was es löscht, und fragt nach. `-Force` überspringt die Rückfrage. Voraussetzung: `mysql-connector-j-*.jar` liegt in `C:\payara6\glassfish\lib`.
+- **Payara einrichten**: wenn MySQL läuft, unter Windows `docker/payara/configure-ibb.ps1` in PowerShell ausführen, unter Linux/WSL `docker/payara/configure-ibb.sh` (anderer Ort: `PAYARA_HOME=/pfad/payara6 docker/payara/configure-ibb.sh`). Das Skript legt Pool `jdbc/ibb` und Realm `ibb-realm` neu an und entfernt vorher alle deployten Anwendungen und eigenen JDBC-Pools von `domain1`. Es zählt auf, was es löscht, und fragt nach. `-Force` bzw. `--force` überspringt die Rückfrage. Voraussetzung: `mysql-connector-j-*.jar` liegt in `glassfish/lib` des Payara-Ordners.
 
 ## NetBeans
 
@@ -55,9 +57,18 @@ mvn -q package
 
 Die Anwendung im Terminal mit Strg+C beenden und warten, bis der Prompt zurück ist. In NetBeans im Ausgabefenster **Stop** drücken. Wenn der Port danach noch belegt ist, nur den Prozess dieses Labs beenden. `8080` nicht pauschal freiräumen, der Message-Broker nutzt ihn ebenfalls.
 
+PowerShell:
+
 ```powershell
 Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue |
   ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+```
+
+Linux/WSL:
+
+```bash
+lsof -i :8080 -sTCP:LISTEN     # Prozess anzeigen
+fuser -k 8080/tcp              # Prozess beenden
 ```
 
 Die Portnummer durch den `server.port` aus der Modul-README ersetzen.

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Pfade unten sind relativ zu diesem Ordner, egal von wo das Skript gestartet wird.
+cd "$(dirname "$0")" || exit 1
+mkdir -p logs
+
 echo "🚀 Starting all Microservices..."
 echo ""
 echo "⚠️  Make sure to build first: ./build-all.sh"

@@ -36,6 +36,9 @@
 **/MyMessageBroker/data/
 **/data/activemq/
 
+# PID files from start-all.sh
+**/.pids/
+
 # Secrets & local env
 **/.env
 **/.env.*

@@ -16,7 +16,7 @@ How to open that leaf in NetBeans, IntelliJ, or VS Code is in [docs/ide-maven.md
 ## Tooling
 
 - **JDK**: compile and run course modules with JDK **21.0.11** (`JAVA_HOME`, NetBeans 31 `netbeans_jdkhome`, Payara 6). Do not compile labs with `--release 25`.
-- **Jakarta web** (`Java Web Basic` and `Java Web Aufbau`): Payara Community **6.2025.10** at `C:\payara6`, **Jakarta EE 10**. API is `jakarta.jakartaee-web-api` or `jakarta.jakartaee-api` **10.0.0**, scope `provided`. Servlet 6.0, Persistence **3.1**. The JPA provider is the server EclipseLink **4.0.7**. Do not put Hibernate or EclipseLink into the WAR, and do not set `class-loader delegate="false"`. In NetBeans 31 the Payara deployer id stays `pfv5ee8`; the registered server home is Payara 6.
+- **Jakarta web** (`Java Web Basic` and `Java Web Aufbau`): Payara Community **6.2025.10** (`C:\payara6` on Windows, `~/payara6` on Linux/WSL), **Jakarta EE 10**. API is `jakarta.jakartaee-web-api` or `jakarta.jakartaee-api` **10.0.0**, scope `provided`. Servlet 6.0, Persistence **3.1**. The JPA provider is the server EclipseLink **4.0.7**. Do not put Hibernate or EclipseLink into the WAR, and do not set `class-loader delegate="false"`. In NetBeans 31 the Payara deployer id stays `pfv5ee8`; the registered server home is Payara 6.
 - **SE JPA** (`Java Anwendungsentwicklung` `08-jpa`, `09-jpa-abfragen`, `10-integration`): EclipseLink **5.0.0** and Jakarta Persistence **3.2**, `RESOURCE_LOCAL`.
 - **Spring Boot JPA** (`Spring Boot AK` `01-jpa`, `02-jpa-relationen`, `03-security`, `06-actuator`): Spring Boot **3.5.16**, Java 21, Hibernate only from the Boot BOM. EclipseLink stays off this track; Boot 4 is a later course cut.
 - **Footguns to keep in view**: Lombok `@Data` or `@EqualsAndHashCode` on an entity hashes mutable fields, so an element gets lost in a `HashSet` after `persist` or a change. Rules in [docs/lombok-jpa.md](docs/lombok-jpa.md). Spring Boot leaves Open Session in View on, so a lazy association can load during JSON rendering without an explicit transaction.
@@ -30,11 +30,20 @@ How to open that leaf in NetBeans, IntelliJ, or VS Code is in [docs/ide-maven.md
 Opening another project does not stop the previous application. The port stays taken until that process exits. Several labs listen on **8080**, including the JPA modules in `Spring Boot AK` and `MyMessageBroker`.
 
 1. Stop the running app before starting the next one. In Cursor, press `Ctrl+C` in the terminal that runs `mvn spring-boot:run` and wait until the prompt returns. In NetBeans, open that application's Output window and press **Stop**. Launch the main class directly so Stop ends that JVM. Stopping a forked `spring-boot:run` on Windows can leave the child process running.
-2. If the port is still in use, identify the listener before ending it. In PowerShell, replace `8080` with the lab's `server.port`:
+2. If the port is still in use, identify the listener before ending it. Replace `8080` with the lab's `server.port`.
+
+PowerShell:
 
 ```powershell
 Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue |
   ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+```
+
+Linux/WSL:
+
+```bash
+lsof -i :8080 -sTCP:LISTEN     # show the listener
+fuser -k 8080/tcp              # end it
 ```
 
 Do not free port 8080 blindly. The messaging broker uses it too.
